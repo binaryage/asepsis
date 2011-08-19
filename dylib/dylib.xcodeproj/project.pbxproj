@@ -182,7 +182,6 @@
 				GCC_VERSION = 4.2;
 				INIT_ROUTINE = _asepsis_init;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "-Wno-shorten-64-to-32";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -194,7 +193,6 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_VERSION = 4.2;
 				INIT_ROUTINE = _asepsis_init;
-				OTHER_CFLAGS = "-Wno-shorten-64-to-32";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

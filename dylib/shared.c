@@ -5,10 +5,6 @@
 #include <unistd.h>
 #include <errno.h>
 
-// add -Wno-shorten-64-to-32 to other C flags of the project to get rid of the warnings
-#include "md5.h"
-#include "md5.c"
-
 #if !defined(ASEPSIS_INLINE)
     #if (defined (__GNUC__) && (__GNUC__ == 4)) || defined (__clang__)
         #define ASEPSIS_INLINE static __inline__ __attribute__((always_inline))
