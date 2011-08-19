@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		D6B7B9BB13F09A84000D02E8 /* build */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D6B7B9BC13F09A84000D02E8 /* Build configuration list for PBXAggregateTarget "build" */;
+			buildPhases = (
+				D657214613F09C230087EE6E /* Clean bin */,
+				D657214513F09BE20087EE6E /* Assemble products into bin */,
+			);
+			dependencies = (
+				D6138A9A13FA6A2F000019A2 /* PBXTargetDependency */,
+				D6138A7A13FA69AE000019A2 /* PBXTargetDependency */,
+				D68F8A9313F211FF00B7B980 /* PBXTargetDependency */,
+				D657214013F09B1C0087EE6E /* PBXTargetDependency */,
+				D657213E13F09B190087EE6E /* PBXTargetDependency */,
+			);
+			name = build;
+			productName = builder;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXContainerItemProxy section */
+		D6138A7913FA69AE000019A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6138A7313FA6976000019A2 /* daemon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D6138A6513FA6971000019A2;
+			remoteInfo = asepsisd;
+		};
+		D6138A9713FA6A15000019A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6138A9313FA6A15000019A2 /* test.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6138A8613FA6A0F000019A2;
+			remoteInfo = test;
+		};
+		D6138A9913FA6A2F000019A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6138A9313FA6A15000019A2 /* test.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D6138A8513FA6A0F000019A2;
+			remoteInfo = asepsisTest;
+		};
+		D657212C13F09AE00087EE6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D657212813F09AE00087EE6E /* dylib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6B7B96E13F097E5000D02E8;
+			remoteInfo = Asepsis;
+		};
+		D657213913F09AED0087EE6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 32A4FEC40562C75800D090E7;
+			remoteInfo = Asepsis.kext;
+		};
+		D657213D13F09B190087EE6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D657212813F09AE00087EE6E /* dylib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D6B7B96D13F097E5000D02E8;
+			remoteInfo = Asepsis;
+		};
+		D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 32A4FEB80562C75700D090E7;
+			remoteInfo = Asepsis.kext;
+		};
+		D68F8A9213F211FF00B7B980 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D68F8A8C13F211E700B7B980 /* pane.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D68F8A6B13F211D000B7B980;
+			remoteInfo = Asepsis;
+		};
+		D6EF772F13FB7E7500863D7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6138A7313FA6976000019A2 /* daemon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6EF771C13FB7E7400863D7D;
+			remoteInfo = asepsisd;
+		};
+		D6EF773213FB7E7500863D7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6EF772513FB7E7400863D7D;
+			remoteInfo = TestClient;
+		};
+		D6EF773413FB7E7500863D7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D68F8A8C13F211E700B7B980 /* pane.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6EF772A13FB7E7500863D7D;
+			remoteInfo = Asepsis;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D6138A7313FA6976000019A2 /* daemon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = daemon.xcodeproj; path = ../daemon/daemon.xcodeproj; sourceTree = "<group>"; };
+		D6138A9313FA6A15000019A2 /* test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = test.xcodeproj; path = ../test/test.xcodeproj; sourceTree = "<group>"; };
+		D657212813F09AE00087EE6E /* dylib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dylib.xcodeproj; path = ../dylib/dylib.xcodeproj; sourceTree = "<group>"; };
+		D657213413F09AED0087EE6E /* kext.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = kext.xcodeproj; path = ../kext/kext.xcodeproj; sourceTree = "<group>"; };
+		D65E17C213F21960007D1032 /* rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rakefile; path = ../rakefile; sourceTree = "<group>"; };
+		D68F8A8C13F211E700B7B980 /* pane.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pane.xcodeproj; path = ../pane/pane.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		D6138A7413FA6976000019A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6EF773013FB7E7500863D7D /* asepsisd */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6138A9413FA6A15000019A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6138A9813FA6A15000019A2 /* test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D657212913F09AE00087EE6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D657212D13F09AE00087EE6E /* libAsepsis.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D657213513F09AED0087EE6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D657213A13F09AED0087EE6E /* Asepsis.kext */,
+				D6EF773313FB7E7500863D7D /* TestClient */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D68F8A8D13F211E700B7B980 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6EF773513FB7E7500863D7D /* Asepsis.prefPane */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6B7B9AE13F09A4B000D02E8 = {
+			isa = PBXGroup;
+			children = (
+				D6138A9313FA6A15000019A2 /* test.xcodeproj */,
+				D6138A7313FA6976000019A2 /* daemon.xcodeproj */,
+				D65E17C213F21960007D1032 /* rakefile */,
+				D68F8A8C13F211E700B7B980 /* pane.xcodeproj */,
+				D657213413F09AED0087EE6E /* kext.xcodeproj */,
+				D657212813F09AE00087EE6E /* dylib.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		D6B7B9B013F09A4B000D02E8 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "packager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D6B7B9AE13F09A4B000D02E8;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D6138A7413FA6976000019A2 /* Products */;
+					ProjectRef = D6138A7313FA6976000019A2 /* daemon.xcodeproj */;
+				},
+				{
+					ProductGroup = D657212913F09AE00087EE6E /* Products */;
+					ProjectRef = D657212813F09AE00087EE6E /* dylib.xcodeproj */;
+				},
+				{
+					ProductGroup = D657213513F09AED0087EE6E /* Products */;
+					ProjectRef = D657213413F09AED0087EE6E /* kext.xcodeproj */;
+				},
+				{
+					ProductGroup = D68F8A8D13F211E700B7B980 /* Products */;
+					ProjectRef = D68F8A8C13F211E700B7B980 /* pane.xcodeproj */;
+				},
+				{
+					ProductGroup = D6138A9413FA6A15000019A2 /* Products */;
+					ProjectRef = D6138A9313FA6A15000019A2 /* test.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D6B7B9BB13F09A84000D02E8 /* build */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D6138A9813FA6A15000019A2 /* test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = test;
+			path = asepsisTest;
+			remoteRef = D6138A9713FA6A15000019A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D657212D13F09AE00087EE6E /* libAsepsis.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libAsepsis.dylib;
+			remoteRef = D657212C13F09AE00087EE6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D657213A13F09AED0087EE6E /* Asepsis.kext */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Asepsis.kext;
+			remoteRef = D657213913F09AED0087EE6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6EF773013FB7E7500863D7D /* asepsisd */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = asepsisd;
+			remoteRef = D6EF772F13FB7E7500863D7D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6EF773313FB7E7500863D7D /* TestClient */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = TestClient;
+			remoteRef = D6EF773213FB7E7500863D7D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6EF773513FB7E7500863D7D /* Asepsis.prefPane */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Asepsis.prefPane;
+			remoteRef = D6EF773413FB7E7500863D7D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D657214513F09BE20087EE6E /* Assemble products into bin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Assemble products into bin";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nPREFPANE=\"$BIN/Asepsis.prefPane\"\nKEXT=\"$BIN/Asepsis.kext\"\nDYLIB=\"$KEXT/Contents/Resources/libAsepsis.dylib\"\nDAEMON=\"$KEXT/Contents/Resources/asepsisd\"\nTEST=\"$KEXT/Contents/Resources/asepsisTest\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -f \"$BUILT_PRODUCTS_DIR/libAsepsis.dylib\" \"$DYLIB\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.prefPane/\" \"$PREFPANE\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"";
+			showEnvVarsInLog = 0;
+		};
+		D657214613F09C230087EE6E /* Clean bin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clean bin";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\nrm -rf \"$BIN\"\nmkdir -p \"$BIN\"";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D6138A7A13FA69AE000019A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = asepsisd;
+			targetProxy = D6138A7913FA69AE000019A2 /* PBXContainerItemProxy */;
+		};
+		D6138A9A13FA6A2F000019A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = asepsisTest;
+			targetProxy = D6138A9913FA6A2F000019A2 /* PBXContainerItemProxy */;
+		};
+		D657213E13F09B190087EE6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Asepsis;
+			targetProxy = D657213D13F09B190087EE6E /* PBXContainerItemProxy */;
+		};
+		D657214013F09B1C0087EE6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Asepsis.kext;
+			targetProxy = D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */;
+		};
+		D68F8A9313F211FF00B7B980 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Asepsis;
+			targetProxy = D68F8A9213F211FF00B7B980 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D6B7B9B613F09A4B000D02E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6B7B9B713F09A4B000D02E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D6B7B9BD13F09A84000D02E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D6B7B9BE13F09A84000D02E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "packager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6B7B9B613F09A4B000D02E8 /* Debug */,
+				D6B7B9B713F09A4B000D02E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6B7B9BC13F09A84000D02E8 /* Build configuration list for PBXAggregateTarget "build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6B7B9BD13F09A84000D02E8 /* Debug */,
+				D6B7B9BE13F09A84000D02E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6B7B9B013F09A4B000D02E8 /* Project object */;
+}

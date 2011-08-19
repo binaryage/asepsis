@@ -1,0 +1,226 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D657218413F09E110087EE6E /* interposing.c in Sources */ = {isa = PBXBuildFile; fileRef = D657218313F09E110087EE6E /* interposing.c */; };
+		D6B0F68613F0A57C00872497 /* echelon.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B0F68513F0A57C00872497 /* echelon.h */; };
+		D6F9DE5D13FB51620050D4D4 /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9DE5C13FB51620050D4D4 /* init.c */; };
+		D6F9DE6013FB54490050D4D4 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = D6F9DE5F13FB54490050D4D4 /* common.h */; };
+		D6F9DE7013FB71AC0050D4D4 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = D6F9DE6F13FB71AC0050D4D4 /* logging.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D657218313F09E110087EE6E /* interposing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interposing.c; sourceTree = "<group>"; };
+		D6B0F68513F0A57C00872497 /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = echelon.h; path = ../kext/echelon.h; sourceTree = "<group>"; };
+		D6C299EB13FE44420067D7D9 /* candidates.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = candidates.txt; sourceTree = "<group>"; };
+		D6F9DE5913FB4F670050D4D4 /* shared.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shared.c; sourceTree = "<group>"; };
+		D6F9DE5C13FB51620050D4D4 /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = init.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		D6F9DE5F13FB54490050D4D4 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../daemon/common.h; sourceTree = "<group>"; };
+		D6F9DE6F13FB71AC0050D4D4 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = logging.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D6F9DE7113FB72030050D4D4 /* libAsepsis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libAsepsis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6B7B96B13F097E5000D02E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D657218113F09D440087EE6E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D6F9DE5F13FB54490050D4D4 /* common.h */,
+				D6B0F68513F0A57C00872497 /* echelon.h */,
+				D657218313F09E110087EE6E /* interposing.c */,
+				D6F9DE5913FB4F670050D4D4 /* shared.c */,
+				D6F9DE5C13FB51620050D4D4 /* init.c */,
+				D6F9DE6F13FB71AC0050D4D4 /* logging.h */,
+				D6C299EB13FE44420067D7D9 /* candidates.txt */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D6B7B96313F097E4000D02E8 = {
+			isa = PBXGroup;
+			children = (
+				D657218113F09D440087EE6E /* Source */,
+				D6F9DE7113FB72030050D4D4 /* libAsepsis.dylib */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D6B7B96C13F097E5000D02E8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6B0F68613F0A57C00872497 /* echelon.h in Headers */,
+				D6F9DE6013FB54490050D4D4 /* common.h in Headers */,
+				D6F9DE7013FB71AC0050D4D4 /* logging.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D6B7B96D13F097E5000D02E8 /* Asepsis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6B7B97213F097E5000D02E8 /* Build configuration list for PBXNativeTarget "Asepsis" */;
+			buildPhases = (
+				D6B7B96A13F097E5000D02E8 /* Sources */,
+				D6B7B96B13F097E5000D02E8 /* Frameworks */,
+				D6B7B96C13F097E5000D02E8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Asepsis;
+			productName = dylib;
+			productReference = D6F9DE7113FB72030050D4D4 /* libAsepsis.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6B7B96513F097E4000D02E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
+			buildConfigurationList = D6B7B96813F097E4000D02E8 /* Build configuration list for PBXProject "dylib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D6B7B96313F097E4000D02E8;
+			productRefGroup = D6B7B96313F097E4000D02E8;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6B7B96D13F097E5000D02E8 /* Asepsis */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6B7B96A13F097E5000D02E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D657218413F09E110087EE6E /* interposing.c in Sources */,
+				D6F9DE5D13FB51620050D4D4 /* init.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D6B7B97013F097E5000D02E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6B7B97113F097E5000D02E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D6B7B97313F097E5000D02E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				EXECUTABLE_PREFIX = lib;
+				GCC_VERSION = 4.2;
+				INIT_ROUTINE = _asepsis_init;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-Wno-shorten-64-to-32";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D6B7B97413F097E5000D02E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				EXECUTABLE_PREFIX = lib;
+				GCC_VERSION = 4.2;
+				INIT_ROUTINE = _asepsis_init;
+				OTHER_CFLAGS = "-Wno-shorten-64-to-32";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6B7B96813F097E4000D02E8 /* Build configuration list for PBXProject "dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6B7B97013F097E5000D02E8 /* Debug */,
+				D6B7B97113F097E5000D02E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6B7B97213F097E5000D02E8 /* Build configuration list for PBXNativeTarget "Asepsis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6B7B97313F097E5000D02E8 /* Debug */,
+				D6B7B97413F097E5000D02E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6B7B96513F097E4000D02E8 /* Project object */;
+}

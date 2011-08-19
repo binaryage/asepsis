@@ -1,0 +1,137 @@
+ROOT_DIR = File.expand_path('.')
+TMP_ROOT = '/tmp'
+BIN_DIR = File.join(ROOT_DIR, 'bin')
+
+KEXT_BUILD = File.join(BIN_DIR, "Asepsis.kext")
+KEXT_PARENT_DIR = "/System/Library/Extensions"
+KEXT_INSTALL = File.join(KEXT_PARENT_DIR, "Asepsis.kext")
+KEXT_RESOURCES = File.join(KEXT_INSTALL, "Contents", "Resources")
+DAEMON_CONFIG_SOURCE = File.join(KEXT_RESOURCES, "com.binaryage.asepsis.daemon.plist")
+DAEMON_CONFIG = File.join("/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist")
+DYLIB = File.join(KEXT_RESOURCES, "libAsepsis.dylib")
+
+################################################################################################
+# dependencies
+
+begin
+    require 'colored'
+rescue LoadError
+    raise 'You must "gem install colored" to use terminal colors'
+end
+
+def file_color(text); text.yellow; end
+def dir_color(text); text.blue; end
+def cmd_color(text); text.magenta; end
+
+############################################################################################
+
+def die(msg, status=1)
+  puts "Error[#{status||$?}]: #{msg}".red
+  exit status||$?
+end
+
+def version()
+  $version = ENV["version"] or die("specify version")
+end
+
+def revision()
+  $revision = `git rev-parse HEAD`.strip
+  $short_revision = $revision[0...7]
+end
+
+def dirty_repo_warning()
+  is_clean = `git status`.match(/working directory clean/)
+  puts "Repository is not clean! You should commit all changes before releasing.".red unless is_clean
+end
+
+def patch(path, replacers)
+  puts "#{cmd_color('Patching')} #{file_color(path)}"
+  lines = []
+  File.open(path, "r") do |f|
+    f.each do |line|
+      replacers.each do |r|
+        line.gsub!(r[0], r[1])
+      end
+      lines << line
+    end
+  end
+  File.open(path, "w") do |f|
+      f << lines.join
+  end
+end
+
+def announce(cmd)
+    puts "> " + cmd.yellow
+end
+
+def sys(cmd)
+    announce(cmd)
+    system(cmd)
+end
+
+############################################################################################
+
+desc "install kext"
+task :install_kext do
+    sys("sudo rm -rf \"#{KEXT_INSTALL}\"")
+    sys("sudo cp -r \"#{KEXT_BUILD}\" \"#{KEXT_PARENT_DIR}\"")
+    sys("sudo chown root \"#{KEXT_INSTALL}\"")
+    sys("sudo chgrp wheel \"#{KEXT_INSTALL}\"")
+    sys("sudo chmod u=rwx \"#{KEXT_INSTALL}\"")
+    sys("sudo chmod go=rx \"#{KEXT_INSTALL}\"")
+end
+
+desc "install"
+task :install => [:install_kext, :load_daemon, :enable_dylib] do
+
+end
+
+desc "uninstall"
+task :uninstall => [:unload_daemon, :disable_dylib] do
+    sys("sudo rm -rf \"#{KEXT_INSTALL}\"")
+end
+
+desc "load daemon"
+task :load_daemon => :unload_daemon do
+    sys("sudo cp \"#{DAEMON_CONFIG_SOURCE}\" \"#{DAEMON_CONFIG}\"")
+    sys("sudo launchctl load \"#{DAEMON_CONFIG}\"")
+end
+
+desc "unload daemon"
+task :unload_daemon do
+    sys("sudo launchctl unload \"#{DAEMON_CONFIG}\"") if File.exists?(DAEMON_CONFIG)
+    sys("sudo rm \"#{DAEMON_CONFIG}\"")
+end
+
+desc "diagnose kext"
+task :diagnose_kext do
+    sys("sudo kextutil -t -v 6 \"#{KEXT_INSTALL}\"")
+end
+
+desc "enable dylib"
+task :enable_dylib do
+    sys("sudo launchctl setenv DYLD_INSERT_LIBRARIES \"#{DYLIB}\"")
+end
+
+desc "disable dylib"
+task :disable_dylib do
+    sys("sudo launchctl unsetenv DYLD_INSERT_LIBRARIES")
+end
+
+desc "clean /usr/local/.dscage"
+task :clean_cage do
+    sys("rm -rf /usr/local/.dscage")
+end
+
+desc "build"
+task :build do
+    sys('xcodebuild -workspace Asepsis.xcworkspace -scheme "build" -configuration Release')
+    die("build failed") unless $?==0
+end
+
+desc "test asepsis"
+task :test do
+    sys("\"#{KEXT_BUILD}/Contents/Resources/asepsisTest\"")
+end
+
+task :default => :build

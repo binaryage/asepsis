@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D68F8A7013F211D000B7B980 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68F8A6F13F211D000B7B980 /* Cocoa.framework */; };
+		D68F8A7213F211D000B7B980 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68F8A7113F211D000B7B980 /* PreferencePanes.framework */; };
+		D68F8A7C13F211D000B7B980 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D68F8A7A13F211D000B7B980 /* InfoPlist.strings */; };
+		D68F8A7F13F211D000B7B980 /* AsepsisPane.h in Headers */ = {isa = PBXBuildFile; fileRef = D68F8A7E13F211D000B7B980 /* AsepsisPane.h */; };
+		D68F8A8113F211D000B7B980 /* AsepsisPane.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F8A8013F211D000B7B980 /* AsepsisPane.m */; };
+		D68F8A8313F211D000B7B980 /* pane.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D68F8A8213F211D000B7B980 /* pane.tiff */; };
+		D68F8A8613F211D000B7B980 /* AsepsisPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F8A8413F211D000B7B980 /* AsepsisPane.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D68F8A6C13F211D000B7B980 /* Asepsis.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Asepsis.prefPane; path = /Users/darwin/code/asepsis/pane/build/Release/Asepsis.prefPane; sourceTree = "<absolute>"; };
+		D68F8A6F13F211D000B7B980 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D68F8A7113F211D000B7B980 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
+		D68F8A7413F211D000B7B980 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D68F8A7513F211D000B7B980 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D68F8A7613F211D000B7B980 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D68F8A7913F211D000B7B980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68F8A7B13F211D000B7B980 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D68F8A7D13F211D000B7B980 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		D68F8A7E13F211D000B7B980 /* AsepsisPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsepsisPane.h; sourceTree = "<group>"; };
+		D68F8A8013F211D000B7B980 /* AsepsisPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsepsisPane.m; sourceTree = "<group>"; };
+		D68F8A8213F211D000B7B980 /* pane.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = pane.tiff; sourceTree = "<group>"; };
+		D68F8A8513F211D000B7B980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AsepsisPane.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D68F8A6713F211D000B7B980 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F8A7013F211D000B7B980 /* Cocoa.framework in Frameworks */,
+				D68F8A7213F211D000B7B980 /* PreferencePanes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D68F8A5F13F211D000B7B980 = {
+			isa = PBXGroup;
+			children = (
+				D68F8A7713F211D000B7B980 /* Source */,
+				D68F8A6E13F211D000B7B980 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D68F8A6E13F211D000B7B980 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D68F8A6F13F211D000B7B980 /* Cocoa.framework */,
+				D68F8A7113F211D000B7B980 /* PreferencePanes.framework */,
+				D68F8A7313F211D000B7B980 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D68F8A7313F211D000B7B980 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D68F8A7413F211D000B7B980 /* AppKit.framework */,
+				D68F8A7513F211D000B7B980 /* CoreData.framework */,
+				D68F8A7613F211D000B7B980 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D68F8A7713F211D000B7B980 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D68F8A7E13F211D000B7B980 /* AsepsisPane.h */,
+				D68F8A8013F211D000B7B980 /* AsepsisPane.m */,
+				D68F8A8213F211D000B7B980 /* pane.tiff */,
+				D68F8A8413F211D000B7B980 /* AsepsisPane.xib */,
+				D68F8A7813F211D000B7B980 /* Supporting Files */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D68F8A7813F211D000B7B980 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D68F8A7913F211D000B7B980 /* Info.plist */,
+				D68F8A7A13F211D000B7B980 /* InfoPlist.strings */,
+				D68F8A7D13F211D000B7B980 /* Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D68F8A6813F211D000B7B980 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F8A7F13F211D000B7B980 /* AsepsisPane.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D68F8A6B13F211D000B7B980 /* Asepsis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D68F8A8913F211D000B7B980 /* Build configuration list for PBXNativeTarget "Asepsis" */;
+			buildPhases = (
+				D68F8A6613F211D000B7B980 /* Sources */,
+				D68F8A6713F211D000B7B980 /* Frameworks */,
+				D68F8A6813F211D000B7B980 /* Headers */,
+				D68F8A6913F211D000B7B980 /* Resources */,
+				D68F8A6A13F211D000B7B980 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Asepsis;
+			productName = pane;
+			productReference = D68F8A6C13F211D000B7B980 /* Asepsis.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D68F8A6113F211D000B7B980 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = D68F8A6413F211D000B7B980 /* Build configuration list for PBXProject "pane" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D68F8A5F13F211D000B7B980;
+			productRefGroup = D68F8A5F13F211D000B7B980;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D68F8A6B13F211D000B7B980 /* Asepsis */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D68F8A6913F211D000B7B980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F8A7C13F211D000B7B980 /* InfoPlist.strings in Resources */,
+				D68F8A8313F211D000B7B980 /* pane.tiff in Resources */,
+				D68F8A8613F211D000B7B980 /* AsepsisPane.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		D68F8A6A13F211D000B7B980 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D68F8A6613F211D000B7B980 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F8A8113F211D000B7B980 /* AsepsisPane.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D68F8A7A13F211D000B7B980 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D68F8A7B13F211D000B7B980 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D68F8A8413F211D000B7B980 /* AsepsisPane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D68F8A8513F211D000B7B980 /* en */,
+			);
+			name = AsepsisPane.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D68F8A8713F211D000B7B980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D68F8A8813F211D000B7B980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D68F8A8A13F211D000B7B980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		D68F8A8B13F211D000B7B980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D68F8A6413F211D000B7B980 /* Build configuration list for PBXProject "pane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68F8A8713F211D000B7B980 /* Debug */,
+				D68F8A8813F211D000B7B980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D68F8A8913F211D000B7B980 /* Build configuration list for PBXNativeTarget "Asepsis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68F8A8A13F211D000B7B980 /* Debug */,
+				D68F8A8B13F211D000B7B980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D68F8A6113F211D000B7B980 /* Project object */;
+}
