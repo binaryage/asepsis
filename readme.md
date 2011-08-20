@@ -41,6 +41,11 @@ Note: you may want to edit launchd.conf manually
     
 TODO: provide a nice installer in the future.
 
+## Uninstallation
+
+    cd asepsis
+    rake uninstall
+
 ## Known Issues
 
   * when copying folders, DS_Store settings are not copied over (daemon is unable to distinguish this class of file operations)

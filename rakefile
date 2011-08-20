@@ -89,6 +89,7 @@ end
 desc "uninstall"
 task :uninstall => [:unload_daemon, :disable_dylib] do
     sys("sudo rm -rf \"#{KEXT_INSTALL}\"")
+    sys("sudo mv /etc/launchd.conf /etc/launchd.conf.backup")
 end
 
 desc "load daemon"
