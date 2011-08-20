@@ -130,6 +130,12 @@ task :build do
     die("build failed") unless $?==0
 end
 
+desc "clean"
+task :clean do
+    sys('xcodebuild clean -workspace Asepsis.xcworkspace -scheme "build"')
+    die("clean failed") unless $?==0
+end
+
 desc "test asepsis"
 task :test do
     sys("\"#{KEXT_BUILD}/Contents/Resources/asepsisTest\"")
