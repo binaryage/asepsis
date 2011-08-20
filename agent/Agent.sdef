@@ -1,9 +1,0 @@
-<dictionary xmlns:xi="http://www.w3.org/2003/XInclude">
-	<xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
-	<suite name="AsepsisAgent Suite" code="BAAA" description="AsepsisAgent application specific scripting facilities.">
-		<class name="application" code="capp" description="Our simple application class." inherits="application">
-			<cocoa class="NSApplication"/>
-			<property name="ready" code="AAte" type="boolean" access="r" description="we're always ready"/>
-		</class>
-	</suite>
-</dictionary>
