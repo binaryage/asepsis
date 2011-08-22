@@ -130,6 +130,18 @@ task :build do
     die("build failed") unless $?==0
 end
 
+desc "build debug version (more verbose in Console.app)"
+task :build_debug do
+    sys('xcodebuild -workspace Asepsis.xcworkspace -scheme "build" -configuration Debug')
+    die("build failed") unless $?==0
+end
+
+desc "test debug build of dylib by calling cat command"
+task :debug_test do
+    sys("DYLD_INSERT_LIBRARIES=\"#{DYLIB}\" cat /tmp/some/non-existent/folder/.DS_Store")
+    puts "see Console.app for Asepsis reports"
+end
+
 desc "clean"
 task :clean do
     sys('xcodebuild clean -workspace Asepsis.xcworkspace -scheme "build"')
