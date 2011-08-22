@@ -38,6 +38,8 @@ You will need XCode4 for building from sources
     sudo reboot
     
 Note: you may want to edit launchd.conf manually    
+
+for installing debug version which is more verbose in Console.app use `rake build_debug` instead of `rake build`
     
 TODO: provide a nice installer in the future.
 
