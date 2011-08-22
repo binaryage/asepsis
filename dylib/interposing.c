@@ -55,7 +55,7 @@ static const interpose_t interposers[] __attribute__ ((section("__DATA, __interp
     int lock = open(SUSPEND_LOCK_PATH, O_CREAT|O_RDONLY, S_IRUSR|S_IRGRP|S_IROTH);\
     if (flock(lock, LOCK_SH|LOCK_NB) != 0) {\
         DLOG("suspended: %s", path);\
-        SUSPEND_LOCK_RELEASE();\
+        close(lock);\
         return REENTRY(path);\
     }
 
