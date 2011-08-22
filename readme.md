@@ -48,6 +48,26 @@ TODO: provide a nice installer in the future.
     cd asepsis
     rake uninstall
 
+## Controlling asepsis operation via asepsisctl
+
+During installation asepsisctl command-line tool is symlinked into /usr/local/bin, so it should be visible from command-line.
+
+    ~/code/asepsis master ➔ asepsisctl --help
+    The control script for asepsis operations.
+
+    Usage:
+       asepsisctl [command] [options]
+
+    Commands:
+       suspend                           Suspends immediate asepsis operations.
+       disable                           Disables asepsis.
+       enable                            Enables asepsis.
+
+    Where options are:
+        -h, --help                       Show this message
+        -v, --version                    Print version
+
+
 ## Known Issues
 
   * when copying folders, DS_Store settings are not copied over (daemon is unable to distinguish this class of file operations)
@@ -56,17 +76,17 @@ Please report any issues. Similar approach was used in TotalFinder for more than
 
 ## Is this safe?
 
-Use it at your own risk. It sounds scary but it is pretty lightweight solution. You should review the code to see what it does.
+Well uhmmm, use it at your own risk :-) It sounds scary but it should be a pretty lightweight solution. You should review the code to see what it does.
 
-If it helps you... I'm running Asepsis on my own machine and I'm pretty happy about it.
+And if it helps you... I have been running Asepsis on my own machine for some time and I'm pretty happy about it.
 
 ## Why is this better than TotalFinder?
 
-Thanks to DYLD_INSERT_LIBRARIES this solution is system-wide and applies to all processes using DesktopServicesPriv. Not only Finder. Also there is a timing problem with TotalFinder. The plugin gets injected into the Finder after some delay. Prior injection Finder could touch some .DS_Store files creating garbage again. More than that! After injection it could cause internal confusion because Finder has cached some of .DS_Store files in-memory already. For example ~/Desktop/.DS_Store was a common pain point. It fixes also Spotlight comments - with Asepsis it sticks which wasn't the case with TotalFinder.
+Thanks to DYLD_INSERT_LIBRARIES this solution is system-wide and applies to all processes using DesktopServicesPriv. Not only Finder. Also there is a timing problem with TotalFinder. The plugin gets usually injected into the Finder after some delay. Prior injection Finder is running and can touch some .DS_Store files and create pollution again. More than that! After injection it could cause internal state confusion because Finder has cached some of .DS_Store files in-memory already. For example ~/Desktop/.DS_Store was a common pain point. DYLD_INSERT_LIBRARIES is a stable solution, because dydl interposes libc calls immediately at the point of dynamic linking, so there is no chance for asepsis to miss some calls. Btw. new Asepsis also fixes Spotlight comments which wasn't handled by TotalFinder solution.
 
 ## Could this be ported to Snow Leopard?
 
-Probably yes. Pre-Lion DesktopServicesPriv calls File Manager APIs from CoreServices. Technically the same approach could be done to File Manager. Actually this is what TotalFinder does under Snow Leopard using mach_override.
+Probably yes. Pre-Lion DesktopServicesPriv calls File Manager APIs from CoreServices. Technically the same approach could be done to File Manager. Actually this is what TotalFinder (prior version 1.3) did under Snow Leopard using mach_override. I'm not going to implement it for Snow Leopard because I've already switched to Lion personally.
 
 ## History
 

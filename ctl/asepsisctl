@@ -95,7 +95,7 @@ Usage:
    asepsisctl [command] [options]
    
 Commands:
-   suspend                           Suspends immediate asepsis operations. Waits for a keypress.
+   suspend                           Suspends immediate asepsis operations.
    disable                           Disables asepsis.
    enable                            Enables asepsis.
    

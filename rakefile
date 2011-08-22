@@ -85,12 +85,15 @@ end
 desc "install"
 task :install => [:install_kext, :load_daemon, :enable_dylib] do
     sys("ln -Fs \"#{CTL}\" /usr/local/bin/asepsisctl")
+    puts "now you should reboot your machine".red
 end
 
 desc "uninstall"
 task :uninstall => [:unload_daemon, :disable_dylib] do
     sys("sudo rm -rf \"#{KEXT_INSTALL}\"")
     sys("sudo mv /etc/launchd.conf /etc/launchd.conf.backup")
+    sys("rm /usr/local/bin/asepsisctl")
+    puts "now you should reboot your machine".red
 end
 
 desc "load daemon"
