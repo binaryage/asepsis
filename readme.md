@@ -24,7 +24,8 @@ This project implements:
 
   1. libAsepsis.dylib - a shared library for interposing file manipulation calls
   2. Asepsis.kext - a kernel extension for watching folder operations
-  3. asepsisd - a system-wide daemon for mirroring folder renames and deleted in prefixed folder
+  3. asepsisd - a system-wide daemon for mirroring folder renames and deletes in prefixed folder
+  4. asepsisctl - a command-line utility for controlling asepsis operation
 
 ## Installation
 
