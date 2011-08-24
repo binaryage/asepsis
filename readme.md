@@ -63,11 +63,12 @@ During installation asepsisctl command-line tool is symlinked into /usr/local/bi
        suspend                           Suspends immediate asepsis operations.
        disable                           Disables asepsis.
        enable                            Enables asepsis.
+       neton                             Enables DS_Store files on newtork volumes.
+       netoff                            Disables ... (http://support.apple.com/kb/ht1629).
 
     Where options are:
         -h, --help                       Show this message
         -v, --version                    Print version
-
 
 ## Known Issues
 

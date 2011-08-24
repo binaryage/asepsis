@@ -98,6 +98,8 @@ Commands:
    suspend                           Suspends immediate asepsis operations.
    disable                           Disables asepsis.
    enable                            Enables asepsis.
+   neton                             Enables DS_Store files on newtork volumes.
+   netoff                            Disables ... (http://support.apple.com/kb/ht1629).
    
 Where options are:
 EOS
@@ -131,6 +133,12 @@ case cmd
         sys("sudo rm \"#{disable_file_path}\"")
         puts "removed file #{disable_file_path}"
         puts "this takes effect for newly launched processes, reboot your machine to fully enable asepsis"
+        
+    when "neton"
+        sys("defaults write com.apple.desktopservices DSDontWriteNetworkStores false")
+
+    when "netoff"
+        sys("defaults write com.apple.desktopservices DSDontWriteNetworkStores true")
     
     else
         puts "unknown command, usage: asepsisctl --help"
