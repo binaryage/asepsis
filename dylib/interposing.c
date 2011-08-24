@@ -35,14 +35,17 @@ typedef struct interpose_s {
   void *orig_func;
 } interpose_t;
 
-#define INTERPOSE(name) { (void *)asepsis_##name,  (void *) name  }
+// taken from dyld/include/mach-o/dyld-interposing.h
+#define DYLD_INTERPOSE(_replacement,_replacee) \
+    __attribute__((used)) static struct{ const void* replacement; const void* replacee; } _interpose_##_replacee \
+        __attribute__ ((section ("__DATA,__interpose"))) = { (const void*)(unsigned long)&_replacement, (const void*)(unsigned long)&_replacee };
 
-static const interpose_t interposers[] __attribute__ ((section("__DATA, __interpose"))) = {
-     INTERPOSE(open),
-     INTERPOSE(openx_np),
-     INTERPOSE(getattrlist),
-     INTERPOSE(setattrlist)
-};
+#define INTERPOSE(name) DYLD_INTERPOSE(asepsis_##name, name)
+
+INTERPOSE(open);
+INTERPOSE(openx_np);
+INTERPOSE(getattrlist);
+INTERPOSE(setattrlist);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // some external process might want to suspend our operations - imagine asepsis "migration utility"
