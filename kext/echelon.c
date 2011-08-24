@@ -111,11 +111,11 @@ static int fileop_listener(
         if (!arg0 || !arg1) return KAUTH_RESULT_DEFER; // skip kernel bugs
 
         if (strprefix((const char*) arg0, ECHELON_DSCAGE_PREFIX) || strprefix((const char*) arg1, ECHELON_DSCAGE_PREFIX)) { // ignore activity in blessed dir
-            DLOG("echelon: detected rename in blessed dir (ignoring): %s -> %s\n", (const char*) arg0, (const char*) arg1);
+            DLOG("asepsis.kext: detected rename in blessed dir (ignoring): %s -> %s\n", (const char*) arg0, (const char*) arg1);
             return KAUTH_RESULT_DEFER; 
         }
 
-        DLOG("echelon: detected rename: %s -> %s\n", (const char*) arg0, (const char*) arg1);
+        DLOG("asepsis.kext: detected rename: %s -> %s\n", (const char*) arg0, (const char*) arg1);
 
         struct EchelonMessage info;
         info.version = ECHELON_VERSION;
@@ -127,11 +127,11 @@ static int fileop_listener(
         if (!arg1) return KAUTH_RESULT_DEFER; // skip kernel bugs
         
         if (strprefix((const char*) arg1, ECHELON_DSCAGE_PREFIX)) { // ignore activity in blessed dir
-            DLOG("echelon: detected delete in blessed dir (ignoring): %s\n", (const char*) arg1);
+            DLOG("asepsis.kext: detected delete in blessed dir (ignoring): %s\n", (const char*) arg1);
             return KAUTH_RESULT_DEFER; 
         }
         
-        DLOG("echelon: detected delete: %s\n", (const char*) arg1);
+        DLOG("asepsis.kext: detected delete: %s\n", (const char*) arg1);
         
         struct EchelonMessage info;
         info.version = ECHELON_VERSION;
@@ -160,7 +160,7 @@ static kern_return_t install_listener() {
 
     gFileOpListener = kauth_listen_scope(KAUTH_SCOPE_FILEOP, fileop_listener, NULL);
     if (!gFileOpListener) {
-        printf("echelon: failed to create KAUTH listener.\n");
+        printf("asepsis.kext: failed to create KAUTH listener.\n");
         lck_mtx_unlock(gLock);
         return KERN_FAILURE;
     }
@@ -178,7 +178,7 @@ static kern_return_t install_listener() {
 //
 // This routine always runs under the gLock.
 static void configure_echelon(const char *configuration) {
-    printf("echelon: reconfiguring with %s\n", configuration);
+    printf("asepsis.kext: reconfiguring with %s\n", configuration);
     
     // parse configuration string and perform actions
 
@@ -216,10 +216,10 @@ static errno_t ctl_connect(kern_ctl_ref ctl_ref, struct sockaddr_ctl* sac, void*
 
     lck_mtx_lock(gLock);
 
-    printf("echelon: client connected (%d)\n", sac->sc_unit);
+    printf("asepsis.kext: client connected (%d)\n", sac->sc_unit);
     
     if (gConnection) {
-        printf("echelon: some client already connected, overriding the old connection %p", gConnection);
+        printf("asepsis.kext: some client already connected, overriding the old connection %p", gConnection);
     }
     
     gConnection = ctl_ref;
@@ -234,16 +234,16 @@ static errno_t ctl_disconnect(kern_ctl_ref ctl_ref, u_int32_t unit, void* unitin
 
     lck_mtx_lock(gLock);
 
-    printf("echelon: client disconnected (%d)\n", unit);
+    printf("asepsis.kext: client disconnected (%d)\n", unit);
 
     if (!gConnection) {
-        printf("echelon: have no connection, ignoring disconnect");
+        DLOG("asepsis.kext: have no connection, ignoring disconnect");
         lck_mtx_unlock(gLock);
         return 0;
     }
     
     if (gUnit!=unit) {
-        printf("echelon: got different unit, keeping old connection %p", gConnection);
+        DLOG("asepsis.kext: got different unit, keeping old connection %p", gConnection);
         lck_mtx_unlock(gLock);
         return 0;
     }
@@ -260,13 +260,13 @@ static void send_message(struct EchelonMessage* info) {
     lck_mtx_lock(gLock);
 
     if (!gConnection) {
-        printf("echelon: lost connection during operation\n");
+        printf("asepsis.kext: lost connection during operation\n");
         lck_mtx_unlock(gLock);
         return;
     }
 
     if (gUnit == kInvalidUnit) {
-        printf("echelon: invalid unit for ctl_ref %p\n", gConnection);
+        printf("asepsis.kext: invalid unit for ctl_ref %p\n", gConnection);
         lck_mtx_unlock(gLock);
         return;
     }
@@ -274,7 +274,7 @@ static void send_message(struct EchelonMessage* info) {
     int res = ctl_enqueuedata(gConnection, gUnit, info, sizeof(struct EchelonMessage), 0);
     if (res) {
         // most likely out of socket buffer space
-        printf("echelon: unable to send message, ctl_enqueuedata failed %d, disconnecting client\n", res);
+        printf("asepsis.kext: unable to send message, ctl_enqueuedata failed %d, disconnecting client\n", res);
         gConnection = 0;
         gUnit = 0;
     }
@@ -298,22 +298,22 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
     #pragma unused(d)
     kern_return_t err;
 
-    printf("echelon v%s\n", ECHELON_RELEASE_VERSION);
+    printf("asepsis.kext v%s\n", ECHELON_RELEASE_VERSION);
 
-    printf("echelon: start!\n");
+    printf("asepsis.kext: start!\n");
 
     // allocate our global resources, needed in order to allocate memory 
     // and locks throughout the rest of the program.
     err = KERN_SUCCESS;
     gMallocTag = OSMalloc_Tagalloc(ECHELON_BUNDLE_ID, OSMT_DEFAULT);
     if (!gMallocTag) {
-        printf("echelon: failed to alloc tag (%d)\n", err);
+        printf("asepsis.kext: failed to alloc tag (%d)\n", err);
         err = KERN_FAILURE;
     }
     if (err == KERN_SUCCESS) {
         gLockGroup = lck_grp_alloc_init(ECHELON_BUNDLE_ID, LCK_GRP_ATTR_NULL);
         if (!gLockGroup) {
-            printf("echelon: failed to alloc lock group (%d)\n", err);
+            printf("asepsis.kext: failed to alloc lock group (%d)\n", err);
             err = KERN_FAILURE;
         }
     }
@@ -322,7 +322,7 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
     if (err == KERN_SUCCESS) {
         gLock = lck_mtx_alloc_init(gLockGroup, LCK_ATTR_NULL);
         if (!gLock) {
-            printf("echelon: failed to alloc config mutex (%d)\n", err);
+            printf("asepsis.kext: failed to alloc config mutex (%d)\n", err);
             err = KERN_FAILURE;
         }
     }
@@ -337,9 +337,9 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
     if (err == KERN_SUCCESS) {
         err = ctl_register(&gCtlReg, &gCtlRef);
         if (err == KERN_SUCCESS) {
-            DLOG("echelon: registered ctl with id 0x%x, ref %p\n", gCtlReg.ctl_id, gCtlRef);
+            DLOG("asepsis.kext: registered ctl with id 0x%x, ref %p\n", gCtlReg.ctl_id, gCtlRef);
         } else {
-            printf("echelon: ctl_register returned error %d\n", err);
+            printf("asepsis.kext: ctl_register returned error %d\n", err);
             err = KERN_FAILURE;
         }
     }
@@ -350,7 +350,7 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
     
     // if we failed, shut everything down.
     if (err != KERN_SUCCESS) {
-        printf("echelon: failed to initialize with error %d\n", err);
+        printf("asepsis.kext: failed to initialize with error %d\n", err);
         (void) echelon_stop(ki, d);
     }
 
@@ -366,7 +366,7 @@ extern kern_return_t echelon_stop(kmod_info_t* ki, void* d) {
     if (gCtlRef) {
         errno_t res = ctl_deregister(gCtlRef);
         if (res) { // see http://lists.apple.com/archives/darwin-kernel/2005/Jul/msg00035.html
-            printf("echelon: cannot unload kext, the client is still connected (%d)\n", res);
+            printf("asepsis.kext: cannot unload kext, the client is still connected (%d)\n", res);
             return KERN_FAILURE; // prevent unloading when client is still connected
         }
         gCtlRef = NULL;
@@ -395,6 +395,6 @@ extern kern_return_t echelon_stop(kmod_info_t* ki, void* d) {
     }
 
     // and we're done.
-    printf("echelon: finish!\n");
+    printf("asepsis.kext: finish!\n");
     return KERN_SUCCESS;
 }

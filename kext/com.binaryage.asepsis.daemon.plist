@@ -17,6 +17,9 @@
 	<key>UserName</key>
 	<string>root</string>
 	<key>KeepAlive</key>
-	<true/>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
 </dict>
 </plist>

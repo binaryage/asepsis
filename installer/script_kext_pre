@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# disable connection to echelon
+killall -USR1 asepsisd
+sleep 2
+kextunload "/System/Library/Extensions/Asepsis.kext"
+
+rm /usr/local/bin/asepsisctl
+
+launchctl unload "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist" 
+
+exit 0

@@ -10,6 +10,8 @@
 		32A4FEBC0562C75700D090E7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		32A4FEBE0562C75700D090E7 /* echelon.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3CFF42312311CA2CB7 /* echelon.c */; settings = {ATTRIBUTES = (); }; };
 		D6363F5711728086000105D8 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = D6363F5611728086000105D8 /* client.c */; };
+		D66665DB14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist in Resources */ = {isa = PBXBuildFile; fileRef = D66665DA14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist */; };
+		D66665DE14058DF8005653AC /* finish-uninstall.sh in Resources */ = {isa = PBXBuildFile; fileRef = D66665DD14058DF8005653AC /* finish-uninstall.sh */; };
 		D68ADA4211727C840086B51D /* echelon.h in Headers */ = {isa = PBXBuildFile; fileRef = D68ADA4111727C840086B51D /* echelon.h */; };
 		D6F9DE6B13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F9DE6A13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist */; };
 /* End PBXBuildFile section */
@@ -19,8 +21,10 @@
 		1A224C3CFF42312311CA2CB7 /* echelon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = echelon.c; sourceTree = "<group>"; };
 		32A4FEC30562C75700D090E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D27513B306A6225300ADB3A4 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
-		D6363F521172806C000105D8 /* TestClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = TestClient; path = /Users/darwin/code/asepsis/kext/build/Release/TestClient; sourceTree = "<absolute>"; };
 		D6363F5611728086000105D8 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = client.c; sourceTree = "<group>"; };
+		D66665CD1405716E005653AC /* TestClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		D66665DA14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = com.binaryage.asepsis.uninstall.plist; sourceTree = "<group>"; };
+		D66665DD14058DF8005653AC /* finish-uninstall.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "finish-uninstall.sh"; sourceTree = "<group>"; };
 		D68ADA4111727C840086B51D /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = echelon.h; sourceTree = "<group>"; };
 		D6F9DE6A13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.binaryage.asepsis.daemon.plist; sourceTree = "<group>"; };
 		D6F9DE6D13FB663B0050D4D4 /* Asepsis.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Asepsis.kext; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +66,8 @@
 				D6F9DE6A13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist */,
 				32A4FEC30562C75700D090E7 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				D66665DA14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist */,
+				D66665DD14058DF8005653AC /* finish-uninstall.sh */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -87,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				D6F9DE6D13FB663B0050D4D4 /* Asepsis.kext */,
+				D66665CD1405716E005653AC /* TestClient */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,7 +144,7 @@
 			);
 			name = TestClient;
 			productName = TestClient;
-			productReference = D6363F521172806C000105D8 /* TestClient */;
+			productReference = D66665CD1405716E005653AC /* TestClient */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -175,6 +182,8 @@
 			files = (
 				32A4FEBC0562C75700D090E7 /* InfoPlist.strings in Resources */,
 				D6F9DE6B13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist in Resources */,
+				D66665DB14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist in Resources */,
+				D66665DE14058DF8005653AC /* finish-uninstall.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #include "logging.h"
 
 extern int asepsis_run_monitor();
+extern int asepsis_stop_monitor();
 void asepsis_init(void);
 void asepsis_setup_safe(void);
 void asepsis_setup_logging(void);
@@ -60,9 +61,9 @@ void asepsis_setup_logging(void) {
         return;
     }
     asepsis_logging_initialized = 1;
-	g_asepsis_asl = asl_open("Asepsis", "daemon", 0);
-	g_asepsis_log_msg = asl_new(ASL_TYPE_MSG);
-	asl_set(g_asepsis_log_msg, ASL_KEY_SENDER, "Asepsis");    
+    g_asepsis_asl = asl_open("Asepsis", "daemon", 0);
+    g_asepsis_log_msg = asl_new(ASL_TYPE_MSG);
+    asl_set(g_asepsis_log_msg, ASL_KEY_SENDER, "Asepsis");    
 }
 
 // this is called first time Asepsis is going to do some action
@@ -92,7 +93,16 @@ void asepsis_setup_safe(void) {
     pthread_mutex_unlock(&g_asepsis_mutex);
 }
 
+static void signal_handler_usr1(int sigraised) {
+    DLOG(@"USR1 signal - %d", sigraised);
+    asepsis_stop_monitor();
+    // exit(0) should not be called from a signal handler.  Use _exit(0) instead
+    _exit(0);
+}
+
 int main(int argc, const char* argv[]) {
+    INFO("starting asepsisd v##VERSION##");
+    
     // prevent multiple instances
     if (!acquireLock()) {
         ERROR("unable to acquire lock %s", DAEMON_LOCK_PATH);
@@ -107,6 +117,9 @@ int main(int argc, const char* argv[]) {
     }
     
     launchKext();
+
+    // this is for controlling echelon connection from outside, handy during install/uninstall
+    signal(SIGUSR1, signal_handler_usr1);
 
     DLOG("running monitor...");
     if (asepsis_run_monitor()==0) {

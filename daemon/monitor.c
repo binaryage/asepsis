@@ -24,6 +24,8 @@
 
 static pthread_t g_monitor_thread_id = 0;
 static int g_monitor_entered_loop = 0;
+static int g_monitor_socket = -1;
+static int g_received_signal = 0;
 
 extern int asepsis_run_monitor(void);
 
@@ -104,22 +106,22 @@ static void* asepsis_monitor_thread(void* data) {
     struct EchelonMessage em;
     struct ctl_info ctl_info;
     
-    int fssocket = socket(PF_SYSTEM, SOCK_DGRAM, SYSPROTO_CONTROL);
-    if (fssocket < 0) {
+    g_monitor_socket = socket(PF_SYSTEM, SOCK_DGRAM, SYSPROTO_CONTROL);
+    if (g_monitor_socket < 0) {
         ERROR("unable to allocate SYSPROTO_CONTROL socket");
         g_monitor_thread_id = 0;
         return NULL;
     }
     bzero(&ctl_info, sizeof(struct ctl_info));
     strcpy(ctl_info.ctl_name, ECHELON_BUNDLE_ID);
-    if (ioctl(fssocket, CTLIOCGINFO, &ctl_info) == -1) {
+    if (ioctl(g_monitor_socket, CTLIOCGINFO, &ctl_info) == -1) {
         ERROR("unable to ioctl CTLIOCGINFO: %s", strerror(errno));
-        fssocket = -1;
+        g_monitor_socket = -1;
         g_monitor_thread_id = 0;
-        ERROR("unable to connect Echelon, do you have kernel extension running?");
+        ERROR("unable to connect asepsis.kext, do you have the kernel extension running?");
         return NULL;
     } else {
-        DLOG("echelon info: ctl_id=0x%x for ctl_name=%s", ctl_info.ctl_id, ctl_info.ctl_name);
+        DLOG("asepsis.kext info: ctl_id=0x%x for ctl_name=%s", ctl_info.ctl_id, ctl_info.ctl_name);
     }
     
     bzero(&sc, sizeof(struct sockaddr_ctl));
@@ -129,9 +131,9 @@ static void* asepsis_monitor_thread(void* data) {
     sc.sc_id = ctl_info.ctl_id;
     sc.sc_unit = 0;
     
-    if (connect(fssocket, (struct sockaddr*)&sc, sizeof(struct sockaddr_ctl))) {
+    if (connect(g_monitor_socket, (struct sockaddr*)&sc, sizeof(struct sockaddr_ctl))) {
         ERROR("unable to connect the socket: %s", strerror(errno));
-        fssocket = -1;
+        g_monitor_socket = -1;
         g_monitor_thread_id = 0;
         return NULL;
     }
@@ -140,8 +142,12 @@ static void* asepsis_monitor_thread(void* data) {
     DLOG("asepsis_monitor_thread entering loop...");
     g_monitor_entered_loop = 1;
     while (1) {
-        if (recv(fssocket, &em, sizeof(struct EchelonMessage), 0) != sizeof(struct EchelonMessage)) {
-            ERROR("asepsis_monitor_thread received a signal or the socket was broken, closing ...");
+        if (recv(g_monitor_socket, &em, sizeof(struct EchelonMessage), 0) != sizeof(struct EchelonMessage)) {
+            if (g_received_signal) {
+                INFO("asepsis_monitor_thread received signal, closing ...");
+            } else {
+                ERROR("asepsis_monitor_thread socket was broken, closing ...");
+            }
             break;
         }
         if (em.operation == ECHELON_OP_RENAME) {
@@ -152,9 +158,9 @@ static void* asepsis_monitor_thread(void* data) {
         }
     }
     
-    close(fssocket);
+    close(g_monitor_socket);
     
-    fssocket = -1;
+    g_monitor_socket = -1;
     g_monitor_thread_id = 0;
     DLOG("asepsis_monitor_thread finished!");
     return NULL;
@@ -205,5 +211,28 @@ int asepsis_run_monitor(void) {
     }
 
     // echelon connection is up and running :-)
+    return 0;
+}
+
+int asepsis_stop_monitor() {
+    if (!g_monitor_thread_id) {
+        return 1; // not running
+    }
+
+    if (g_monitor_socket == -1) {
+        return 2; // no socket
+    }
+
+    // signal thread to exit
+    g_received_signal = 1;
+    int res = close(g_monitor_socket);
+    if (res) {
+        return res;
+    }
+
+    while (g_monitor_thread_id) {
+        usleep(10000);
+    }
+
     return 0;
 }

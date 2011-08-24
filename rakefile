@@ -1,6 +1,9 @@
 ROOT_DIR = File.expand_path('.')
 TMP_ROOT = '/tmp'
 BIN_DIR = File.join(ROOT_DIR, 'bin')
+TMP_DIR = File.join(TMP_ROOT, "asepsis-installer")
+RELEASE_DIR = File.join(ROOT_DIR, 'release')
+INSTALLER_DIR = File.join(ROOT_DIR, 'installer')
 
 KEXT_BUILD = File.join(BIN_DIR, "Asepsis.kext")
 KEXT_PARENT_DIR = "/System/Library/Extensions"
@@ -98,6 +101,7 @@ end
 
 desc "load daemon"
 task :load_daemon => :unload_daemon do
+    sys("sudo sudo killall -USR1 asepsisd")
     sys("sudo cp \"#{DAEMON_CONFIG_SOURCE}\" \"#{DAEMON_CONFIG}\"")
     sys("sudo launchctl load \"#{DAEMON_CONFIG}\"")
 end
@@ -155,6 +159,84 @@ end
 desc "test asepsis"
 task :test do
     sys("\"#{KEXT_BUILD}/Contents/Resources/asepsisTest\"")
+end
+
+desc "builds installer+unistaller, point it to products=<path>"
+task :release do
+    puts "#{'Checking environment...'.magenta}"
+    version()
+    sys("mkdir -p #{RELEASE_DIR}") unless File.exists? RELEASE_DIR
+    
+    # work on copy, because we do some dirty patching of sources
+    sys("rm -rf \"#{TMP_DIR}\"")
+    sys("cp -r \"#{ROOT_DIR}\" \"#{TMP_DIR}\"")
+    Dir.chdir(TMP_DIR) do
+        # do some patching prior compilation
+        patch("kext/echelon.h", [
+            ["ECHELON_RELEASE_VERSION \"debug\"", "ECHELON_RELEASE_VERSION \"#{$version}\""]
+        ])
+
+        patch("daemon/main.c", [
+            ["asepsisd v##VERSION##", "asepsisd v#{$version}"]
+        ])
+        
+        sys("rake build")
+
+        patch('bin/Asepsis.kext/Contents/Resources/asepsisctl', [
+            ['asepsisctl 1.0', "asepsisctl $version"], 
+            ['##INSTALLER_TITLE##', "Asepsis #{$version}"]
+        ])
+        
+        installer_profile = File.join("bin", "installer-patched.pkgproj")
+        sys("cp \"installer/installer.pkgproj\" \"#{installer_profile}\"")
+        patch(installer_profile, [
+            ['##VERSION##', $version], 
+            ['##INSTALLER_TITLE##', "Asepsis #{$version}"]
+        ])
+
+        uninstaller_profile = File.join("bin", "uninstaller-patched.platypus")
+        sys("cp \"installer/uninstaller.platypus\" \"#{uninstaller_profile}\"")
+        patch(uninstaller_profile, [
+            ["/Users/darwin/code/asepsis", "#{TMP_DIR}"]
+        ])
+
+        uninstaller = File.join("bin", "Asepsis Uninstaller.app")
+
+        sys("rm -rf \"#{uninstaller}\"") if File.exist? uninstaller
+        die("build failed") unless $?==0
+
+        sys("platypus -P \"#{uninstaller_profile}\" \"#{uninstaller}\"")
+        die("build failed") unless $?==0
+
+        sys("cp -r \"#{uninstaller}\" \"bin/Asepsis.kext/Contents/Resources/\"")
+        die("build failed") unless $?==0
+
+        patch("bin/Asepsis.kext/Contents/Info.plist", [
+            ['##VERSION##', $version]
+        ])
+
+        release = File.join(RELEASE_DIR, "Asepsis.mpkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
+        sys("rm -rf \"#{release}\"") if File.exist? release
+        die("build failed") unless $?==0
+
+        sys("packagesbuild -v -F \"#{TMP_DIR}\" \"#{installer_profile}\"")
+        die("build failed") unless $?==0
+
+        installer_icon = File.join("installer", "installer.icns")
+        sys("installer/wincent-icon-util -icon \"#{installer_icon}\" -folder \"#{release}\"")
+        die("build failed") unless $?==0
+
+        releasedmg = File.join(RELEASE_DIR, "Asepsis-#{$version}.dmg")
+        sys("rm -rf \"#{releasedmg}\"") if File.exist? releasedmg
+        die("build failed") unless $?==0
+
+        readme_source = File.join("installer", "readme.pdf")
+        readme = File.join("bin", "Readme.pdf")
+        sys("cp \"#{readme_source}\" \"#{readme}\"")
+
+        sys("hdiutil create \"#{releasedmg}\" -volname \"Asepsis\" -fs HFS+ -srcfolder \"#{release}\" -srcfolder \"#{uninstaller}\" -srcfolder \"#{readme}\"")
+        die("build failed") unless $?==0
+    end
 end
 
 task :default => :build
