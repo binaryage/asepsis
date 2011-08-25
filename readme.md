@@ -1,6 +1,6 @@
 # Asepsis (ALPHA)
 
-### The final solution for .DS_Store pollution. 
+### smart solution for .DS_Store pollution. 
 
 ### For more info visit [http://asepsis.binaryage.com](http://asepsis.binaryage.com)
 
