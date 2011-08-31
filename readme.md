@@ -19,12 +19,10 @@ You will need XCode4 for building from sources
     sudo bash -c "echo \"setenv DYLD_INSERT_LIBRARIES /System/Library/Extensions/Asepsis.kext/Contents/Resources/libAsepsis.dylib\" >> /etc/launchd.conf"
     sudo reboot
     
-Note: you may want to edit launchd.conf manually    
+Note: you may want to edit `launchd.conf` manually
 
-for installing debug version which is more verbose in Console.app use `rake build_debug` instead of `rake build`
+Note: for installing debug version which is more verbose in Console.app use `rake build_debug` instead of `rake build`. Also you may then run `rake debug_test` to check if libAsepsis.dylib works as expected.
     
-TODO: provide a nice installer in the future.
-
 ## Uninstallation
 
     cd asepsis
