@@ -94,7 +94,7 @@ void asepsis_setup_safe(void) {
 }
 
 static void signal_handler_usr1(int sigraised) {
-    DLOG(@"USR1 signal - %d", sigraised);
+    DLOG("USR1 signal - %d", sigraised);
     asepsis_stop_monitor();
     // exit(0) should not be called from a signal handler.  Use _exit(0) instead
     _exit(0);

@@ -28,6 +28,7 @@ static int g_monitor_socket = -1;
 static int g_received_signal = 0;
 
 extern int asepsis_run_monitor(void);
+extern int asepsis_stop_monitor(void);
 
 // http://stackoverflow.com/questions/3184445/how-to-clear-directory-contents-in-c-on-linux-basically-i-want-to-do-rm-rf
 static int rmdir_recursive_cb(const char *fpath, const struct stat *sb, int typeflag, struct FTW *ftwbuf) {
