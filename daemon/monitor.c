@@ -32,17 +32,37 @@ extern int asepsis_stop_monitor(void);
 
 // http://stackoverflow.com/questions/3184445/how-to-clear-directory-contents-in-c-on-linux-basically-i-want-to-do-rm-rf
 static int rmdir_recursive_cb(const char *fpath, const struct stat *sb, int typeflag, struct FTW *ftwbuf) {
+    DLOG("remove %s", fpath);
     int res = remove(fpath);
     if (res) {
-        ERROR("unable to remove %s (%s)", fpath, strerror(res));
+        ERROR("unable to remove %s (%s)", fpath, strerror(errno));
     }
     return res;
 }
-
+ 
 static int rmdir_recursive(const char *path) {
-    return nftw(path, rmdir_recursive_cb, 64, FTW_DEPTH | FTW_PHYS);
+    struct stat sb;
+    
+    // check full path for presence
+    if (stat(path, &sb) == 0) {
+        if (S_ISDIR (sb.st_mode)) {
+            DLOG("rmdir_recursive %s", path);
+            return nftw(path, rmdir_recursive_cb, 64, FTW_DEPTH | FTW_PHYS);
+        } else {
+            DLOG("remove %s", path);
+            int res = remove(path); // in case path is just a file path
+            if (res) {
+                ERROR("unable to remove %s (%s)", path, strerror(errno));
+            }
+            return 0;
+        }
+    }
+    
+    return 0;
 }
 
+#define REENTRY(x) 1
+#define path "asepsis_handle_delete"
 static int asepsis_handle_delete(const char* path1) {
     int res = 0;
     
@@ -54,21 +74,29 @@ static int asepsis_handle_delete(const char* path1) {
     if (!makePrefixPath(path1, prefixPath1)) {
         return 0; // the prefixed path would be too long
     }
+
+    SUSPEND_LOCK_CHECK();
     
     if (!isDirectory(prefixPath1)) {
         // nothing to do, source dir is not present in our cache
+        SUSPEND_LOCK_RELEASE();
         return 0;
     }
 
     // do mirror remove
     DLOG("handle delete %s", prefixPath1);
+    SERIALIZATION_LOCK_CHECK();
     res = rmdir_recursive(prefixPath1); // this is dangerous, but we know that our path has prefix at least
     if (res) {
-        ERROR("unable to remove directory %s (%s)", prefixPath1, strerror(res));
+        ERROR("unable to remove directory %s (%s)", prefixPath1, strerror(errno));
     }
+    SERIALIZATION_LOCK_RELEASE();
+    SUSPEND_LOCK_RELEASE();
     return res;
 }
 
+#undef path
+#define path "asepsis_handle_rename"
 static int asepsis_handle_rename(const char* path1, const char* path2) {
     int res = 0;
     
@@ -86,17 +114,34 @@ static int asepsis_handle_rename(const char* path1, const char* path2) {
         return 0; // the prefixed path would be too long
     }
 
+    SUSPEND_LOCK_CHECK();
+
     if (!isDirectory(prefixPath1)) {
         // nothing to do, source dir is not present in our cache
+        SUSPEND_LOCK_RELEASE();
         return 0;
     }
     
     // do mirror rename
     DLOG("handle rename %s -> %s", prefixPath1, prefixPath2);
+    
+    SERIALIZATION_LOCK_CHECK();
+    
+    // here we need to be especially careful
+    // rename(2) may fail under some special circumstances
+    // 1. something gets into the way of renaming
+    // 2. parent folder is missing for new name
+    rmdir_recursive(prefixPath2); // there may be some old content (pathological case)
+    ensureDirectoryForPath(prefixPath2); // like mkdir -p $prefixPath2 (but excluding last directory)
+    
+    // ok, now it should be safe to call rename
     res = rename(prefixPath1, prefixPath2); // this is dangerous, but we know that our path has prefix at least
     if (res) {
-        ERROR("unable to rename directories %s -> %s (%s)", prefixPath1, prefixPath2, strerror(res));
+        ERROR("unable to rename directories %s -> %s (%s)", prefixPath1, prefixPath2, strerror(errno));
     }
+
+    SERIALIZATION_LOCK_RELEASE();
+    SUSPEND_LOCK_RELEASE();
     return res;
 }
 
@@ -143,7 +188,7 @@ static void* asepsis_monitor_thread(void* data) {
     DLOG("asepsis_monitor_thread entering loop...");
     g_monitor_entered_loop = 1;
     while (1) {
-        if (recv(g_monitor_socket, &em, sizeof(struct EchelonMessage), 0) != sizeof(struct EchelonMessage)) {
+        if (recv(g_monitor_socket, &em, sizeof(struct EchelonMessage), MSG_WAITALL) != sizeof(struct EchelonMessage)) {
             if (g_received_signal) {
                 INFO("asepsis_monitor_thread received signal, closing ...");
             } else {
@@ -152,9 +197,11 @@ static void* asepsis_monitor_thread(void* data) {
             break;
         }
         if (em.operation == ECHELON_OP_RENAME) {
+            // DLOG("asepsis_monitor_thread received rename op %s -> %s", em.path1, em.path2);
             asepsis_handle_rename(em.path1, em.path2);
         }
         if (em.operation == ECHELON_OP_DELETE) {
+            // DLOG("asepsis_monitor_thread received delete op %s", em.path1);
             asepsis_handle_delete(em.path1);
         }
     }

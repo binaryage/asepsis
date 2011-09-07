@@ -274,9 +274,7 @@ static void send_message(struct EchelonMessage* info) {
     int res = ctl_enqueuedata(gConnection, gUnit, info, sizeof(struct EchelonMessage), 0);
     if (res) {
         // most likely out of socket buffer space
-        printf("asepsis.kext: unable to send message, ctl_enqueuedata failed %d, disconnecting client\n", res);
-        gConnection = 0;
-        gUnit = 0;
+        printf("asepsis.kext: unable to send message, ctl_enqueuedata failed %d, message lost\n", res);
     }
 
     lck_mtx_unlock(gLock);

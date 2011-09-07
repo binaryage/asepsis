@@ -18,6 +18,35 @@ extern void asepsis_setup_logging(void);
 
 extern int g_asepsis_disabled;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// some external process might want to suspend our operations - imagine asepsis "migration utility"
+
+#define SUSPEND_LOCK_RELEASE() \
+    close(lock);\
+    unlink(SUSPEND_LOCK_PATH);
+
+#define SUSPEND_LOCK_CHECK() \
+    int lock = open(SUSPEND_LOCK_PATH, O_CREAT|O_RDONLY, S_IRUSR|S_IRGRP|S_IROTH);\
+    if (flock(lock, LOCK_SH|LOCK_NB) != 0) {\
+        DLOG("suspended: %s", path);\
+        close(lock);\
+        return REENTRY(path);\
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// to prevent race conditions in when calling rename(2) from monitor 
+// => serialize all accesses to the prefix folder
+
+#define SERIALIZATION_LOCK_CHECK() \
+    int slock = open(SERIALIZATION_LOCK_PATH, O_CREAT|O_RDONLY, S_IRUSR|S_IRGRP|S_IROTH);\
+    flock(slock, LOCK_EX);
+
+#define SERIALIZATION_LOCK_RELEASE() \
+    close(slock);\
+    unlink(SERIALIZATION_LOCK_PATH);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ASEPSIS_INLINE int isDisabled() {
     asepsis_setup_safe();
     return g_asepsis_disabled;

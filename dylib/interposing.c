@@ -48,21 +48,6 @@ INTERPOSE(getattrlist);
 INTERPOSE(setattrlist);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// some external process might want to suspend our operations - imagine asepsis "migration utility"
-
-#define SUSPEND_LOCK_RELEASE() \
-    close(lock);\
-    unlink(SUSPEND_LOCK_PATH);
-
-#define SUSPEND_LOCK_CHECK() \
-    int lock = open(SUSPEND_LOCK_PATH, O_CREAT|O_RDONLY, S_IRUSR|S_IRGRP|S_IROTH);\
-    if (flock(lock, LOCK_SH|LOCK_NB) != 0) {\
-        DLOG("suspended: %s", path);\
-        close(lock);\
-        return REENTRY(path);\
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 // interposed functions
 
 #define REENTRY(path) open(path, flags, mode)
@@ -85,9 +70,11 @@ int asepsis_open(const char * path, int flags, mode_t mode) {
     }
     SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
+    SERIALIZATION_LOCK_CHECK();
     DLOG("asepsis_open %s (flags=%016x mode=%016x) -> %s", path, flags, mode, prefixPath);
     ensureDirectoryForPath(prefixPath);
     int res = REENTRY(prefixPath);
+    SERIALIZATION_LOCK_RELEASE();
     SUSPEND_LOCK_RELEASE();
     return res;
 }
@@ -113,9 +100,11 @@ int asepsis_openx_np(const char * path, int flags, filesec_t sec) {
     }
     SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
+    SERIALIZATION_LOCK_CHECK();
     DLOG("openx_np %s (flags=%016x mode=%16p) -> %s", path, flags, sec, prefixPath);
     ensureDirectoryForPath(prefixPath);
     int res = REENTRY(prefixPath);
+    SERIALIZATION_LOCK_RELEASE();
     SUSPEND_LOCK_RELEASE();
     return res;
 }
@@ -141,8 +130,10 @@ int asepsis_getattrlist(const char *path, void *alist, void *attributeBuffer, si
     }
     SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
+    SERIALIZATION_LOCK_CHECK();
     DLOG("getattrlist %s -> %s", path, prefixPath);
     int res = REENTRY(prefixPath);
+    SERIALIZATION_LOCK_RELEASE();
     SUSPEND_LOCK_RELEASE();
     return res;
 }
@@ -168,8 +159,10 @@ int asepsis_setattrlist(const char *path, void *alist, void *attributeBuffer, si
     }
     SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
+    SERIALIZATION_LOCK_CHECK();
     DLOG("setattrlist %s -> %s", path, prefixPath);
     int res = REENTRY(prefixPath);
+    SERIALIZATION_LOCK_RELEASE();
     SUSPEND_LOCK_RELEASE();
     return res;
 }
