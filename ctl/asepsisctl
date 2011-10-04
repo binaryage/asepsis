@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-ASEPSISCTL_VERSION = "1.0"
+ASEPSISCTL_VERSION = "1.1"
 BASE_DIR = File.dirname(__FILE__)
 
 require BASE_DIR + '/lib/micro-optparse'
