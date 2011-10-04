@@ -271,7 +271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nPREFPANE=\"$BIN/Asepsis.prefPane\"\nKEXT=\"$BIN/Asepsis.kext\"\nDYLIB=\"$KEXT/Contents/Resources/libAsepsis.dylib\"\nDAEMON=\"$KEXT/Contents/Resources/asepsisd\"\nTEST=\"$KEXT/Contents/Resources/asepsisTest\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -f \"$BUILT_PRODUCTS_DIR/libAsepsis.dylib\" \"$DYLIB\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.prefPane/\" \"$PREFPANE\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp \"$PROJECT_DIR/../ctl/asepsisctl\" \"$KEXT/Contents/Resources\"";
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nPREFPANE=\"$BIN/Asepsis.prefPane\"\nKEXT=\"$BIN/Asepsis.kext\"\nDYLIB=\"$KEXT/Contents/Resources/libAsepsis.dylib\"\nDAEMON=\"$KEXT/Contents/Resources/asepsisd\"\nTEST=\"$KEXT/Contents/Resources/asepsisTest\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -f \"$BUILT_PRODUCTS_DIR/libAsepsis.dylib\" \"$DYLIB\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.prefPane/\" \"$PREFPANE\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$PROJECT_DIR/../ctl\"/* \"$KEXT/Contents/Resources\"";
 			showEnvVarsInLog = 0;
 		};
 		D657214613F09C230087EE6E /* Clean bin */ = {
