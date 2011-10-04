@@ -112,15 +112,11 @@ ASEPSIS_INLINE int ensureDirectoryForPath(char* path) {
     
     // check full path for presence
     if (stat(path, &sb) == 0) {
-        if (S_ISDIR (sb.st_mode) == 0) {
-            ERROR("`%s': file exists but is not a directory", path);
-            return 1;
-        }
         if (chmod(path, nmode)) {
             ERROR("%s: %s", path, strerror (errno));
             return 1;
         }
-        // ok, dir exists and is ready
+        // ok, dir or file exists and is ready
         return 0;
     }
     

@@ -1,145 +1,66 @@
 #!/usr/bin/env ruby
 
-require 'optparse'
+ASEPSISCTL_VERSION = "1.0"
+BASE_DIR = File.dirname(__FILE__)
 
-##############################################################################################################################
-# https://github.com/florianpilz/micro-optparse
-
-class Parser
-  attr_accessor :banner, :version
-  def initialize
-    @options = []
-    @used_short = []
-    @default_values = nil
-    yield self if block_given?
-  end
-
-  def option(name, desc, settings = {})
-    @options << [name, desc, settings]
-  end
-
-  def short_from(name)
-    name.to_s.chars.each do |c|
-      next if @used_short.include?(c) || c == "_"
-      return c # returns from short_from method
-    end
-  end
-
-  def validate(options) # remove this method if you want fewer lines of code and don't need validations
-    options.each_pair do |key, value|
-      opt = @options.find_all{ |o| o[0] == key }.first
-      key = "--" << key.to_s.gsub("_", "-")
-      unless opt[2][:value_in_set].nil? || opt[2][:value_in_set].include?(value)
-        puts "Parameter for #{key} must be in [" << opt[2][:value_in_set].join(", ") << "]" ; exit(1)
-      end
-      unless opt[2][:value_matches].nil? || opt[2][:value_matches] =~ value
-        puts "Parameter for #{key} must match /" << opt[2][:value_matches].source << "/" ; exit(1)
-      end
-      unless opt[2][:value_satisfies].nil? || opt[2][:value_satisfies].call(value)
-        puts "Parameter for #{key} must satisfy given conditions (see description)" ; exit(1)
-      end
-    end
-  end
-
-  def process!(arguments = ARGV)
-    @result = (@default_values || {}).clone # reset or new
-    @optionparser ||= OptionParser.new do |p| # prepare only once
-      @options.each do |o|
-        @used_short << short = o[2][:short] || short_from(o[0])
-        @result[o[0]] = o[2][:default] || false # set default
-        klass = o[2][:default].class == Fixnum ? Integer : o[2][:default].class
-
-        if [TrueClass, FalseClass, NilClass].include?(klass) # boolean switch
-          p.on("-" << short, "--[no-]" << o[0].to_s.gsub("_", "-"), o[1]) {|x| @result[o[0]] = x}
-        else # argument with parameter
-          p.on("-" << short, "--" << o[0].to_s.gsub("_", "-") << " " << o[2][:default].to_s, klass, o[1]) {|x| @result[o[0]] = x}
-        end
-      end
-
-      p.banner = @banner unless @banner.nil?
-      p.on_tail("-h", "--help", "Show this message") {puts p ; exit}
-      short = @used_short.include?("v") ? "-V" : "-v"
-      p.on_tail(short, "--version", "Print version") {puts @version ; exit} unless @version.nil?
-      @default_values = @result.clone # save default values to reset @result in subsequent calls
-    end
-
-    begin
-      @optionparser.parse!(arguments)
-    rescue OptionParser::ParseError => e
-      puts e.message ; exit(1)
-    end
-    
-    validate(@result) if self.respond_to?("validate")
-    @result
-  end
-end
-
-def sys(cmd)
-    puts ">#{cmd}"
-    if not system(cmd) then
-        puts "failded with code #{$?}"
-        exit $?
-    end
-end
+require BASE_DIR + '/lib/micro-optparse'
+require BASE_DIR + '/lib/helpers'
 
 ##############################################################################################################################
 
-disable_file_path = "/var/db/.asepsis.disabled"
-suspend_lock_path = "/tmp/.asepsis.suspend.lock"
+DISABLE_FILE_PATH = "/var/db/.asepsis.disabled"
+PREFIX_PATH = "/usr/local/.dscage"
+SUSPEND_LOCK_PATH = "#{PREFIX_PATH}/.asepsis.suspend.lock"
+KEXT_PATH = "/System/Library/Extensions/Asepsis.kext"
+ASEPSISD_PATH = File.join(KEXT_PATH, "Contents", "Resources", "asepsisd")
+LIBASEPSIS_PATH = File.join(KEXT_PATH, "Contents", "Resources", "libAsepsis.dylib")
+
+##############################################################################################################################
 
 options = Parser.new do |p|
     p.banner =  <<-EOS
 The control script for asepsis operations.
 
 Usage:
-   asepsisctl [command] [options]
+    asepsisctl [command] [options]
    
 Commands:
-   suspend                           Suspends immediate asepsis operations.
-   disable                           Disables asepsis.
-   enable                            Enables asepsis.
-   neton                             Enables DS_Store files on newtork volumes.
-   netoff                            Disables ... (http://support.apple.com/kb/ht1629).
+    suspend                          Suspends immediate asepsis operations.
+    disable                          Disables asepsis.
+    enable                           Enables asepsis.
+    neton                            Enables DS_Store files on network volumes.
+    netoff                           Disables ... (http://support.apple.com/kb/ht1629).
+    diagnose                         Diagnoses asepsis setup
+    migratein                        Migrates .DS_Store files in #{PREFIX_PATH}
+    migrateout                       Migrates .DS_Store files from #{PREFIX_PATH}
+    prune                            Removes empty directories from #{PREFIX_PATH}
+    clean                            Deletes all content from #{PREFIX_PATH}
    
 Where options are:
 EOS
-    p.version = "asepsisctl 1.0"
+    p.version = "asepsisctl #{ASEPSISCTL_VERSION}"
+    p.option :root, "Root folder for migration", :default => File.expand_path("~")
+    p.option :dry, "Run migration in dry mode", :default => false
+    p.option :verbose, "Be more verbose", :default => false
 end.process!
 
-cmd = ARGV[0]
+##############################################################################################################################
 
-case cmd
-    when "suspend"
-        puts "trying to lock #{suspend_lock_path}"
-        file = File.new(suspend_lock_path, File::CREAT|File::TRUNC|File::RDWR, 0644)
-        file.flock(File::LOCK_EX)
-        puts "locked, asepsis is suspended, hit CTRL+C to break the lock"
-        Signal.trap("INT") do
-            file.flock(File::LOCK_UN)
-            File.unlink(suspend_lock_path)
-            puts "asepsis operation resumed"
-            exit 0
-        end
-        while true do
-            sleep 1000
-        end
-    
-    when "disable"
-        sys("sudo touch \"#{disable_file_path}\"")
-        puts "created file #{disable_file_path}"
-        puts "this takes effect for newly launched processes, reboot your machine to fully disable asepsis"
-    
-    when "enable"
-        sys("sudo rm \"#{disable_file_path}\"")
-        puts "removed file #{disable_file_path}"
-        puts "this takes effect for newly launched processes, reboot your machine to fully enable asepsis"
-        
-    when "neton"
-        sys("defaults write com.apple.desktopservices DSDontWriteNetworkStores false")
+require BASE_DIR + '/cmd/suspend'
+require BASE_DIR + '/cmd/disable'
+require BASE_DIR + '/cmd/enable'
+require BASE_DIR + '/cmd/neton'
+require BASE_DIR + '/cmd/netoff'
+require BASE_DIR + '/cmd/diagnose'
+require BASE_DIR + '/cmd/migratein'
+require BASE_DIR + '/cmd/migrateout'
+require BASE_DIR + '/cmd/prune'
+require BASE_DIR + '/cmd/clean'
 
-    when "netoff"
-        sys("defaults write com.apple.desktopservices DSDontWriteNetworkStores true")
-    
-    else
-        puts "unknown command, usage: asepsisctl --help"
-end
+##############################################################################################################################
+
+command = ARGV[0]
+
+die("unknown command, usage: asepsisctl --help") unless Object.respond_to?("cmd_#{command}", true)
+
+eval("cmd_#{command}(options)") # dispatch the command
