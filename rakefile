@@ -18,6 +18,7 @@ CTL = File.join(KEXT_RESOURCES, "asepsisctl")
 ################################################################################################
 # dependencies
 
+require 'rubygems'
 begin
     require 'colored'
 rescue LoadError
