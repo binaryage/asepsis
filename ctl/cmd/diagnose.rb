@@ -65,14 +65,9 @@ def cmd_diagnose(options)
     test_store_file = File.join(PREFIX_PATH, "tmp", "_DS_Store")
     `rm "#{test_store_file}"` if File.exists? test_store_file
     `rm /tmp/.DS_Store` if File.exists? "/tmp/.DS_Store"
-    `touch /tmp/.DS_Store`
+    `DYLD_INSERT_LIBRARIES="#{LIBASEPSIS_PATH}" touch /tmp/.DS_Store`
     unless File.exists? test_store_file then
-        puts "tried> touch /tmp/.DS_Store but #{test_store_file} wasn't created - something is wrong"
-        `rm /tmp/.DS_Store` if File.exists? "/tmp/.DS_Store"
-        `DYLD_INSERT_LIBRARIES="#{LIBASEPSIS_PATH}" touch /tmp/.DS_Store`
-        unless File.exists? test_store_file then
-            puts "tried> DYLD_INSERT_LIBRARIES=\"#{LIBASEPSIS_PATH}\" touch /tmp/.DS_Store but #{test_store_file} still wasn't created"
-        end
+        puts "tried> DYLD_INSERT_LIBRARIES=\"#{LIBASEPSIS_PATH}\" touch /tmp/.DS_Store but #{test_store_file} wasn't created - something is wrong"
         is_ok = false
     end
     
