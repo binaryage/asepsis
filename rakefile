@@ -175,9 +175,15 @@ task :install_kext do
 end
 
 desc "install"
-task :install => [:install_kext, :load_daemon, :enable_dylib] do
+task :install => [:teardown, :install_kext, :load_daemon, :enable_dylib] do
     sys("ln -Fs \"#{CTL}\" /usr/local/bin/asepsisctl")
     puts "now you should reboot your machine".red
+end
+
+task :teardown do
+    sys("sudo killall -USR1 asepsisd")
+    sleep 2
+    sys("sudo kextunload \"/System/Library/Extensions/Asepsis.kext\"")
 end
 
 desc "uninstall"
