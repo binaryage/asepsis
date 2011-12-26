@@ -11,7 +11,7 @@ def cmd_migratein(options)
     
     puts "migrating all .DS_Store files from #{root} into #{PREFIX_PATH}"
     
-    Dir.glob(File.join(root, "**", ".DS_Store")) do |source|
+    Dir.glob(File.join(root, "**", ".DS_Store"), File::FNM_DOTMATCH) do |source|
         dest = File.join(PREFIX_PATH, source)
         dest[-9] = "_" # /some/path/.DS_Store -> /some/path/_DS_Store
         
