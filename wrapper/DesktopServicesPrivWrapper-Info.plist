@@ -9,28 +9,22 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.binaryage.asepsis.pane</string>
+	<string>com.binaryage.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
-	<key>CFBundleSignature</key>
-	<string>BAGE</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2011 BinaryAge. All rights reserved.</string>
-	<key>NSMainNibFile</key>
-	<string>AsepsisPane</string>
-	<key>NSPrefPaneIconFile</key>
-	<string>pane.tiff</string>
-	<key>NSPrefPaneIconLabel</key>
-	<string>Asepsis</string>
-	<key>NSPrincipalClass</key>
-	<string>AsepsisPane</string>
-	<key>CFBundleVersion</key>
-	<string>##VERSION##</string>
+	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>##VERSION##</string>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2012 __MyCompanyName__. All rights reserved.</string>
+	<key>NSPrincipalClass</key>
+	<string></string>
 </dict>
 </plist>

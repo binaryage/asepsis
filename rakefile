@@ -245,6 +245,11 @@ task :debug_test => :build_debug do
     puts "see Console.app for Asepsis reports"
 end
 
+desc "diagnose_finder"
+task :diagnose_finder do
+  sys("DYLD_PRINT_INTERPOSING=1 DYLD_PRINT_WEAK_BINDINGS=1 DYLD_PRINT_INITIALIZERS=1 open /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &2 > 1")
+end
+
 desc "clean"
 task :clean do
     sys('xcodebuild clean -workspace Asepsis.xcworkspace -scheme "build"')

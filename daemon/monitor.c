@@ -20,7 +20,7 @@
 #include "common.h"
 #include "logging.h"
 
-#include "../dylib/shared.c"
+#include "../daemon/shared.c"
 
 static pthread_t g_monitor_thread_id = 0;
 static int g_monitor_entered_loop = 0;

@@ -14,13 +14,13 @@ aslmsg g_asepsis_log_msg = NULL;
 uint32_t g_asepsis_executable_path_length = 1024;
 char g_asepsis_executable_path[1024] = "!";
 
-void asepsis_init(void);
 void asepsis_setup_safe(void);
 void asepsis_setup_logging(void);
 
 // here is a hardcoded list of black-listed processes - asepsis will disable itself
 const char* g_asepsis_blacklist[] = {
     "/System/Library/CoreServices/backupd", // backup daemon and its helper tools under /System/Library/CoreServices/backupd.framework should see the whole filesystem without transformation
+    "/System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker",
     NULL
 };
 
@@ -43,9 +43,9 @@ void asepsis_setup_logging(void) {
         return;
     }
     asepsis_logging_initialized = 1;
-	g_asepsis_asl = asl_open("Asepsis", "dylib", 0);
+	g_asepsis_asl = asl_open("Asepsisx", "dylib", 0);
 	g_asepsis_log_msg = asl_new(ASL_TYPE_MSG);
-	asl_set(g_asepsis_log_msg, ASL_KEY_SENDER, "Asepsis");    
+	asl_set(g_asepsis_log_msg, ASL_KEY_SENDER, "Asepsisx");    
 }
 
 static void asepsis_setup_executable_path() {
@@ -77,7 +77,7 @@ static void asepsis_setup(void) {
         g_asepsis_disabled = 1;
         return; // minimize further interference
     }
-
+    
     // retrieve host executable path
     asepsis_setup_executable_path();
     
@@ -100,12 +100,12 @@ void asepsis_setup_safe(void) {
         return; // no-op
     }
     already_initialized = 1;
-
+    
     // init a recursive mutex
     pthread_mutexattr_init(&g_asepsis_mutex_attr);
     pthread_mutexattr_settype(&g_asepsis_mutex_attr, PTHREAD_MUTEX_RECURSIVE);
     pthread_mutex_init(&g_asepsis_mutex, &g_asepsis_mutex_attr);
-
+    
     pthread_mutex_lock(&g_asepsis_mutex);
     asepsis_setup();
     pthread_mutex_unlock(&g_asepsis_mutex);

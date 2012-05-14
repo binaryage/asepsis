@@ -5,7 +5,7 @@
 #include "echelon.h"
 #include "logging.h"
 
-#include "../dylib/shared.c"
+#include "../daemon/shared.c"
 
 static int g_failed_count = 0;
 

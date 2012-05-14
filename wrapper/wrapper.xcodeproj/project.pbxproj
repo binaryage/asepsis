@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D67C33DA1560EAF3007E9A0A /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = D67C33D91560EAF3007E9A0A /* init.c */; };
+		D6DDEB311564B32300A601B9 /* mach_override.c in Sources */ = {isa = PBXBuildFile; fileRef = D6DDEB2F1564B32300A601B9 /* mach_override.c */; };
+		D6DDEB321564B32300A601B9 /* mach_override.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB301564B32300A601B9 /* mach_override.h */; };
+		D6DDEB351564B39E00A601B9 /* interposing.c in Sources */ = {isa = PBXBuildFile; fileRef = D6DDEB341564B39E00A601B9 /* interposing.c */; };
+		D6DDEB371564B3B800A601B9 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB361564B3B800A601B9 /* common.h */; };
+		D6DDEB391564B3D300A601B9 /* echelon.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB381564B3D300A601B9 /* echelon.h */; };
+		D6DDEB3B1564B3FA00A601B9 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB3A1564B3FA00A601B9 /* logging.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D67C33C81560EAF3007E9A0A /* DesktopServicesPrivWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesktopServicesPrivWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D67C33D31560EAF3007E9A0A /* DesktopServicesPrivWrapper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DesktopServicesPrivWrapper-Info.plist"; sourceTree = "<group>"; };
+		D67C33D71560EAF3007E9A0A /* DesktopServicesPrivWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DesktopServicesPrivWrapper-Prefix.pch"; sourceTree = "<group>"; };
+		D67C33D91560EAF3007E9A0A /* init.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
+		D6DDEB2F1564B32300A601B9 /* mach_override.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_override.c; sourceTree = "<group>"; };
+		D6DDEB301564B32300A601B9 /* mach_override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_override.h; sourceTree = "<group>"; };
+		D6DDEB341564B39E00A601B9 /* interposing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interposing.c; sourceTree = "<group>"; };
+		D6DDEB361564B3B800A601B9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../daemon/common.h; sourceTree = "<group>"; };
+		D6DDEB381564B3D300A601B9 /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = echelon.h; path = ../kext/echelon.h; sourceTree = "<group>"; };
+		D6DDEB3A1564B3FA00A601B9 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D67C33C41560EAF3007E9A0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D67C33BC1560EAF3007E9A0A = {
+			isa = PBXGroup;
+			children = (
+				D67C33D21560EAF3007E9A0A /* Supporting Files */,
+				D6DDEB3A1564B3FA00A601B9 /* logging.h */,
+				D6DDEB381564B3D300A601B9 /* echelon.h */,
+				D6DDEB361564B3B800A601B9 /* common.h */,
+				D6DDEB341564B39E00A601B9 /* interposing.c */,
+				D6DDEB2F1564B32300A601B9 /* mach_override.c */,
+				D6DDEB301564B32300A601B9 /* mach_override.h */,
+				D67C33D91560EAF3007E9A0A /* init.c */,
+				D67C33C91560EAF3007E9A0A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D67C33C91560EAF3007E9A0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D67C33C81560EAF3007E9A0A /* DesktopServicesPrivWrapper.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D67C33D21560EAF3007E9A0A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D67C33D31560EAF3007E9A0A /* DesktopServicesPrivWrapper-Info.plist */,
+				D67C33D71560EAF3007E9A0A /* DesktopServicesPrivWrapper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = DesktopServicesPriv;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D67C33C51560EAF3007E9A0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DDEB321564B32300A601B9 /* mach_override.h in Headers */,
+				D6DDEB371564B3B800A601B9 /* common.h in Headers */,
+				D6DDEB391564B3D300A601B9 /* echelon.h in Headers */,
+				D6DDEB3B1564B3FA00A601B9 /* logging.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D67C33C71560EAF3007E9A0A /* DesktopServicesPrivWrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D67C33DD1560EAF3007E9A0A /* Build configuration list for PBXNativeTarget "DesktopServicesPrivWrapper" */;
+			buildPhases = (
+				D67C33C31560EAF3007E9A0A /* Sources */,
+				D67C33C41560EAF3007E9A0A /* Frameworks */,
+				D67C33C51560EAF3007E9A0A /* Headers */,
+				D67C33C61560EAF3007E9A0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DesktopServicesPrivWrapper;
+			productName = DesktopServicesPriv;
+			productReference = D67C33C81560EAF3007E9A0A /* DesktopServicesPrivWrapper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D67C33BE1560EAF3007E9A0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = D67C33C11560EAF3007E9A0A /* Build configuration list for PBXProject "wrapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D67C33BC1560EAF3007E9A0A;
+			productRefGroup = D67C33C91560EAF3007E9A0A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D67C33C71560EAF3007E9A0A /* DesktopServicesPrivWrapper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D67C33C61560EAF3007E9A0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D67C33C31560EAF3007E9A0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D67C33DA1560EAF3007E9A0A /* init.c in Sources */,
+				D6DDEB311564B32300A601B9 /* mach_override.c in Sources */,
+				D6DDEB351564B39E00A601B9 /* interposing.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D67C33DB1560EAF3007E9A0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D67C33DC1560EAF3007E9A0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D67C33DE1560EAF3007E9A0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CURRENT_PROJECT_VERSION = /usr/bin/x;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DesktopServicesPrivWrapper-Prefix.pch";
+				INFOPLIST_FILE = "DesktopServicesPrivWrapper-Info.plist";
+				INIT_ROUTINE = _init_asepsis;
+				LD_DYLIB_INSTALL_NAME = /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-v",
+					"-Xlinker",
+					"-F/System/Library/PrivateFrameworks",
+					"-Xlinker",
+					"-reexport_framework",
+					"-Xlinker",
+					DesktopServicesPriv,
+				);
+				OTHER_TEST_FLAGS = "-reexport_framework /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/DesktopServicesPriv";
+				PRODUCT_NAME = DesktopServicesPrivWrapper;
+			};
+			name = Debug;
+		};
+		D67C33DF1560EAF3007E9A0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CURRENT_PROJECT_VERSION = /usr/bin/x;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DesktopServicesPrivWrapper-Prefix.pch";
+				INFOPLIST_FILE = "DesktopServicesPrivWrapper-Info.plist";
+				INIT_ROUTINE = _init_asepsis;
+				LD_DYLIB_INSTALL_NAME = /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-v",
+					"-Xlinker",
+					"-F/System/Library/PrivateFrameworks",
+					"-Xlinker",
+					"-reexport_framework",
+					"-Xlinker",
+					DesktopServicesPriv,
+				);
+				OTHER_TEST_FLAGS = "-reexport_framework /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/DesktopServicesPriv";
+				PRODUCT_NAME = DesktopServicesPrivWrapper;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D67C33C11560EAF3007E9A0A /* Build configuration list for PBXProject "wrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D67C33DB1560EAF3007E9A0A /* Debug */,
+				D67C33DC1560EAF3007E9A0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D67C33DD1560EAF3007E9A0A /* Build configuration list for PBXNativeTarget "DesktopServicesPrivWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D67C33DE1560EAF3007E9A0A /* Debug */,
+				D67C33DF1560EAF3007E9A0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D67C33BE1560EAF3007E9A0A /* Project object */;
+}

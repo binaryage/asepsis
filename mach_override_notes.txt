@@ -1,0 +1,21 @@
+1. attach lldb to running Finder.app (10.7.4):
+2. break
+
+(lldb) dis -b -n openx_np
+libsystem_c.dylib`openx_np:
+   0x7fff8b1e834f:  55              pushq  %rbp
+   0x7fff8b1e8350:  48 89 e5        movq   %rsp, %rbp
+   0x7fff8b1e8353:  48 85 d2        testq  %rdx, %rdx
+   0x7fff8b1e8356:  0f 94 c0        sete   %al
+   0x7fff8b1e8359:  89 f1           movl   %esi, %ecx
+   0x7fff8b1e835b:  c1 e9 09        shrl   $9, %ecx
+   0x7fff8b1e835e:  83 e1 01        andl   $1, %ecx
+   0x7fff8b1e8361:  83 f1 01        xorl   $1, %ecx
+   0x7fff8b1e8364:  08 c1           orb    %al, %cl
+   0x7fff8b1e8366:  41 89 f0        movl   %esi, %r8d
+   0x7fff8b1e8369:  48 89 fe        movq   %rdi, %rsi
+   0x7fff8b1e836c:  74 0f           je     0x00007fff8b1e837d       ; openx_np + 46
+   0x7fff8b1e836e:  30 c0           xorb   %al, %al
+   0x7fff8b1e8370:  48 89 f7        movq   %rsi, %rdi
+   0x7fff8b1e8373:  44 89 c6        movl   %r8d, %esi
+   0x7fff8b1e8376:  e8 43 13 0a 00  callq  0x00007fff8b2896be       ; open$NOCANCEL

@@ -20,7 +20,6 @@
 		D6F9DE5513FB4DA30050D4D4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D6F9DE5713FB4EEF0050D4D4 /* monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = monitor.c; sourceTree = "<group>"; };
 		D6F9DE5E13FB542A0050D4D4 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		D6F9DE6113FB55630050D4D4 /* shared.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = shared.c; path = ../dylib/shared.c; sourceTree = "<group>"; };
 		D6F9DE6313FB564D0050D4D4 /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = echelon.h; path = ../kext/echelon.h; sourceTree = "<group>"; };
 		D6F9DE6C13FB641E0050D4D4 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				D6F9DE6313FB564D0050D4D4 /* echelon.h */,
-				D6F9DE6113FB55630050D4D4 /* shared.c */,
 				D6138A6A13FA6971000019A2 /* main.c */,
 				D6F9DE5713FB4EEF0050D4D4 /* monitor.c */,
 				D6F9DE5E13FB542A0050D4D4 /* common.h */,
@@ -86,7 +84,7 @@
 		D6138A5D13FA6971000019A2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = D6138A6013FA6971000019A2 /* Build configuration list for PBXProject "daemon" */;
 			compatibilityVersion = "Xcode 3.2";

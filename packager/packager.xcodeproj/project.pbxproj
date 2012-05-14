@@ -17,9 +17,7 @@
 			dependencies = (
 				D6138A9A13FA6A2F000019A2 /* PBXTargetDependency */,
 				D6138A7A13FA69AE000019A2 /* PBXTargetDependency */,
-				D68F8A9313F211FF00B7B980 /* PBXTargetDependency */,
 				D657214013F09B1C0087EE6E /* PBXTargetDependency */,
-				D657213E13F09B190087EE6E /* PBXTargetDependency */,
 			);
 			name = build;
 			productName = builder;
@@ -48,26 +46,12 @@
 			remoteGlobalIDString = D6138A8513FA6A0F000019A2;
 			remoteInfo = asepsisTest;
 		};
-		D657212C13F09AE00087EE6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D657212813F09AE00087EE6E /* dylib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D6B7B96E13F097E5000D02E8;
-			remoteInfo = Asepsis;
-		};
 		D657213913F09AED0087EE6E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 32A4FEC40562C75800D090E7;
 			remoteInfo = Asepsis.kext;
-		};
-		D657213D13F09B190087EE6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D657212813F09AE00087EE6E /* dylib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D6B7B96D13F097E5000D02E8;
-			remoteInfo = Asepsis;
 		};
 		D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -76,12 +60,12 @@
 			remoteGlobalIDString = 32A4FEB80562C75700D090E7;
 			remoteInfo = Asepsis.kext;
 		};
-		D68F8A9213F211FF00B7B980 /* PBXContainerItemProxy */ = {
+		D6A8F359156B2CA300C4E046 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D68F8A8C13F211E700B7B980 /* pane.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D68F8A6B13F211D000B7B980;
-			remoteInfo = Asepsis;
+			containerPortal = D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D67C33C81560EAF3007E9A0A;
+			remoteInfo = DesktopServicesPrivWrapper;
 		};
 		D6EF772F13FB7E7500863D7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -97,22 +81,13 @@
 			remoteGlobalIDString = D6EF772513FB7E7400863D7D;
 			remoteInfo = TestClient;
 		};
-		D6EF773413FB7E7500863D7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D68F8A8C13F211E700B7B980 /* pane.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D6EF772A13FB7E7500863D7D;
-			remoteInfo = Asepsis;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D6138A7313FA6976000019A2 /* daemon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = daemon.xcodeproj; path = ../daemon/daemon.xcodeproj; sourceTree = "<group>"; };
 		D6138A9313FA6A15000019A2 /* test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = test.xcodeproj; path = ../test/test.xcodeproj; sourceTree = "<group>"; };
-		D657212813F09AE00087EE6E /* dylib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dylib.xcodeproj; path = ../dylib/dylib.xcodeproj; sourceTree = "<group>"; };
 		D657213413F09AED0087EE6E /* kext.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = kext.xcodeproj; path = ../kext/kext.xcodeproj; sourceTree = "<group>"; };
-		D65E17C213F21960007D1032 /* rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rakefile; path = ../rakefile; sourceTree = "<group>"; };
-		D68F8A8C13F211E700B7B980 /* pane.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pane.xcodeproj; path = ../pane/pane.xcodeproj; sourceTree = "<group>"; };
+		D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = wrapper.xcodeproj; path = ../wrapper/wrapper.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -132,14 +107,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D657212913F09AE00087EE6E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D657212D13F09AE00087EE6E /* libAsepsis.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D657213513F09AED0087EE6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,10 +116,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D68F8A8D13F211E700B7B980 /* Products */ = {
+		D6A8F356156B2CA300C4E046 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6EF773513FB7E7500863D7D /* Asepsis.prefPane */,
+				D6A8F35A156B2CA300C4E046 /* DesktopServicesPrivWrapper.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,12 +127,10 @@
 		D6B7B9AE13F09A4B000D02E8 = {
 			isa = PBXGroup;
 			children = (
+				D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */,
 				D6138A9313FA6A15000019A2 /* test.xcodeproj */,
 				D6138A7313FA6976000019A2 /* daemon.xcodeproj */,
-				D65E17C213F21960007D1032 /* rakefile */,
-				D68F8A8C13F211E700B7B980 /* pane.xcodeproj */,
 				D657213413F09AED0087EE6E /* kext.xcodeproj */,
-				D657212813F09AE00087EE6E /* dylib.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,7 +140,7 @@
 		D6B7B9B013F09A4B000D02E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "packager" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -192,20 +157,16 @@
 					ProjectRef = D6138A7313FA6976000019A2 /* daemon.xcodeproj */;
 				},
 				{
-					ProductGroup = D657212913F09AE00087EE6E /* Products */;
-					ProjectRef = D657212813F09AE00087EE6E /* dylib.xcodeproj */;
-				},
-				{
 					ProductGroup = D657213513F09AED0087EE6E /* Products */;
 					ProjectRef = D657213413F09AED0087EE6E /* kext.xcodeproj */;
 				},
 				{
-					ProductGroup = D68F8A8D13F211E700B7B980 /* Products */;
-					ProjectRef = D68F8A8C13F211E700B7B980 /* pane.xcodeproj */;
-				},
-				{
 					ProductGroup = D6138A9413FA6A15000019A2 /* Products */;
 					ProjectRef = D6138A9313FA6A15000019A2 /* test.xcodeproj */;
+				},
+				{
+					ProductGroup = D6A8F356156B2CA300C4E046 /* Products */;
+					ProjectRef = D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -224,18 +185,18 @@
 			remoteRef = D6138A9713FA6A15000019A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D657212D13F09AE00087EE6E /* libAsepsis.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libAsepsis.dylib;
-			remoteRef = D657212C13F09AE00087EE6E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		D657213A13F09AED0087EE6E /* Asepsis.kext */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = Asepsis.kext;
 			remoteRef = D657213913F09AED0087EE6E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6A8F35A156B2CA300C4E046 /* DesktopServicesPrivWrapper.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DesktopServicesPrivWrapper.framework;
+			remoteRef = D6A8F359156B2CA300C4E046 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D6EF773013FB7E7500863D7D /* asepsisd */ = {
@@ -250,13 +211,6 @@
 			fileType = "compiled.mach-o.executable";
 			path = TestClient;
 			remoteRef = D6EF773213FB7E7500863D7D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D6EF773513FB7E7500863D7D /* Asepsis.prefPane */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Asepsis.prefPane;
-			remoteRef = D6EF773413FB7E7500863D7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -274,7 +228,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nPREFPANE=\"$BIN/Asepsis.prefPane\"\nKEXT=\"$BIN/Asepsis.kext\"\nFR=\"$BIN/DesktopServicesPriv.framework\"\nDYLIB=\"$KEXT/Contents/Resources/libAsepsis.dylib\"\nDAEMON=\"$KEXT/Contents/Resources/asepsisd\"\nTEST=\"$KEXT/Contents/Resources/asepsisTest\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -f \"$BUILT_PRODUCTS_DIR/libAsepsis.dylib\" \"$DYLIB\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.prefPane/\" \"$PREFPANE\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPriv.framework/\" \"$FR\"\ncp -Rf \"$PROJECT_DIR/../ctl\"/* \"$KEXT/Contents/Resources\"\n                             \n#install_name_tool -change /usr/lib/libSystem.B.dylib /Users/darwin/code/asepsis/bin/Asepsis.kext/Contents/Resources/libAsepsis.dylib \"$DYLIB\"\n#install_name_tool -change /usr/lib/libSystem.B.dylib /System/Library/Extensions/Asepsis.kext/Contents/Resources/libAsepsis.dylib \"$DYLIB\"\n\n                             ";
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nKEXT=\"$BIN/Asepsis.kext\"\nKEXTRES=\"$KEXT/Contents/Resources\" \nDAEMON=\"$KEXTRES/asepsisd\"\nTEST=\"$KEXTRES/asepsisTest\"\nWRAPPER=\"$KEXTRES/DesktopServicesPrivWrapper\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper\" \"$WRAPPER\"\n\ninstall_name_tool -change \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv\" \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv\" \"$WRAPPER\"\n\ncp -Rf \"$PROJECT_DIR/../ctl\"/* \"$KEXT/Contents/Resources\"";
 			showEnvVarsInLog = 0;
 		};
 		D657214613F09C230087EE6E /* Clean bin */ = {
@@ -305,20 +259,10 @@
 			name = asepsisTest;
 			targetProxy = D6138A9913FA6A2F000019A2 /* PBXContainerItemProxy */;
 		};
-		D657213E13F09B190087EE6E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Asepsis;
-			targetProxy = D657213D13F09B190087EE6E /* PBXContainerItemProxy */;
-		};
 		D657214013F09B1C0087EE6E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Asepsis.kext;
 			targetProxy = D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */;
-		};
-		D68F8A9313F211FF00B7B980 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Asepsis;
-			targetProxy = D68F8A9213F211FF00B7B980 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
