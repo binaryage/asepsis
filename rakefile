@@ -240,8 +240,8 @@ task :build_debug do
 end
 
 desc "test debug build of dylib by calling cat command"
-task :debug_test do
-    sys("DYLD_INSERT_LIBRARIES=\"#{DYLIB}\" cat /tmp/some/non-existent/folder/.DS_Store")
+task :debug_test => :build_debug do
+    sys("DYLD_PRINT_INTERPOSING=1 DYLD_PRINT_WEAK_BINDINGS=1 DYLD_PRINT_INITIALIZERS=1 DYLD_INSERT_LIBRARIES=#{BIN_DIR}/Asepsis.kext/Contents/Resources/libAsepsis.dylib cat /tmp/some/non-existent/folder/.DS_Store")
     puts "see Console.app for Asepsis reports"
 end
 

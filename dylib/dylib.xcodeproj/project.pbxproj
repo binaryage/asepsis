@@ -97,7 +97,7 @@
 		D6B7B96513F097E4000D02E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = D6B7B96813F097E4000D02E8 /* Build configuration list for PBXProject "dylib" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -179,9 +179,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
-				GCC_VERSION = 4.2;
-				INIT_ROUTINE = _asepsis_init;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-reexport_framework,DesktopServicesPriv";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -191,8 +190,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
-				GCC_VERSION = 4.2;
-				INIT_ROUTINE = _asepsis_init;
+				OTHER_LDFLAGS = "-reexport_framework,DesktopServicesPriv";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

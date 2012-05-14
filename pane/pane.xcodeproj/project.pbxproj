@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D68F8A6C13F211D000B7B980 /* Asepsis.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Asepsis.prefPane; path = /Users/darwin/code/asepsis/pane/build/Release/Asepsis.prefPane; sourceTree = "<absolute>"; };
+		D624CB1D14A93CEC00F23F53 /* Asepsis.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Asepsis.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68F8A6F13F211D000B7B980 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D68F8A7113F211D000B7B980 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
 		D68F8A7413F211D000B7B980 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -50,6 +50,7 @@
 			children = (
 				D68F8A7713F211D000B7B980 /* Source */,
 				D68F8A6E13F211D000B7B980 /* Frameworks */,
+				D624CB1D14A93CEC00F23F53 /* Asepsis.prefPane */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,7 +126,7 @@
 			);
 			name = Asepsis;
 			productName = pane;
-			productReference = D68F8A6C13F211D000B7B980 /* Asepsis.prefPane */;
+			productReference = D624CB1D14A93CEC00F23F53 /* Asepsis.prefPane */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -133,6 +134,9 @@
 /* Begin PBXProject section */
 		D68F8A6113F211D000B7B980 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = D68F8A6413F211D000B7B980 /* Build configuration list for PBXProject "pane" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;

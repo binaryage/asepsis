@@ -174,6 +174,9 @@
 /* Begin PBXProject section */
 		D6B7B9B013F09A4B000D02E8 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "packager" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -271,7 +274,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nPREFPANE=\"$BIN/Asepsis.prefPane\"\nKEXT=\"$BIN/Asepsis.kext\"\nDYLIB=\"$KEXT/Contents/Resources/libAsepsis.dylib\"\nDAEMON=\"$KEXT/Contents/Resources/asepsisd\"\nTEST=\"$KEXT/Contents/Resources/asepsisTest\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -f \"$BUILT_PRODUCTS_DIR/libAsepsis.dylib\" \"$DYLIB\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.prefPane/\" \"$PREFPANE\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$PROJECT_DIR/../ctl\"/* \"$KEXT/Contents/Resources\"";
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nPREFPANE=\"$BIN/Asepsis.prefPane\"\nKEXT=\"$BIN/Asepsis.kext\"\nFR=\"$BIN/DesktopServicesPriv.framework\"\nDYLIB=\"$KEXT/Contents/Resources/libAsepsis.dylib\"\nDAEMON=\"$KEXT/Contents/Resources/asepsisd\"\nTEST=\"$KEXT/Contents/Resources/asepsisTest\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -f \"$BUILT_PRODUCTS_DIR/libAsepsis.dylib\" \"$DYLIB\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.prefPane/\" \"$PREFPANE\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPriv.framework/\" \"$FR\"\ncp -Rf \"$PROJECT_DIR/../ctl\"/* \"$KEXT/Contents/Resources\"\n                             \n#install_name_tool -change /usr/lib/libSystem.B.dylib /Users/darwin/code/asepsis/bin/Asepsis.kext/Contents/Resources/libAsepsis.dylib \"$DYLIB\"\n#install_name_tool -change /usr/lib/libSystem.B.dylib /System/Library/Extensions/Asepsis.kext/Contents/Resources/libAsepsis.dylib \"$DYLIB\"\n\n                             ";
 			showEnvVarsInLog = 0;
 		};
 		D657214613F09C230087EE6E /* Clean bin */ = {

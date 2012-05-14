@@ -67,12 +67,6 @@ static void asepsis_setup_executable_path() {
 
 // this is called first time Asepsis is going to do some action
 static void asepsis_setup(void) {
-    static int already_initialized = 0;
-    if (already_initialized) {
-        return; // no-op
-    }
-    already_initialized = 1;
- 
     // existence of special file forces Asepsis disabling
     if (access(DISABLED_TWEAK_PATH, F_OK)==0) {
 #if defined (DEBUG) // bail-out should be light-weight in non-debug mode
@@ -101,19 +95,18 @@ static void asepsis_setup(void) {
 // thread-safe version of asepsis_setup
 // called first time when someone calls interposed functionality related to .DS_Store or when someone wants to log something
 void asepsis_setup_safe(void) {
-    pthread_mutex_lock(&g_asepsis_mutex);
-    asepsis_setup();
-    pthread_mutex_unlock(&g_asepsis_mutex);
-}
+    static int already_initialized = 0;
+    if (already_initialized) {
+        return; // no-op
+    }
+    already_initialized = 1;
 
-// this is the library initialization rutine
-// keep it lightweight! it can be called in early during the system boot
-//
-// CAUTION! calling asepsis_setup here causes boot halt when libAsepsis.dylib is added into /etc/launchd.conf as 
-// setenv DYLD_INSERT_LIBRARIES /System/Library/Extensions/Asepsis.kext/Contents/Resources/libAsepsis.dylib
-void asepsis_init(void) {
     // init a recursive mutex
     pthread_mutexattr_init(&g_asepsis_mutex_attr);
     pthread_mutexattr_settype(&g_asepsis_mutex_attr, PTHREAD_MUTEX_RECURSIVE);
     pthread_mutex_init(&g_asepsis_mutex, &g_asepsis_mutex_attr);
+
+    pthread_mutex_lock(&g_asepsis_mutex);
+    asepsis_setup();
+    pthread_mutex_unlock(&g_asepsis_mutex);
 }

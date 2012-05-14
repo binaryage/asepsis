@@ -62,7 +62,7 @@ ASEPSIS_INLINE void underscorePatch(char* path) {
 
 // /some/dir/.DS_Store -> /usr/local/.dscage/some/dir/_DS_Store
 // res must have at least size of PATH_MAX+PATH_MAX+1
-// the command report a failuer for long paths
+// the command reports a failure for long paths
 ASEPSIS_INLINE int makePrefixPath(const char* path, char* res) {
     size_t len1 = strlcpy(res, ECHELON_DSCAGE_PREFIX, PATH_MAX);
     size_t len2 = strlcpy(res + len1, path, SAFE_PREFIX_PATH_BUFFER_SIZE - len1);
