@@ -37,6 +37,13 @@ void init_asepsis(void) {
 #elif defined(__x86_64__)
     DLOG("Asepsis init %s", "(x86_64)");
 #endif
+    
+    asepsis_setup_safe();
+    
+    // do not apply overrides when asepsis is disabled
+    if (g_asepsis_disabled) {
+        return;
+    }
 
     kern_return_t err;
 
