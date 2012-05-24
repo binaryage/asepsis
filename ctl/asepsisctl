@@ -66,8 +66,8 @@ Installation commands:
     uninstall_daemon                 Uninstalls asepsis daemon.
     install_daemon                   Installs asepsis daemon.
     launch_daemon                    Launches asepsis daemon.
-    enable_warnings                  Enable warnings caused by mach_override (vm.shared_region_unnest_logging)
-    disable_warnings                 Disable warnings caused by mach_override (vm.shared_region_unnest_logging)
+    enable_warnings                  Enables warnings caused by mach_override (vm.shared_region_unnest_logging)
+    disable_warnings                 Disables warnings caused by mach_override (vm.shared_region_unnest_logging)
 
 Backward compatibility:
     uninstall_dylib                  Removes libAsepsis.dylib from /etc/launchd.conf.

@@ -50,7 +50,7 @@ def cmd_diagnose(options)
     end
     
     if `otool -L "#{ds_lib}" | grep "A_/DesktopServicesPriv"`==""
-        cry "DesktopServicesPriv (#{ds_lib}) does not link agains /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv"
+        cry "DesktopServicesPriv (#{ds_lib}) does not link against /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv"
     end
     
     # test_store_file = File.join(PREFIX_PATH, "tmp", "_DS_Store")
