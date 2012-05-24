@@ -22,8 +22,8 @@ def cmd_clean(options)
     resume_asepsis()
 
     if counter>0 then
-        puts "removed #{counter} drectories in the prefix folder"
+        say "removed #{counter} drectories in the prefix folder"
     else 
-        puts "no directories found in the prefix folder, nothing to do"
+        say "no directories found in the prefix folder, nothing to do"
     end
 end

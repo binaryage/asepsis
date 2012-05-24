@@ -1,9 +1,24 @@
+def out(cmd)
+    puts "\033[33m> #{cmd}\033[0m"
+end
+
+def say(what)
+    puts "\033[34m#{what}\033[0m"
+end
+
 def sys(cmd)
-    puts ">#{cmd}"
+    out(cmd)
+    $stdout.flush
     if not system(cmd) then
-        puts "failded with code #{$?}"
-        exit $?
+        puts "\033[31mfailed with code #{$?}\033[0m"
+        exit $?.exitstatus
     end
+end
+
+def sys!(cmd)
+    out(cmd)
+    $stdout.flush
+    system(cmd)
 end
 
 def die(message, code=1)

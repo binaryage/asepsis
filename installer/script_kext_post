@@ -1,15 +1,10 @@
 #!/bin/sh
 
-mkdir -p /usr/local/.dscage
-chmod 777 /usr/local/.dscage
+# backward compatibility with Asepsis 1.1
+/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl uninstall_dylib
 
-mkdir -p /usr/local/bin
-ln -Fs "/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl" /usr/local/bin/asepsisctl
+# perform inplace re-installation
+/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl install
 
-launchctl setenv DYLD_INSERT_LIBRARIES "/System/Library/Extensions/Asepsis.kext/Contents/Resources/libAsepsis.dylib"
-
-echo "setenv DYLD_INSERT_LIBRARIES /System/Library/Extensions/Asepsis.kext/Contents/Resources/libAsepsis.dylib" >> /etc/launchd.conf
-
-cp "/System/Library/Extensions/Asepsis.kext/Contents/Resources/com.binaryage.asepsis.daemon.plist" "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist"
 
 exit 0

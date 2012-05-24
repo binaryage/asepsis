@@ -45,8 +45,8 @@ def cmd_prune(options)
     resume_asepsis()
 
     if counter>0 then
-        puts "removed #{counter} empty drectories in the prefix folder"
+        say "removed #{counter} empty drectories in the prefix folder"
     else 
-        puts "no empty directories found, nothing to do"
+        say "no empty directories found, nothing to do"
     end
 end

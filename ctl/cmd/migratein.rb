@@ -9,7 +9,7 @@ def cmd_migratein(options)
     
     counter = 0
     
-    puts "migrating all .DS_Store files from #{root} into #{PREFIX_PATH}"
+    say "migrating all .DS_Store files from #{root} into #{PREFIX_PATH}"
     
     Dir.glob(File.join(root, "**", ".DS_Store"), File::FNM_DOTMATCH) do |source|
         dest = File.join(PREFIX_PATH, source)
@@ -29,8 +29,8 @@ def cmd_migratein(options)
     resume_asepsis()
 
     if counter>0 then
-        puts "moved #{counter} .DS_Store file(s) into the prefix folder"
+        say "moved #{counter} .DS_Store file(s) into the prefix folder"
     else 
-        puts "no .DS_Store files found, nothing to do"
+        say "no .DS_Store files found, nothing to do"
     end
 end

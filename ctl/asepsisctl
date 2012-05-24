@@ -2,9 +2,9 @@
 
 ASEPSISCTL_VERSION = "1.1"
 begin
-    BASE_DIR = File.dirname(File.readlink(__FILE__))
+    BASE_DIR = File.expand_path(File.dirname(File.readlink(__FILE__))) # asepsisctl may be a symlink, resolve to a real location
 rescue
-    BASE_DIR = File.dirname(__FILE__)
+    BASE_DIR = File.expand_path(File.dirname(__FILE__)) # for local debugging
 end
 
 require BASE_DIR + '/lib/micro-optparse'
@@ -12,12 +12,22 @@ require BASE_DIR + '/lib/helpers'
 
 ##############################################################################################################################
 
+RESOURCES_PATH = BASE_DIR
 DISABLE_FILE_PATH = "/var/db/.asepsis.disabled"
 PREFIX_PATH = "/usr/local/.dscage"
-SUSPEND_LOCK_PATH = "#{PREFIX_PATH}/.asepsis.suspend.lock"
-KEXT_PATH = "/System/Library/Extensions/Asepsis.kext"
+SUSPEND_LOCK_PATH = File.join(PREFIX_PATH, ".asepsis.suspend.lock")
+KEXT_PATH = File.expand_path(File.join(RESOURCES_PATH, "..", ".."))
 ASEPSISD_PATH = File.join(KEXT_PATH, "Contents", "Resources", "asepsisd")
 LIBASEPSIS_PATH = File.join(KEXT_PATH, "Contents", "Resources", "libAsepsis.dylib")
+DAEMON_PLIST_PATH = "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist"
+DAEMON_PLIST_SOURCE_PATH = "/System/Library/Extensions/Asepsis.kext/Contents/Resources/com.binaryage.asepsis.daemon.plist"
+ASEPSISCTL_SYMLINK_PATH = "/usr/local/bin/asepsisctl"
+ASEPSISCTL_SYMLINK_SOURCE_PATH = File.join(RESOURCES_PATH, "asepsisctl")
+DAEMON_LABEL = "com.binaryage.asepsis.daemon"
+DS_FRAMEWORK_PATH = "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework"
+DS_LIB_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A")
+DS_LIB_RELOCATED_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_")
+DS_WRAPPER_SOURCE_PATH = File.join(RESOURCES_PATH, "DesktopServicesPrivWrapper")
 
 ##############################################################################################################################
 
@@ -32,13 +42,35 @@ Commands:
     suspend                          Suspends immediate asepsis operations.
     disable                          Disables asepsis.
     enable                           Enables asepsis.
+    diagnose                         Diagnoses asepsis setup.
+
+Helper commands:
     neton                            Enables DS_Store files on network volumes.
     netoff                           Disables ... (http://support.apple.com/kb/ht1629).
-    diagnose                         Diagnoses asepsis setup
-    migratein                        Migrates .DS_Store files in #{PREFIX_PATH}
-    migrateout                       Migrates .DS_Store files from #{PREFIX_PATH}
-    prune                            Removes empty directories from #{PREFIX_PATH}
-    clean                            Deletes all content from #{PREFIX_PATH}
+    migratein                        Migrates .DS_Store files in #{PREFIX_PATH}.
+    migrateout                       Migrates .DS_Store files from #{PREFIX_PATH}.
+    prune                            Removes empty directories from #{PREFIX_PATH}.
+    clean                            Deletes all content from #{PREFIX_PATH}.
+
+Installation commands:
+    install                          Performs reinstallation from sources in #{KEXT_PATH}.
+    uninstall                        Performs complete uninstallation.
+    install_wrapper                  Installs DesktopServicesPriv.framework wrapper.
+    uninstall_wrapper                Uninstalls DesktopServicesPriv.framework wrapper.
+    unload_kext                      Unloads asepsis kernel extension.
+    load_kext                        Loads asepsis kernel extension.
+    remove_symlink                   Removes asepsisctl symlink from /usr/local/bin.
+    create_symlink                   Creates asepsisctl symlink in /usr/local/bin.
+    make_dscage                      Makes sure #{PREFIX_PATH} exists with sufficient rights.
+    kill_daemon                      Stops asepsis daemon.
+    uninstall_daemon                 Uninstalls asepsis daemon.
+    install_daemon                   Installs asepsis daemon.
+    launch_daemon                    Launches asepsis daemon.
+    enable_warnings                  Enable warnings caused by mach_override (vm.shared_region_unnest_logging)
+    disable_warnings                 Disable warnings caused by mach_override (vm.shared_region_unnest_logging)
+
+Backward compatibility:
+    uninstall_dylib                  Removes libAsepsis.dylib from /etc/launchd.conf.
    
 Where options are:
 EOS
@@ -60,6 +92,22 @@ require BASE_DIR + '/cmd/migratein'
 require BASE_DIR + '/cmd/migrateout'
 require BASE_DIR + '/cmd/prune'
 require BASE_DIR + '/cmd/clean'
+require BASE_DIR + '/cmd/install'
+require BASE_DIR + '/cmd/uninstall'
+require BASE_DIR + '/cmd/install_wrapper'
+require BASE_DIR + '/cmd/uninstall_wrapper'
+require BASE_DIR + '/cmd/unload_kext'
+require BASE_DIR + '/cmd/load_kext'
+require BASE_DIR + '/cmd/remove_symlink'
+require BASE_DIR + '/cmd/create_symlink'
+require BASE_DIR + '/cmd/make_dscage'
+require BASE_DIR + '/cmd/kill_daemon'
+require BASE_DIR + '/cmd/uninstall_daemon'
+require BASE_DIR + '/cmd/install_daemon'
+require BASE_DIR + '/cmd/launch_daemon'
+require BASE_DIR + '/cmd/uninstall_dylib'
+require BASE_DIR + '/cmd/enable_warnings'
+require BASE_DIR + '/cmd/disable_warnings'
 
 ##############################################################################################################################
 

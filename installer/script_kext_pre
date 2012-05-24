@@ -1,12 +1,16 @@
 #!/bin/sh
 
-# disable connection to echelon
-killall -USR1 asepsisd
-sleep 2
-kextunload "/System/Library/Extensions/Asepsis.kext"
+if [ -f /System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl ] then
+	# uninstall previous wrapper
+	# note this command may not be available prior Asepsis 1.2 (it will fail silently)
+	/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl uninstall_wrapper
 
-rm /usr/local/bin/asepsisctl
-
-launchctl unload "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist" 
+	# use explicit code to for Asepsis 1.1 compatibility
+	# TODO: in the future drop Asepsis 1.1 compatibility and use asepsisctl uninstall
+	killall -USR1 asepsisd
+	sleep 2
+	launchctl unload "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist" 
+	kextunload "/System/Library/Extensions/Asepsis.kext"
+fi
 
 exit 0
