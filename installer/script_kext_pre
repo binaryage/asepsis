@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f /System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl ] then
+if [ -f /System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl ]; then
 	# uninstall previous wrapper
 	# note this command may not be available prior Asepsis 1.2 (it will fail silently)
 	/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl uninstall_wrapper

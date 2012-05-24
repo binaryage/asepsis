@@ -494,14 +494,9 @@
 			ZW50LVN0eWxlLVR5cGUiIGNvbnRlbnQ9InRleHQvY3NzIj4KPHRp
 			dGxlPjwvdGl0bGU+CjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29u
 			dGVudD0iQ29jb2EgSFRNTCBXcml0ZXIiPgo8bWV0YSBuYW1lPSJD
-			b2NvYVZlcnNpb24iIGNvbnRlbnQ9IjExMzguMTYiPgo8c3R5bGUg
-			dHlwZT0idGV4dC9jc3MiPgpwLnAxIHttYXJnaW46IDAuMHB4IDAu
-			MHB4IDAuMHB4IDAuMHB4OyBmb250OiAxMi4wcHggSGVsdmV0aWNh
-			fQo8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5Pgo8cCBjbGFzcz0icDEi
-			PkFzZXBzaXMgaXMgdGhlIGZpbmFsIHNvbHV0aW9uIGZvciAuRFNf
-			U3RvcmUgcG9sbHV0aW9uLjwvcD4KPHAgY2xhc3M9InAxIj5odHRw
-			Oi8vYXNlcHNpcy5iaW5hcnlhZ2UuY29tPC9wPgo8L2JvZHk+Cjwv
-			aHRtbD4K
+			b2NvYVZlcnNpb24iIGNvbnRlbnQ9IjExMzguNDciPgo8c3R5bGUg
+			dHlwZT0idGV4dC9jc3MiPgo8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5
+			Pgo8L2JvZHk+CjwvaHRtbD4K
 			</data>
 		</dict>
 		<key>PROJECT_PRESENTATION</key>
@@ -697,7 +692,7 @@
 							<key>SECONDARY_VALUE</key>
 							<string></string>
 							<key>VALUE</key>
-							<string>Asepsis requires Lion (OSX 10.7.x)</string>
+							<string>Asepsis requires OS X 10.7 (Lion) or higher.</string>
 						</dict>
 					</array>
 					<key>NAME</key>
