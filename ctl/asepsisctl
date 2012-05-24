@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-ASEPSISCTL_VERSION = "1.1"
+ASEPSISCTL_VERSION = "##VERSION##"
 begin
     BASE_DIR = File.expand_path(File.dirname(File.readlink(__FILE__))) # asepsisctl may be a symlink, resolve to a real location
 rescue
