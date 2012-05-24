@@ -289,7 +289,7 @@ task :release do
         readme = File.join("bin", "Readme.pdf")
         sys("cp \"#{readme_source}\" \"#{readme}\"")
 
-        sys("hdiutil create \"#{releasedmg}\" -volname \"Asepsis\" -fs HFS+ -srcfolder \"#{release}\" -srcfolder \"#{uninstaller}\" -srcfolder \"#{readme}\"")
+        sys("hdiutil create \"#{releasedmg}\" -volname \"Asepsis\" -format UDBZ -fs HFS+ -srcfolder \"#{release}\" -srcfolder \"#{uninstaller}\" -srcfolder \"#{readme}\"")
         die("build failed") unless $?==0
     end
 end
