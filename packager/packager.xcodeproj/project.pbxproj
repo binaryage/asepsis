@@ -15,6 +15,7 @@
 				D657214513F09BE20087EE6E /* Assemble products into bin */,
 			);
 			dependencies = (
+				D6AE7A52156E0A92007294C5 /* PBXTargetDependency */,
 				D6138A9A13FA6A2F000019A2 /* PBXTargetDependency */,
 				D6138A7A13FA69AE000019A2 /* PBXTargetDependency */,
 				D657214013F09B1C0087EE6E /* PBXTargetDependency */,
@@ -65,6 +66,13 @@
 			containerPortal = D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D67C33C81560EAF3007E9A0A;
+			remoteInfo = DesktopServicesPrivWrapper;
+		};
+		D6AE7A51156E0A92007294C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D67C33C71560EAF3007E9A0A;
 			remoteInfo = DesktopServicesPrivWrapper;
 		};
 		D6EF772F13FB7E7500863D7D /* PBXContainerItemProxy */ = {
@@ -263,6 +271,11 @@
 			isa = PBXTargetDependency;
 			name = Asepsis.kext;
 			targetProxy = D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */;
+		};
+		D6AE7A52156E0A92007294C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DesktopServicesPrivWrapper;
+			targetProxy = D6AE7A51156E0A92007294C5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
