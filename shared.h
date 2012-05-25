@@ -83,7 +83,17 @@ ASEPSIS_INLINE int isDSStorePath(const char* path) {
     size_t l = strlen(path);
     if (l<DSSTORE_LEN+1) return 0;
     const char* name = path+l-DSSTORE_LEN-1;
-    return strcmp(name, "/.DS_Store")==0;
+    if (!strcmp(name, "/.DS_Store")==0) {
+        return 0;
+    }
+    
+    // ignore .DS_Store files in */.Trashes/*
+    if (strstr(path, "/.Trashes/")!=NULL) {
+        DLOG("ignoring DS_Store in .Trashes: %s", path);
+        return 0;
+    }
+    
+    return 1;
 }
 
 ASEPSIS_INLINE int isDSStorePresentOnPath(const char* path) {

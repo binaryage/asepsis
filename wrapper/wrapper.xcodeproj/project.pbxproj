@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6023C1B156F070F0038AEDC /* shared.h in Headers */ = {isa = PBXBuildFile; fileRef = D6023C1A156F070F0038AEDC /* shared.h */; };
 		D67C33DA1560EAF3007E9A0A /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = D67C33D91560EAF3007E9A0A /* init.c */; };
 		D6DDEB311564B32300A601B9 /* mach_override.c in Sources */ = {isa = PBXBuildFile; fileRef = D6DDEB2F1564B32300A601B9 /* mach_override.c */; };
 		D6DDEB321564B32300A601B9 /* mach_override.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB301564B32300A601B9 /* mach_override.h */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6023C1A156F070F0038AEDC /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shared.h; path = ../shared.h; sourceTree = "<group>"; };
 		D67C33C81560EAF3007E9A0A /* DesktopServicesPrivWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DesktopServicesPrivWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67C33D31560EAF3007E9A0A /* DesktopServicesPrivWrapper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DesktopServicesPrivWrapper-Info.plist"; sourceTree = "<group>"; };
 		D67C33D71560EAF3007E9A0A /* DesktopServicesPrivWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DesktopServicesPrivWrapper-Prefix.pch"; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 				D6DDEB2F1564B32300A601B9 /* mach_override.c */,
 				D6DDEB301564B32300A601B9 /* mach_override.h */,
 				D67C33D91560EAF3007E9A0A /* init.c */,
+				D6023C1A156F070F0038AEDC /* shared.h */,
 				D67C33C91560EAF3007E9A0A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +87,7 @@
 				D6DDEB371564B3B800A601B9 /* common.h in Headers */,
 				D6DDEB391564B3D300A601B9 /* echelon.h in Headers */,
 				D6DDEB3B1564B3FA00A601B9 /* logging.h in Headers */,
+				D6023C1B156F070F0038AEDC /* shared.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@
 #include "logging.h"
 #include "mach_override.h" 
 
-#include "shared.c" 
+#include "shared.h" 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // these are low-level libc functions used by DesktopServicesPriv.framework to access .DS_Store files (in OS X 10.7-10.8)
