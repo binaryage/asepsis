@@ -6,6 +6,5 @@ def cmd_install_wrapper(options)
     sys("sudo install_name_tool -id \"#{DS_LIB_RELOCATED_FOLDER}/DesktopServicesPriv\" \"#{DS_LIB_RELOCATED_FOLDER}/DesktopServicesPriv\"")
 
     sys("sudo cp \"#{DS_WRAPPER_SOURCE_PATH}\" \"#{DS_LIB_FOLDER}/DesktopServicesPriv\"")
-    sys("sudo rm -rf \"#{DS_LIB_FOLDER}/Resources\"")
     sys("sudo rm -rf \"#{DS_LIB_FOLDER}/_CodeSignature\"")
 end
