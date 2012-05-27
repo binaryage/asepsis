@@ -78,6 +78,7 @@ EOS
     p.option :root, "Root folder for migration", :default => File.expand_path("~")
     p.option :dry, "Run migration in dry mode", :default => false
     p.option :verbose, "Be more verbose", :default => false
+    p.option :force, "Force operation", :default => false
 end.process!
 
 ##############################################################################################################################

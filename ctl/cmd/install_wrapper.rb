@@ -1,4 +1,6 @@
 def cmd_install_wrapper(options)
+    force = options[:force]
+    sys("sudo rm -rf \"#{DS_LIB_RELOCATED_FOLDER}\"") if File.exists? DS_LIB_RELOCATED_FOLDER and force
     die("wrapper framework seems to be installed (#{DS_LIB_RELOCATED_FOLDER} exists)") if File.exists? DS_LIB_RELOCATED_FOLDER
 
     # replace DesktopServicesPriv inplace
