@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# backward compatibility with Asepsis 1.1
-/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl uninstall_dylib
-
 # perform inplace re-installation
 /System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl install
 

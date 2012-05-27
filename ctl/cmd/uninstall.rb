@@ -8,7 +8,7 @@ def cmd_uninstall(options)
     sys!("#{ctl} enable_warnings")
 
     # install launchd "runonce" task to finish the uninstallation after reboot
-    sys("sudo cp \"/System/Library/Extensions/Asepsis.kext/Contents/Resources/com.binaryage.asepsis.uninstall.plist\" \"/Library/LaunchDaemons\"")
+    sys("sudo cp \"#{RESOURCES_PATH}/com.binaryage.asepsis.uninstall.plist\" \"/Library/LaunchDaemons\"")
     
     say "Asepsis uninstallation done, reboot your computer"
 end

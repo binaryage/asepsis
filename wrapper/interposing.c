@@ -32,19 +32,19 @@ static int (*setattrlist_reentry)(const char *path, void *alist, void *attribute
 #define OVERRIDE(fn) err = mach_override_ptr(dlsym(RTLD_DEFAULT, #fn), (void*)&asepsis_##fn, (void**)& fn ## _reentry); CHECK_OVERRIDE(err, fn)
 
 void init_asepsis(void) {
+    asepsis_setup_safe();
+
+    // do not apply overrides when asepsis is disabled
+    if (g_asepsis_disabled) {
+        return;
+    }
+
 #if defined(__i386__)
     DLOG("Asepsis init %s", "(i386)");
 #elif defined(__x86_64__)
     DLOG("Asepsis init %s", "(x86_64)");
 #endif
     
-    asepsis_setup_safe();
-    
-    // do not apply overrides when asepsis is disabled
-    if (g_asepsis_disabled) {
-        return;
-    }
-
     kern_return_t err;
 
     OVERRIDE(open);

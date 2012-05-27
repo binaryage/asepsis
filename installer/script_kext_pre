@@ -11,6 +11,9 @@ if [ -f /System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl ];
 	sleep 2
 	launchctl unload "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist" 
 	kextunload "/System/Library/Extensions/Asepsis.kext"
+
+	# backward compatibility with Asepsis 1.1
+	/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl uninstall_dylib
 fi
 
 exit 0

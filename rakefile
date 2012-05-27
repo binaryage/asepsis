@@ -323,4 +323,9 @@ task :paydiff do
     `ksdiff "#{a}" "#{b}"`
 end
 
+desc "monitor fs usage for DS_Store operations"
+task :fs_usage do
+    sys("sudo fs_usage | grep DS_Store")
+end
+
 task :default => :build

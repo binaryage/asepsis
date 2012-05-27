@@ -17,15 +17,14 @@ char g_asepsis_executable_path[1024] = "!";
 void asepsis_setup_safe(void);
 void asepsis_setup_logging(void);
 
-// here is a hardcoded list of black-listed processes - asepsis will disable itself
-const char* g_asepsis_blacklist[] = {
-    "/System/Library/CoreServices/backupd", // backup daemon and its helper tools under /System/Library/CoreServices/backupd.framework should see the whole filesystem without transformation
-    "/System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker",
+// here is a hardcoded list of white-listed processes - asepsis will disable itself for others
+const char* g_asepsis_whitelist[] = {
+    "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
     NULL
 };
 
-static int asepsis_process_is_blacklisted(const char* executable) {
-    const char** path = g_asepsis_blacklist;
+static int asepsis_process_is_whitelisted(const char* executable) {
+    const char** path = g_asepsis_whitelist;
     while (*path) {
         // test if path is a prefix of executable
         if (strncmp(*path, executable, strlen(*path))==0) {
@@ -43,9 +42,9 @@ void asepsis_setup_logging(void) {
         return;
     }
     asepsis_logging_initialized = 1;
-	g_asepsis_asl = asl_open("Asepsisx", "dylib", 0);
+	g_asepsis_asl = asl_open("Asepsis", "dylib", 0);
 	g_asepsis_log_msg = asl_new(ASL_TYPE_MSG);
-	asl_set(g_asepsis_log_msg, ASL_KEY_SENDER, "Asepsisx");    
+	asl_set(g_asepsis_log_msg, ASL_KEY_SENDER, "Asepsis");
 }
 
 static void asepsis_setup_executable_path() {
@@ -81,11 +80,11 @@ static void asepsis_setup(void) {
     // retrieve host executable path
     asepsis_setup_executable_path();
     
-    // disable if hosting executable is black-listed
-    if (asepsis_process_is_blacklisted(g_asepsis_executable_path)) {
+    // disable if hosting executable is not white-listed
+    if (!asepsis_process_is_whitelisted(g_asepsis_executable_path)) {
 #if defined (DEBUG) // bail-out should be light-weight in non-debug mode      
         asepsis_setup_logging();
-        DLOG("blacklisted %s", "");
+        DLOG("disabled because not on the white-list %s", "");
 #endif
         g_asepsis_disabled = 1;
         return; // minimize further interference
