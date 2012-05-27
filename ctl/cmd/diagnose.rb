@@ -49,9 +49,9 @@ def cmd_diagnose(options)
         cry "DesktopServicesPriv has unexpected attributes: #{stat.strip}"
     end
     
-    if `otool -L "#{ds_lib}" | grep "A_/DesktopServicesPriv"`==""
-        cry "DesktopServicesPriv (#{ds_lib}) does not link against /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv"
-    end
+    # if `otool -L "#{ds_lib}" | grep "A_/DesktopServicesPriv"`==""
+    #     cry "DesktopServicesPriv (#{ds_lib}) does not link against /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv"
+    # end
     
     # test_store_file = File.join(PREFIX_PATH, "tmp", "_DS_Store")
     # `rm "#{test_store_file}"` if File.exists? test_store_file
