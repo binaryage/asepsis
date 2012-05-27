@@ -92,7 +92,13 @@ ASEPSIS_INLINE int isDSStorePath(const char* path) {
         DLOG("ignoring DS_Store in .Trashes: %s", path);
         return 0;
     }
-    
+
+    // ignore .DS_Store files in */.Trash/*
+    if (strstr(path, "/.Trash/")!=NULL) {
+        DLOG("ignoring DS_Store in .Trash: %s", path);
+        return 0;
+    }
+
     return 1;
 }
 
