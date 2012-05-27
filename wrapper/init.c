@@ -20,6 +20,7 @@ void asepsis_setup_logging(void);
 // here is a hardcoded list of white-listed processes - asepsis will disable itself for others
 const char* g_asepsis_whitelist[] = {
     "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+    "/System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdwrite",
     NULL
 };
 
