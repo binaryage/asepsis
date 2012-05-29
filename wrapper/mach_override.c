@@ -588,6 +588,8 @@ static AsmInstructionMatch possibleInstructions[] = {
 };
 #elif defined(__x86_64__)
 static AsmInstructionMatch possibleInstructions[] = {
+    { 0x2, {0xFF, 0xFF}, {0x89, 0xF2} },			// movl %esi, %edx
+    { 0x3, {0xFF, 0xFF, 0xFF}, {0x48, 0x89, 0xD0} },			// movq   %rdx, %rax 
 	{ 0x5, {0xFF, 0x00, 0x00, 0x00, 0x00}, {0xE9, 0x00, 0x00, 0x00, 0x00} },	// jmp 0x????????
 	{ 0x1, {0xFF}, {0x90} },							// nop
 	{ 0x1, {0xF8}, {0x50} },							// push %rX
@@ -643,10 +645,16 @@ eatKnownInstructions(
 	while (remainsToEat > 0) {
 		Boolean curInstructionKnown = false;
 		
+//        fprintf(stderr, "---\n");
 		// See if instruction matches one  we know
 		AsmInstructionMatch* curInstr = possibleInstructions;
-		do { 
-			if ((curInstructionKnown = codeMatchesInstruction(ptr, curInstr))) break;
+        int i = 0;
+		do {
+            i++;
+			if ((curInstructionKnown = codeMatchesInstruction(ptr, curInstr))) {
+//                fprintf(stderr, "%d\n", i);
+                break;
+            }
 			curInstr++;
 		} while (curInstr->length > 0);
 		

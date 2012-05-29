@@ -19,3 +19,26 @@ libsystem_c.dylib`openx_np:
    0x7fff8b1e8370:  48 89 f7        movq   %rsi, %rdi
    0x7fff8b1e8373:  44 89 c6        movl   %r8d, %esi
    0x7fff8b1e8376:  e8 43 13 0a 00  callq  0x00007fff8b2896be       ; open$NOCANCEL
+
+10.8.? ML DP5
+(lldb)  dis -b -n openx_np
+libsystem_c.dylib`openx_np:
+   0x7fff92f11154:  55              pushq  %rbp                     
+   0x7fff92f11155:  48 89 e5        movq   %rsp, %rbp               
+   0x7fff92f11158:  48 89 d0        movq   %rdx, %rax               
+   0x7fff92f1115b:  89 f2           movl   %esi, %edx               
+   0x7fff92f1115d:  48 89 f9        movq   %rdi, %rcx               
+   0x7fff92f11160:  f6 c6 02        testb  $2, %dh                  
+   0x7fff92f11163:  74 05           je     0x7fff92f1116a            ; openx_np + 22
+   0x7fff92f11165:  48 85 c0        testq  %rax, %rax               
+   0x7fff92f11168:  75 0d           jne    0x7fff92f11177            ; openx_np + 35
+   0x7fff92f1116a:  30 c0           xorb   %al, %al                 
+   0x7fff92f1116c:  48 89 cf        movq   %rcx, %rdi               
+   0x7fff92f1116f:  89 d6           movl   %edx, %esi               
+   0x7fff92f11171:  5d              popq   %rbp                     
+   0x7fff92f11172:  e9 4b 8a 06 00  jmpq   428619                    ; getopt_internal + 527
+   0x7fff92f11177:  31 ff           xorl   %edi, %edi               
+   0x7fff92f11179:  48 89 ce        movq   %rcx, %rsi               
+   0x7fff92f1117c:  48 89 c1        movq   %rax, %rcx               
+   0x7fff92f1117f:  5d              popq   %rbp                     
+   0x7fff92f11180:  e9 00 00 00 00  jmpq   0    
