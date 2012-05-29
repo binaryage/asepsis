@@ -1,0 +1,3 @@
+[submodule "sparkle"]
+	path = sparkle
+	url = https://darwin@github.com/binaryage/Sparkle.git
