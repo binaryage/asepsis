@@ -9,13 +9,78 @@
 # define DLOG(...)
 #endif
 
+#define ASEPSIS_ISSUES_SUPPORT_PAGE @"http://asepsis.binaryage.com/diagnose"
+
+// -----------------------------------------------------------------------------
+
+void handle_SIGINT(int signum) {
+    [NSApp terminate:nil];
+}
+
 void exitApp() {
     DLOG(@"exitApp");
     [NSApp terminate:nil];
 }
 
+bool diagnoseAsepsis() {
+    // http://stackoverflow.com/questions/412562/execute-a-terminal-command-from-a-cocoa-app
+    
+    NSTask *task;
+    task = [[NSTask alloc] init];
+    [task setLaunchPath: @"/usr/local/bin/asepsisctl"];
+    
+    NSArray *arguments;
+    arguments = [NSArray arrayWithObjects: @"diagnose", nil];
+    [task setArguments: arguments];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    
+    [task launch];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *string;
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    DLOG(@"asepsisctl diagnose returned:\n%@", string);
+    [string release];
+
+    bool res = [task terminationStatus]==0;
+    [task release];
+    return res;
+}
+
+void reportFailedDiagnose() {
+    DLOG(@"reportFailedDiagnose");
+    NSString* supressKey = @"SuppressAsepsisVersionCheck";
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:supressKey]) {
+        return;
+    }
+    NSAlert* alert = [NSAlert new];
+    [alert setMessageText: @"Asepsis could be broken"];
+    [alert setInformativeText: @"The \"asepsisctl diagnose\" command reported some issues with your Asepsis installation."];
+    [alert setShowsSuppressionButton:YES];
+    [alert addButtonWithTitle:@"Read more on the web..."];
+    [alert addButtonWithTitle:@"OK"];
+    NSInteger res = [alert runModal];
+    if ([[alert suppressionButton] state] == NSOnState) {
+        [defaults setBool:YES forKey:supressKey];
+    }
+    if (res==NSAlertFirstButtonReturn) {
+        // read more
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:ASEPSIS_ISSUES_SUPPORT_PAGE]];
+    }
+}
+
+// -----------------------------------------------------------------------------
+
 @interface AUpdateDriver : SUUIBasedUpdateDriver {
-@private
 }
 
 @end
@@ -61,10 +126,13 @@ void exitApp() {
 
 @end
 
+// -----------------------------------------------------------------------------
+
 @interface AUpdater : SUUpdater { }
 
 +(id)sharedUpdater;
 -(id)init;
+- (void)checkForUpdatesInBackground;
 
 @end
 
@@ -89,6 +157,8 @@ void exitApp() {
 
 @end
 
+// -----------------------------------------------------------------------------
+
 @interface AppDelegate : NSObject
 - (void) applicationWillFinishLaunching: (NSNotification *)notification;
 @end
@@ -96,16 +166,13 @@ void exitApp() {
 @implementation AppDelegate
 - (void) applicationWillFinishLaunching: (NSNotification *)notification {
     DLOG(@"applicationWillFinishLaunching %@", notification);
+    if (!diagnoseAsepsis()) {
+        reportFailedDiagnose();
+    }
     AUpdater* sparkle = [AUpdater sharedUpdater];
     [sparkle checkForUpdatesInBackground];
 }
 @end
-
-static volatile BOOL caughtSIGINT = NO;
-void handle_SIGINT(int signum) {
-    caughtSIGINT = YES;
-    CFRunLoopStop(CFRunLoopGetCurrent());
-}
 
 // =============================================================================
 int main(int argc, const char* argv[]) {
@@ -113,23 +180,4 @@ int main(int argc, const char* argv[]) {
     [NSApplication sharedApplication];
     [NSApp setDelegate: [AppDelegate new]];
     return NSApplicationMain(argc, argv);
-//    
-//    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-//    DLOG(@"AsepsisUpdater launched, argc=%d", argc);
-//
-//
-//    NSApplicationLoad();
-//    AUpdater* sparkle = [AUpdater sharedUpdater];
-//    [sparkle checkForUpdatesInBackground];
-//    
-//    NSRunLoop* runLoop = [NSRunLoop mainRunLoop];
-//    
-//    [runLoop run];
-//    
-//    if (caughtSIGINT) {
-//        NSLog(@"caught SIGINT - exiting...");
-//    }
-//    [pool drain];
-//
-//    return 0;
 }
