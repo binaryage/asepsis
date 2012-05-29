@@ -63,4 +63,5 @@ def cmd_diagnose(options)
     # end
     
     say "Your Asepsis setup seems to be OK" if $is_ok
+    exit 1 unless $is_ok
 end
