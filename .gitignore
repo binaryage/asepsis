@@ -2,3 +2,4 @@ build/
 xcuserdata
 bin/
 release/
+keys/dsa_priv.pem

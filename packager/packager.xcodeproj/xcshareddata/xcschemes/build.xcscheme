@@ -29,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D6BDB635139E1B6F00501FAA"
+            BuildableName = "AsepsisUpdater.app"
+            BlueprintName = "AsepsisUpdater"
+            ReferencedContainer = "container:../updater/updater.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -39,6 +48,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D6BDB635139E1B6F00501FAA"
+            BuildableName = "AsepsisUpdater.app"
+            BlueprintName = "AsepsisUpdater"
+            ReferencedContainer = "container:../updater/updater.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
          <AdditionalOption
             key = "USERBREAK"

@@ -1,0 +1,403 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BDB63A139E1B6F00501FAA /* Cocoa.framework */; };
+		D6BDB665139E1C7C00501FAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB65F139E1C7C00501FAA /* main.m */; };
+		D6C3F18415746D69004A2A9F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3F17915746D4B004A2A9F /* Sparkle.framework */; };
+		D6C3F18615746E29004A2A9F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6C3F17915746D4B004A2A9F /* Sparkle.framework */; };
+		D6C3F18815747142004A2A9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = D6C3F18715747142004A2A9F /* dsa_pub.pem */; };
+		D6C3F18A1574854F004A2A9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C3F1891574854F004A2A9F /* MainMenu.xib */; };
+		D6C3F18C15748CFE004A2A9F /* Asepsis.icns in Resources */ = {isa = PBXBuildFile; fileRef = D6C3F18B15748CFE004A2A9F /* Asepsis.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D6C3F17815746D4B004A2A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+		D6C3F17A15746D4B004A2A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 61B5F90209C4CEE200B25A18;
+			remoteInfo = "Sparkle Test App";
+		};
+		D6C3F17C15746D4B004A2A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 612279D90DB5470200AB99EA;
+			remoteInfo = "Sparkle Unit Tests";
+		};
+		D6C3F17E15746D4B004A2A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06E8D00FD68C7C005AE3F6;
+			remoteInfo = BinaryDelta;
+		};
+		D6C3F18015746D4B004A2A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55C14BB7136EEF1500649790;
+			remoteInfo = finish_installation;
+		};
+		D6C3F18215746D59004A2A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Sparkle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6C3F18515746E1B004A2A9F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D6C3F18615746E29004A2A9F /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D65923A7139E2A1400E4A9D3 /* AsepsisUpdater-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AsepsisUpdater-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D65923A8139E2A1400E4A9D3 /* AsepsisUpdater-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AsepsisUpdater-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		D6719F7C13A2556E002FE41C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		D685C57613A36BE000A23F94 /* AsepsisUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsepsisUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6BDB63A139E1B6F00501FAA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D6BDB63D139E1B6F00501FAA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D6BDB63E139E1B6F00501FAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D6BDB63F139E1B6F00501FAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D6BDB65E139E1C7C00501FAA /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		D6BDB65F139E1C7C00501FAA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = ../sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
+		D6C3F18715747142004A2A9F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ../keys/dsa_pub.pem; sourceTree = "<group>"; };
+		D6C3F1891574854F004A2A9F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D6C3F18B15748CFE004A2A9F /* Asepsis.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Asepsis.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6BDB633139E1B6F00501FAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6C3F18415746D69004A2A9F /* Sparkle.framework in Frameworks */,
+				D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6BDB62B139E1B6F00501FAA = {
+			isa = PBXGroup;
+			children = (
+				D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */,
+				D6719F7C13A2556E002FE41C /* CoreServices.framework */,
+				D6BDB66E139E1E4200501FAA /* Resources */,
+				D6BDB65D139E1C6900501FAA /* Source */,
+				D6BDB640139E1B6F00501FAA /* Support */,
+				D6BDB639139E1B6F00501FAA /* Frameworks */,
+				D685C57613A36BE000A23F94 /* AsepsisUpdater.app */,
+			);
+			sourceTree = "<group>";
+		};
+		D6BDB639139E1B6F00501FAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6BDB63A139E1B6F00501FAA /* Cocoa.framework */,
+				D6BDB63C139E1B6F00501FAA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6BDB63C139E1B6F00501FAA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6BDB63D139E1B6F00501FAA /* AppKit.framework */,
+				D6BDB63E139E1B6F00501FAA /* CoreData.framework */,
+				D6BDB63F139E1B6F00501FAA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D6BDB640139E1B6F00501FAA /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D65923A7139E2A1400E4A9D3 /* AsepsisUpdater-Info.plist */,
+				D65923A8139E2A1400E4A9D3 /* AsepsisUpdater-Prefix.pch */,
+			);
+			name = Support;
+			path = AsepsisUpdater;
+			sourceTree = "<group>";
+		};
+		D6BDB65D139E1C6900501FAA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D6BDB65E139E1C7C00501FAA /* main.h */,
+				D6BDB65F139E1C7C00501FAA /* main.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D6BDB66E139E1E4200501FAA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D6C3F18B15748CFE004A2A9F /* Asepsis.icns */,
+				D6C3F18715747142004A2A9F /* dsa_pub.pem */,
+				D6C3F1891574854F004A2A9F /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D6C3F16B15746D4A004A2A9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6C3F17915746D4B004A2A9F /* Sparkle.framework */,
+				D6C3F17B15746D4B004A2A9F /* Sparkle Test App.app */,
+				D6C3F17D15746D4B004A2A9F /* Sparkle Unit Tests.octest */,
+				D6C3F17F15746D4B004A2A9F /* BinaryDelta */,
+				D6C3F18115746D4B004A2A9F /* finish_installation.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D6BDB635139E1B6F00501FAA /* AsepsisUpdater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6BDB654139E1B6F00501FAA /* Build configuration list for PBXNativeTarget "AsepsisUpdater" */;
+			buildPhases = (
+				D6BDB632139E1B6F00501FAA /* Sources */,
+				D6BDB633139E1B6F00501FAA /* Frameworks */,
+				D6BDB634139E1B6F00501FAA /* Resources */,
+				D6C3F18515746E1B004A2A9F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6C3F18315746D59004A2A9F /* PBXTargetDependency */,
+			);
+			name = AsepsisUpdater;
+			productName = AsepsisUpdater;
+			productReference = D685C57613A36BE000A23F94 /* AsepsisUpdater.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6BDB62D139E1B6F00501FAA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = D6BDB630139E1B6F00501FAA /* Build configuration list for PBXProject "updater" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				da,
+				de,
+				English,
+				es,
+				fr,
+				it,
+				ja,
+				nl,
+				no,
+				sl,
+				sv,
+				tr,
+				Italian,
+				Spanish,
+				German,
+				zh_CN,
+				zh_TW,
+				fi,
+			);
+			mainGroup = D6BDB62B139E1B6F00501FAA;
+			productRefGroup = D6BDB62B139E1B6F00501FAA;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D6C3F16B15746D4A004A2A9F /* Products */;
+					ProjectRef = D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D6BDB635139E1B6F00501FAA /* AsepsisUpdater */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D6C3F17915746D4B004A2A9F /* Sparkle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sparkle.framework;
+			remoteRef = D6C3F17815746D4B004A2A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C3F17B15746D4B004A2A9F /* Sparkle Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Sparkle Test App.app";
+			remoteRef = D6C3F17A15746D4B004A2A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C3F17D15746D4B004A2A9F /* Sparkle Unit Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Sparkle Unit Tests.octest";
+			remoteRef = D6C3F17C15746D4B004A2A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C3F17F15746D4B004A2A9F /* BinaryDelta */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BinaryDelta;
+			remoteRef = D6C3F17E15746D4B004A2A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C3F18115746D4B004A2A9F /* finish_installation.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = finish_installation.app;
+			remoteRef = D6C3F18015746D4B004A2A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6BDB634139E1B6F00501FAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6C3F18815747142004A2A9F /* dsa_pub.pem in Resources */,
+				D6C3F18A1574854F004A2A9F /* MainMenu.xib in Resources */,
+				D6C3F18C15748CFE004A2A9F /* Asepsis.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6BDB632139E1B6F00501FAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6BDB665139E1C7C00501FAA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D6C3F18315746D59004A2A9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sparkle;
+			targetProxy = D6C3F18215746D59004A2A9F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D6BDB652139E1B6F00501FAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6BDB653139E1B6F00501FAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D6BDB655139E1B6F00501FAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AsepsisUpdater-Prefix.pch";
+				INFOPLIST_FILE = "AsepsisUpdater-Info.plist";
+				PRODUCT_NAME = AsepsisUpdater;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D6BDB656139E1B6F00501FAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AsepsisUpdater-Prefix.pch";
+				INFOPLIST_FILE = "AsepsisUpdater-Info.plist";
+				PRODUCT_NAME = AsepsisUpdater;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6BDB630139E1B6F00501FAA /* Build configuration list for PBXProject "updater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6BDB652139E1B6F00501FAA /* Debug */,
+				D6BDB653139E1B6F00501FAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6BDB654139E1B6F00501FAA /* Build configuration list for PBXNativeTarget "AsepsisUpdater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6BDB655139E1B6F00501FAA /* Debug */,
+				D6BDB656139E1B6F00501FAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6BDB62D139E1B6F00501FAA /* Project object */;
+}
