@@ -298,7 +298,7 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
 
     printf("asepsis.kext v%s\n", ECHELON_RELEASE_VERSION);
 
-    printf("asepsis.kext: start!\n");
+    DLOG("asepsis.kext: start!\n");
 
     // allocate our global resources, needed in order to allocate memory 
     // and locks throughout the rest of the program.
@@ -393,6 +393,6 @@ extern kern_return_t echelon_stop(kmod_info_t* ki, void* d) {
     }
 
     // and we're done.
-    printf("asepsis.kext: finish!\n");
+    DLOG("asepsis.kext: finish!\n");
     return KERN_SUCCESS;
 }
