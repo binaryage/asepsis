@@ -41,6 +41,7 @@ bool diagnoseAsepsis() {
     file = [pipe fileHandleForReading];
     
     [task launch];
+    [task waitUntilExit];
     
     NSData *data;
     data = [file readDataToEndOfFile];
