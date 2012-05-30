@@ -210,6 +210,12 @@ task :build_debug do
     die("build failed") unless $?==0
 end
 
+desc "install"
+task :install do
+    sys("sudo cp -r bin/Asepsis.kext /System/Library/Extensions")
+    sys("/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl install")
+end
+
 desc "clean"
 task :clean do
     sys('xcodebuild clean -workspace Asepsis.xcworkspace -scheme "build"')
