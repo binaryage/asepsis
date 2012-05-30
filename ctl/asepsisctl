@@ -21,6 +21,8 @@ ASEPSISD_PATH = File.join(KEXT_PATH, "Contents", "Resources", "asepsisd")
 LIBASEPSIS_PATH = File.join(KEXT_PATH, "Contents", "Resources", "libAsepsis.dylib")
 DAEMON_PLIST_PATH = "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist"
 DAEMON_PLIST_SOURCE_PATH = File.join(RESOURCES_PATH, "com.binaryage.asepsis.daemon.plist")
+UPDATER_PLIST_SOURCE_PATH = File.join(RESOURCES_PATH, "com.binaryage.asepsis.updater.plist")
+UPDATER_PLIST_PATH = "/Library/LaunchAgents/com.binaryage.asepsis.updater.plist"
 ASEPSISCTL_SYMLINK_PATH = "/usr/local/bin/asepsisctl"
 ASEPSISCTL_SYMLINK_SOURCE_PATH = File.join(RESOURCES_PATH, "asepsisctl")
 DAEMON_LABEL = "com.binaryage.asepsis.daemon"
@@ -68,6 +70,8 @@ Installation commands:
     launch_daemon                    Launches asepsis daemon.
     enable_warnings                  Enables warnings caused by mach_override (vm.shared_region_unnest_logging)
     disable_warnings                 Disables warnings caused by mach_override (vm.shared_region_unnest_logging)
+    uninstall_updater                Uninstalls asepsis updater.
+    install_updater                  Installs asepsis updater.
 
 Backward compatibility:
     uninstall_dylib                  Removes libAsepsis.dylib from /etc/launchd.conf.
@@ -109,6 +113,8 @@ require BASE_DIR + '/cmd/launch_daemon'
 require BASE_DIR + '/cmd/uninstall_dylib'
 require BASE_DIR + '/cmd/enable_warnings'
 require BASE_DIR + '/cmd/disable_warnings'
+require BASE_DIR + '/cmd/install_updater'
+require BASE_DIR + '/cmd/uninstall_updater'
 
 ##############################################################################################################################
 

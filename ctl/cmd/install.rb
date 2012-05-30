@@ -6,6 +6,7 @@ def cmd_install(options)
     sys!("#{ctl} install_daemon")
     sys!("#{ctl} launch_daemon")
     sys!("#{ctl} install_wrapper")
+    sys!("#{ctl} install_updater")
 
     # remove (possibly) scheduled uninstall (pathologival case when someone uninstalls and installs without restart)
     sys("sudo rm \"/Library/LaunchDaemons/com.binaryage.asepsis.uninstall.plist\"") if File.exists? "/Library/LaunchDaemons/com.binaryage.asepsis.uninstall.plist"

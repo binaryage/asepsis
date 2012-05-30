@@ -12,6 +12,7 @@
 		D6363F5711728086000105D8 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = D6363F5611728086000105D8 /* client.c */; };
 		D66665DB14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist in Resources */ = {isa = PBXBuildFile; fileRef = D66665DA14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist */; };
 		D66665DE14058DF8005653AC /* finish-uninstall.sh in Resources */ = {isa = PBXBuildFile; fileRef = D66665DD14058DF8005653AC /* finish-uninstall.sh */; };
+		D67039E31575D49400E9497B /* com.binaryage.asepsis.updater.plist in Resources */ = {isa = PBXBuildFile; fileRef = D67039E21575D49400E9497B /* com.binaryage.asepsis.updater.plist */; };
 		D68ADA4211727C840086B51D /* echelon.h in Headers */ = {isa = PBXBuildFile; fileRef = D68ADA4111727C840086B51D /* echelon.h */; };
 		D6F9DE6B13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F9DE6A13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 		D66665CD1405716E005653AC /* TestClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestClient; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66665DA14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = com.binaryage.asepsis.uninstall.plist; sourceTree = "<group>"; };
 		D66665DD14058DF8005653AC /* finish-uninstall.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "finish-uninstall.sh"; sourceTree = "<group>"; };
+		D67039E21575D49400E9497B /* com.binaryage.asepsis.updater.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.binaryage.asepsis.updater.plist; sourceTree = "<group>"; };
 		D68ADA4111727C840086B51D /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = echelon.h; sourceTree = "<group>"; };
 		D6F9DE6A13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.binaryage.asepsis.daemon.plist; sourceTree = "<group>"; };
 		D6F9DE6D13FB663B0050D4D4 /* Asepsis.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Asepsis.kext; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +65,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D67039E21575D49400E9497B /* com.binaryage.asepsis.updater.plist */,
 				D6F9DE6A13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist */,
 				32A4FEC30562C75700D090E7 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
@@ -184,6 +187,7 @@
 				D6F9DE6B13FB5E7D0050D4D4 /* com.binaryage.asepsis.daemon.plist in Resources */,
 				D66665DB14058DCF005653AC /* com.binaryage.asepsis.uninstall.plist in Resources */,
 				D66665DE14058DF8005653AC /* finish-uninstall.sh in Resources */,
+				D67039E31575D49400E9497B /* com.binaryage.asepsis.updater.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
