@@ -15,6 +15,9 @@ DAEMON_CONFIG = File.join("/Library/LaunchDaemons/com.binaryage.asepsis.daemon.p
 DYLIB = File.join(KEXT_RESOURCES, "libAsepsis.dylib")
 CTL = File.join(KEXT_RESOURCES, "asepsisctl")
 
+PUBLISH_PREFIX_URL = "http://downloads.binaryage.com"
+CHANGELOG_PREFIX_URL = "http://asepsis.binaryage.com"
+
 ################################################################################################
 # dependencies
 
@@ -28,6 +31,10 @@ end
 def file_color(text); text.yellow; end
 def dir_color(text); text.blue; end
 def cmd_color(text); text.magenta; end
+
+def red(text); text.red; end
+def green(text); text.green; end
+def blue(text); text.blue; end
 
 ############################################################################################
 
@@ -233,6 +240,10 @@ task :release do
             ["asepsisd v##VERSION##", "asepsisd v#{$version}"]
         ])
         
+        patch("updater/AsepsisUpdater-Info.plist", [
+            ['##VERSION##', $version]
+        ])
+
         sys("rake build")
 
         patch('bin/Asepsis.kext/Contents/Resources/asepsisctl', [
@@ -291,6 +302,24 @@ task :release do
 
         sys("hdiutil create \"#{releasedmg}\" -volname \"Asepsis\" -format UDBZ -fs HFS+ -srcfolder \"#{release}\" -srcfolder \"#{uninstaller}\" -srcfolder \"#{readme}\"")
         die("build failed") unless $?==0
+
+        size = File.size(releasedmg)
+        sig = `ruby "sparkle/sign_update.rb" "#{releasedmg}" keys/dsa_priv.pem`.strip
+        die("build failed") unless $?==0
+  
+        snippet = "\
+              <item>
+                  <title>Version #{$version}</title>
+                  <sparkle:releaseNotesLink>#{CHANGELOG_PREFIX_URL}/changelog.html</sparkle:releaseNotesLink>
+                  <pubDate>#{Time.new}</pubDate>
+                  <enclosure url=\"#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg\" sparkle:version=\"#{$version}\" length=\"#{size}\" type=\"application/octet-stream\" sparkle:dsaSignature=\"#{sig}\"/>
+                  <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+              </item>"
+  
+        puts snippet
+        puts
+        puts red("Don't forget: ")+green("git tag -a v#{$version} -m \"Release #{$version}\"")
+        puts blue("#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg")
     end
 end
 
