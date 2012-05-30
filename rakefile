@@ -1,5 +1,5 @@
 ROOT_DIR = File.expand_path('.')
-TMP_ROOT = '/tmp'
+TMP_ROOT = File.join(ROOT_DIR, 'tmp')
 BIN_DIR = File.join(ROOT_DIR, 'bin')
 TMP_DIR = File.join(TMP_ROOT, "asepsis-installer")
 RELEASE_DIR = File.join(ROOT_DIR, 'release')
@@ -235,7 +235,8 @@ task :release do
     
     # work on copy, because we do some dirty patching of sources
     sys("rm -rf \"#{TMP_DIR}\"")
-    sys("cp -r \"#{ROOT_DIR}\" \"#{TMP_DIR}\"")
+    sys("mkdir -p \"#{TMP_DIR}\"")
+    sys("rsync -a --exclude=\"#{TMP_DIR}\" \"#{ROOT_DIR}/\" \"#{TMP_DIR}\"")
     Dir.chdir(TMP_DIR) do
         # do some patching prior compilation
         patch("kext/echelon.h", [

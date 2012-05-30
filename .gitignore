@@ -3,3 +3,4 @@ xcuserdata
 bin/
 release/
 keys/dsa_priv.pem
+tmp/
