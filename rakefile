@@ -315,13 +315,13 @@ task :release do
         die("build failed") unless $?==0
   
         snippet = "\
-              <item>
-                  <title>Version #{$version}</title>
-                  <sparkle:releaseNotesLink>#{CHANGELOG_PREFIX_URL}/changelog.html</sparkle:releaseNotesLink>
-                  <pubDate>#{Time.new}</pubDate>
-                  <enclosure url=\"#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg\" sparkle:version=\"#{$version}\" length=\"#{size}\" type=\"application/octet-stream\" sparkle:dsaSignature=\"#{sig}\"/>
-                  <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
-              </item>"
+        <item>
+            <title>Version #{$version}</title>
+            <sparkle:releaseNotesLink>#{CHANGELOG_PREFIX_URL}/changelog.html</sparkle:releaseNotesLink>
+            <pubDate>#{Time.new}</pubDate>
+            <enclosure url=\"#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg\" sparkle:version=\"#{$version}\" length=\"#{size}\" type=\"application/octet-stream\" sparkle:dsaSignature=\"#{sig}\"/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+        </item>"
   
         puts snippet
         puts

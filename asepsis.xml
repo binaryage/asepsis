@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>Asepsis Changelog</title>
+        <link>http://updates.binaryage.com/asepsis.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.2</title>
+            <sparkle:releaseNotesLink>http://asepsis.binaryage.com/changelog.html</sparkle:releaseNotesLink>
+            <pubDate>2012-06-01 19:37:26 -0700</pubDate>
+            <enclosure url="http://downloads.binaryage.com/Asepsis-1.2.dmg" sparkle:version="1.2" length="2513435" type="application/octet-stream" sparkle:dsaSignature="MC0CFQC5+Bnmjsb+8UI8DSgaYvhkZ9UaPgIUSMi8m1GxI2WmjjbX4BpB1mUfdro="/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>
