@@ -14,6 +14,7 @@
 #include <sys/sysctl.h>
 #include <sys/kauth.h>
 #include <sys/kern_control.h>
+#include <sys/vnode.h>
 
 #include "echelon.h"
 
@@ -117,6 +118,24 @@ static int fileop_listener(
 
         DLOG("asepsis.kext: detected rename: %s -> %s\n", (const char*) arg0, (const char*) arg1);
 
+        vfs_context_t vfsctx = vfs_context_current();
+        if (vfsctx) {
+            vnode_t vp;
+            errno_t err = vnode_lookup((const char*)arg1, 0, &vp, vfsctx);
+            if (err) {
+                DLOG("vnode lookup failed vfsctx=%p path=%s\n", vfsctx, (const char*)arg1);
+                return KAUTH_RESULT_DEFER;
+            }
+            if (err==0 && vp) {
+                int isDir = vnode_isdir(vp);
+                vnode_put(vp);
+                if (!isDir) {
+                    DLOG("  ... not a directory => %s\n", "bail out");
+                    return KAUTH_RESULT_DEFER;
+                }
+            }
+        }
+
         struct EchelonMessage info;
         info.version = ECHELON_VERSION;
         info.operation = ECHELON_OP_RENAME;
@@ -132,6 +151,15 @@ static int fileop_listener(
         }
         
         DLOG("asepsis.kext: detected delete: %s\n", (const char*) arg1);
+
+        vnode_t vp = (vnode_t)arg0;
+        if (vp) {
+            int isDir = vnode_isdir(vp);
+            if (!isDir) {
+                DLOG("  ... not a directory => %s\n", "bail out");
+                return KAUTH_RESULT_DEFER;
+            }
+        }
         
         struct EchelonMessage info;
         info.version = ECHELON_VERSION;
@@ -237,7 +265,7 @@ static errno_t ctl_disconnect(kern_ctl_ref ctl_ref, u_int32_t unit, void* unitin
     printf("asepsis.kext: client disconnected (%d)\n", unit);
 
     if (!gConnection) {
-        DLOG("asepsis.kext: have no connection, ignoring disconnect");
+        DLOG("asepsis.kext: have no connection, ignoring disconnect %s", "");
         lck_mtx_unlock(gLock);
         return 0;
     }
@@ -298,7 +326,7 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
 
     printf("asepsis.kext v%s\n", ECHELON_RELEASE_VERSION);
 
-    DLOG("asepsis.kext: start!\n");
+    DLOG("asepsis.kext: %s!\n", "start");
 
     // allocate our global resources, needed in order to allocate memory 
     // and locks throughout the rest of the program.
@@ -393,6 +421,6 @@ extern kern_return_t echelon_stop(kmod_info_t* ki, void* d) {
     }
 
     // and we're done.
-    DLOG("asepsis.kext: finish!\n");
+    DLOG("asepsis.kext: %s!\n", "finish");
     return KERN_SUCCESS;
 }
