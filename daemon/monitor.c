@@ -158,6 +158,7 @@ static void* asepsis_monitor_thread(void* data) {
         g_monitor_thread_id = 0;
         return NULL;
     }
+    
     bzero(&ctl_info, sizeof(struct ctl_info));
     strcpy(ctl_info.ctl_name, ECHELON_BUNDLE_ID);
     if (ioctl(g_monitor_socket, CTLIOCGINFO, &ctl_info) == -1) {

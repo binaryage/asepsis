@@ -30,7 +30,6 @@
 
 int strprefix(const char *s1, const char *s2); // strprefix is in libkern's export list, but not in any header <rdar://problem/4116835>.
 
-static int sys_ctl_handler(struct sysctl_oid * oidp, void* arg1, int arg2, struct sysctl_req * req);
 static void send_message(struct EchelonMessage* info);
 static errno_t ctl_connect(kern_ctl_ref ctl_ref, struct sockaddr_ctl *sac, void **unitinfo);
 static errno_t ctl_disconnect(kern_ctl_ref ctl_ref, u_int32_t unit, void *unitinfo);
@@ -44,30 +43,10 @@ static kern_ctl_ref gCtlRef = NULL;
 static boolean_t gRegisteredOID = FALSE;     // tracks whether we've registered our OID or not
 static kauth_listener_t gFileOpListener = NULL;
 
-// gConfiguration holds our current configuration string. It's modified by 
-// sys_ctl_handler (well, by sysctl_handle_string which is called by sys_ctl_handler).
-static char gConfiguration[1024];
+int gLostMessagesLogging = 0;
 
-// Declare our sysctl OID (that is, a variable that the user can 
-// get and set using sysctl).  Once this OID is registered (which 
-// is done in the start routine, echelon_start, below), the user 
-// user can get and set our configuration variable (gConfiguration) 
-// using the sysctl command line tool.
-//
-// We use OID using SYSCTL_OID rather than SYSCTL_STRING because 
-// we want to override the hander function that's call (we want 
-// sys_ctl_handler rather than sysctl_handle_string).
-SYSCTL_OID(
-    _kern,                                          // parent OID
-    OID_AUTO,                                       // sysctl number, OID_AUTO means we're only accessible by name
-    com_binaryage_echelon,                          // our name
-    CTLTYPE_STRING | CTLFLAG_RW | CTLFLAG_KERN,     // we're a string, more or less
-    gConfiguration,                                 // sysctl_handle_string gets/sets this string
-    sizeof(gConfiguration),                         // and this is its maximum length
-    sys_ctl_handler,                                // our handler 
-    "A",                                            // because that's what SYSCTL_STRING does
-    ""                                              // just a comment
-);
+SYSCTL_NODE(_debug, OID_AUTO, asepsis, CTLFLAG_RW, 0, "see http://asepsis.binaryage.com");
+SYSCTL_INT(_debug_asepsis, OID_AUTO, lost_messages_logging, CTLFLAG_RW, &gLostMessagesLogging, 0, "logging of lost messages");
 
 // this is the new way to register a system control structure
 // this is not a const structure since the ctl_id field will be set when the ctl_register call succeeds
@@ -197,48 +176,6 @@ static kern_return_t install_listener() {
     return KERN_SUCCESS;
 }
 
-// This routine is called by the sysctl handler when it notices 
-// that the configuration has changed.  It's responsible for 
-// parsing the new configuration string and updating the listener.
-//
-// See sys_ctl_handler for a description of how I chose to handle the 
-// failure case.
-//
-// This routine always runs under the gLock.
-static void configure_echelon(const char *configuration) {
-    printf("asepsis.kext: reconfiguring with %s\n", configuration);
-    
-    // parse configuration string and perform actions
-
-    // nothing to do, maybe later ...
-}
-
-// this routine is called by the kernel when the user reads or writes our sysctl variable.  
-// the arguments are standard for a sysctl handler.
-static int sys_ctl_handler(
-    struct sysctl_oid * oidp, 
-    void *              arg1, 
-    int                 arg2, 
-    struct sysctl_req * req
-) {
-    int     result;
-    
-    // prevent two threads trying to change our configuration at the same time.
-    lck_mtx_lock(gLock);
-    
-    // let sysctl_handle_string do all the heavy lifting of getting and setting the variable.
-    result = sysctl_handle_string(oidp, arg1, arg2, req);
-    
-    // on the way out, if we got no error and a new value was set, do our magic.
-    if ((result == 0) && req->newptr) {
-        configure_echelon(gConfiguration);
-    }
-    
-    lck_mtx_unlock(gLock);
-
-    return result;
-}
-
 static errno_t ctl_connect(kern_ctl_ref ctl_ref, struct sockaddr_ctl* sac, void** unitinfo) {
     #pragma unused(unitinfo)
 
@@ -302,7 +239,9 @@ static void send_message(struct EchelonMessage* info) {
     int res = ctl_enqueuedata(gConnection, gUnit, info, sizeof(struct EchelonMessage), 0);
     if (res) {
         // most likely out of socket buffer space
-        printf("asepsis.kext: unable to send message, ctl_enqueuedata failed %d, message lost\n", res);
+        if (gLostMessagesLogging) {
+            printf("asepsis.kext: unable to send message, ctl_enqueuedata failed %d, message lost: %s\n", res, info->path1);
+        }
     }
 
     lck_mtx_unlock(gLock);
@@ -353,9 +292,10 @@ extern kern_return_t echelon_start(kmod_info_t* ki, void* d) {
         }
     }
 
-    // register our sysctl handler.
+    // register our sysctl handlers
     if (err == KERN_SUCCESS) {
-        sysctl_register_oid(&sysctl__kern_com_binaryage_echelon);
+        sysctl_register_oid(&sysctl__debug_asepsis);
+        sysctl_register_oid(&sysctl__debug_asepsis_lost_messages_logging);
         gRegisteredOID = TRUE;
     }
 
@@ -399,7 +339,8 @@ extern kern_return_t echelon_stop(kmod_info_t* ki, void* d) {
     }
 
     if (gRegisteredOID) {
-        sysctl_unregister_oid(&sysctl__kern_com_binaryage_echelon);
+        sysctl_unregister_oid(&sysctl__debug_asepsis_lost_messages_logging);
+        sysctl_unregister_oid(&sysctl__debug_asepsis);
         gRegisteredOID = FALSE;
     }
 
