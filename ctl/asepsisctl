@@ -12,19 +12,16 @@ require BASE_DIR + '/lib/helpers'
 
 ##############################################################################################################################
 
-RESOURCES_PATH = BASE_DIR
+RESOURCES_PATH = File.expand_path(File.join(BASE_DIR, ".."))
 DISABLE_FILE_PATH = "/var/db/.asepsis.disabled"
 PREFIX_PATH = "/usr/local/.dscage"
-SUSPEND_LOCK_PATH = File.join(PREFIX_PATH, ".asepsis.suspend.lock")
-KEXT_PATH = File.expand_path(File.join(RESOURCES_PATH, "..", ".."))
-ASEPSISD_PATH = File.join(KEXT_PATH, "Contents", "Resources", "asepsisd")
-LIBASEPSIS_PATH = File.join(KEXT_PATH, "Contents", "Resources", "libAsepsis.dylib")
+ASEPSISD_PATH = File.join(RESOURCES_PATH, "asepsisd")
 DAEMON_PLIST_PATH = "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist"
 DAEMON_PLIST_SOURCE_PATH = File.join(RESOURCES_PATH, "com.binaryage.asepsis.daemon.plist")
 UPDATER_PLIST_SOURCE_PATH = File.join(RESOURCES_PATH, "com.binaryage.asepsis.updater.plist")
 UPDATER_PLIST_PATH = "/Library/LaunchAgents/com.binaryage.asepsis.updater.plist"
 ASEPSISCTL_SYMLINK_PATH = "/usr/local/bin/asepsisctl"
-ASEPSISCTL_SYMLINK_SOURCE_PATH = File.join(RESOURCES_PATH, "asepsisctl")
+ASEPSISCTL_SYMLINK_SOURCE_PATH = File.join(RESOURCES_PATH, "ctl", "asepsisctl")
 DAEMON_LABEL = "com.binaryage.asepsis.daemon"
 DS_FRAMEWORK_PATH = "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework"
 DS_LIB_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A")
@@ -41,7 +38,6 @@ Usage:
     asepsisctl [command] [options]
    
 Commands:
-    suspend                          Suspends immediate asepsis operations.
     disable                          Disables asepsis.
     enable                           Enables asepsis.
     diagnose                         Diagnoses asepsis setup.
@@ -55,12 +51,10 @@ Helper commands:
     clean                            Deletes all content from #{PREFIX_PATH}.
 
 Installation commands:
-    install                          Performs reinstallation from sources in #{KEXT_PATH}.
+    install                          Performs reinstallation (using "#{RESOURCES_PATH}").
     uninstall                        Performs complete uninstallation.
     install_wrapper                  Installs DesktopServicesPriv.framework wrapper.
     uninstall_wrapper                Uninstalls DesktopServicesPriv.framework wrapper.
-    unload_kext                      Unloads asepsis kernel extension.
-    load_kext                        Loads asepsis kernel extension.
     remove_symlink                   Removes asepsisctl symlink from /usr/local/bin.
     create_symlink                   Creates asepsisctl symlink in /usr/local/bin.
     make_dscage                      Makes sure #{PREFIX_PATH} exists with sufficient rights.
@@ -75,6 +69,7 @@ Installation commands:
 
 Backward compatibility:
     uninstall_dylib                  Removes libAsepsis.dylib from /etc/launchd.conf.
+    uninstall_kext                   Removes /System/Library/Asepsis.kext during next boot.
    
 Where options are:
 EOS
@@ -87,7 +82,6 @@ end.process!
 
 ##############################################################################################################################
 
-require BASE_DIR + '/cmd/suspend'
 require BASE_DIR + '/cmd/disable'
 require BASE_DIR + '/cmd/enable'
 require BASE_DIR + '/cmd/neton'
@@ -101,8 +95,6 @@ require BASE_DIR + '/cmd/install'
 require BASE_DIR + '/cmd/uninstall'
 require BASE_DIR + '/cmd/install_wrapper'
 require BASE_DIR + '/cmd/uninstall_wrapper'
-require BASE_DIR + '/cmd/unload_kext'
-require BASE_DIR + '/cmd/load_kext'
 require BASE_DIR + '/cmd/remove_symlink'
 require BASE_DIR + '/cmd/create_symlink'
 require BASE_DIR + '/cmd/make_dscage'
@@ -115,6 +107,7 @@ require BASE_DIR + '/cmd/enable_warnings'
 require BASE_DIR + '/cmd/disable_warnings'
 require BASE_DIR + '/cmd/install_updater'
 require BASE_DIR + '/cmd/uninstall_updater'
+require BASE_DIR + '/cmd/uninstall_kext'
 
 ##############################################################################################################################
 

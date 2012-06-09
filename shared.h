@@ -1,4 +1,4 @@
-// shared static routines between the daemon and the dylib
+// shared static routines between the daemon and the wrapper
 #include <string.h>
 #include <limits.h>
 #include <sys/stat.h>
@@ -19,33 +19,6 @@ extern void asepsis_setup_logging(void);
 extern int g_asepsis_disabled;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// some external process might want to suspend our operations - imagine asepsis "migration utility"
-
-#define SUSPEND_LOCK_RELEASE() \
-    close(lock);\
-    unlink(SUSPEND_LOCK_PATH);
-
-#define SUSPEND_LOCK_CHECK() \
-    int lock = open(SUSPEND_LOCK_PATH, O_CREAT|O_RDONLY, S_IRUSR|S_IRGRP|S_IROTH);\
-    if (flock(lock, LOCK_SH|LOCK_NB) != 0) {\
-        DLOG("suspended: %s", path);\
-        close(lock);\
-        return REENTRY(path);\
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// to prevent race conditions in when calling rename(2) from monitor 
-// => serialize all accesses to the prefix folder
-
-#define SERIALIZATION_LOCK_CHECK() \
-    int slock = open(SERIALIZATION_LOCK_PATH, O_CREAT|O_RDONLY, S_IRUSR|S_IRGRP|S_IROTH);\
-    flock(slock, LOCK_EX);
-
-#define SERIALIZATION_LOCK_RELEASE() \
-    close(slock);\
-    unlink(SERIALIZATION_LOCK_PATH);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ASEPSIS_INLINE int isDisabled() {
     asepsis_setup_safe();
@@ -64,7 +37,7 @@ ASEPSIS_INLINE void underscorePatch(char* path) {
 // res must have at least size of PATH_MAX+PATH_MAX+1
 // the command reports a failure for long paths
 ASEPSIS_INLINE int makePrefixPath(const char* path, char* res) {
-    size_t len1 = strlcpy(res, ECHELON_DSCAGE_PREFIX, PATH_MAX);
+    size_t len1 = strlcpy(res, DSCAGE_PREFIX, PATH_MAX);
     size_t len2 = strlcpy(res + len1, path, SAFE_PREFIX_PATH_BUFFER_SIZE - len1);
     size_t total = len1 + len2;
     if (total>PATH_MAX) {
@@ -75,7 +48,7 @@ ASEPSIS_INLINE int makePrefixPath(const char* path, char* res) {
 
 ASEPSIS_INLINE int isPrefixPath(const char* path) {
     if (!path) return 0;
-    return strncmp(ECHELON_DSCAGE_PREFIX, path, DSSTORE_LEN) == 0;
+    return strncmp(DSCAGE_PREFIX, path, DSSTORE_LEN) == 0;
 }
 
 ASEPSIS_INLINE int isDSStorePath(const char* path) {

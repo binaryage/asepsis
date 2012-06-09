@@ -6,7 +6,7 @@
 	<string>com.binaryage.asepsis.uninstall</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/System/Library/Extensions/Asepsis.kext/Contents/Resources/finish-uninstall.sh</string>
+		<string>/Library/Application Support/Asepsis/finish-uninstall.sh</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

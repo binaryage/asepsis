@@ -18,7 +18,6 @@
 				D6AE7A52156E0A92007294C5 /* PBXTargetDependency */,
 				D6138A9A13FA6A2F000019A2 /* PBXTargetDependency */,
 				D6138A7A13FA69AE000019A2 /* PBXTargetDependency */,
-				D657214013F09B1C0087EE6E /* PBXTargetDependency */,
 				D6C3F168157467EF004A2A9F /* PBXTargetDependency */,
 			);
 			name = build;
@@ -47,20 +46,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D6138A8513FA6A0F000019A2;
 			remoteInfo = asepsisTest;
-		};
-		D657213913F09AED0087EE6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 32A4FEC40562C75800D090E7;
-			remoteInfo = Asepsis.kext;
-		};
-		D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 32A4FEB80562C75700D090E7;
-			remoteInfo = Asepsis.kext;
 		};
 		D6A8F359156B2CA300C4E046 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -97,20 +82,12 @@
 			remoteGlobalIDString = D6EF771C13FB7E7400863D7D;
 			remoteInfo = asepsisd;
 		};
-		D6EF773213FB7E7500863D7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D657213413F09AED0087EE6E /* kext.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D6EF772513FB7E7400863D7D;
-			remoteInfo = TestClient;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D610B7081574672400D209C8 /* updater.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = updater.xcodeproj; path = ../updater/updater.xcodeproj; sourceTree = "<group>"; };
 		D6138A7313FA6976000019A2 /* daemon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = daemon.xcodeproj; path = ../daemon/daemon.xcodeproj; sourceTree = "<group>"; };
 		D6138A9313FA6A15000019A2 /* test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = test.xcodeproj; path = ../test/test.xcodeproj; sourceTree = "<group>"; };
-		D657213413F09AED0087EE6E /* kext.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = kext.xcodeproj; path = ../kext/kext.xcodeproj; sourceTree = "<group>"; };
 		D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = wrapper.xcodeproj; path = ../wrapper/wrapper.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,15 +108,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D657213513F09AED0087EE6E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D657213A13F09AED0087EE6E /* Asepsis.kext */,
-				D6EF773313FB7E7500863D7D /* TestClient */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D6A8F356156B2CA300C4E046 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +123,6 @@
 				D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */,
 				D6138A9313FA6A15000019A2 /* test.xcodeproj */,
 				D6138A7313FA6976000019A2 /* daemon.xcodeproj */,
-				D657213413F09AED0087EE6E /* kext.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,10 +157,6 @@
 					ProjectRef = D6138A7313FA6976000019A2 /* daemon.xcodeproj */;
 				},
 				{
-					ProductGroup = D657213513F09AED0087EE6E /* Products */;
-					ProjectRef = D657213413F09AED0087EE6E /* kext.xcodeproj */;
-				},
-				{
 					ProductGroup = D6138A9413FA6A15000019A2 /* Products */;
 					ProjectRef = D6138A9313FA6A15000019A2 /* test.xcodeproj */;
 				},
@@ -222,13 +185,6 @@
 			remoteRef = D6138A9713FA6A15000019A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D657213A13F09AED0087EE6E /* Asepsis.kext */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Asepsis.kext;
-			remoteRef = D657213913F09AED0087EE6E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		D6A8F35A156B2CA300C4E046 /* DesktopServicesPrivWrapper.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -250,13 +206,6 @@
 			remoteRef = D6EF772F13FB7E7500863D7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D6EF773313FB7E7500863D7D /* TestClient */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = TestClient;
-			remoteRef = D6EF773213FB7E7500863D7D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -272,7 +221,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nKEXT=\"$BIN/Asepsis.kext\"\nKEXTRES=\"$KEXT/Contents/Resources\" \nDAEMON=\"$KEXTRES/asepsisd\"\nTEST=\"$KEXTRES/asepsisTest\"\nWRAPPER=\"$KEXTRES/DesktopServicesPrivWrapper\"\nUPDATER=\"$KEXTRES/AsepsisUpdater.app\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\ncp -Rf \"$BUILT_PRODUCTS_DIR/Asepsis.kext/\" \"$KEXT\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper\" \"$WRAPPER\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/AsepsisUpdater.app\" \"$UPDATER\"\ncp /usr/bin/install_name_tool \"$KEXTRES\"\n\ninstall_name_tool -change \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv\" \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv\" \"$WRAPPER\"\n\ncp -Rf \"$PROJECT_DIR/../ctl\"/* \"$KEXT/Contents/Resources\"";
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nTARGET=\"$BIN/Asepsis\"\nDAEMON=\"$TARGET/asepsisd\"\nTEST=\"$TARGET/asepsisTest\"\nWRAPPER=\"$TARGET/DesktopServicesPrivWrapper\"\nUPDATER=\"$TARGET/AsepsisUpdater.app\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\nmkdir -p \"$TARGET\"\ncp \"$PROJECT_DIR\"/com.binaryage.*.plist \"$TARGET\"\ncp \"$PROJECT_DIR/finish-uninstall.sh\" \"$TARGET\"\ncp \"$PROJECT_DIR/finish-kext-uninstall.sh\" \"$TARGET\"\ncp \"$PROJECT_DIR/launch-updater.sh\" \"$TARGET\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper\" \"$WRAPPER\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/AsepsisUpdater.app\" \"$UPDATER\"\ncp /usr/bin/install_name_tool \"$TARGET\"\n\ninstall_name_tool -change \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv\" \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv\" \"$WRAPPER\"\n\ncp -Rf \"$PROJECT_DIR/../ctl\" \"$TARGET\"";
 			showEnvVarsInLog = 0;
 		};
 		D657214613F09C230087EE6E /* Clean bin */ = {
@@ -302,11 +251,6 @@
 			isa = PBXTargetDependency;
 			name = asepsisTest;
 			targetProxy = D6138A9913FA6A2F000019A2 /* PBXContainerItemProxy */;
-		};
-		D657214013F09B1C0087EE6E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Asepsis.kext;
-			targetProxy = D657213F13F09B1C0087EE6E /* PBXContainerItemProxy */;
 		};
 		D6AE7A52156E0A92007294C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

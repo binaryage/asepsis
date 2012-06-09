@@ -9,7 +9,7 @@
 # define DLOG(...)
 #endif
 
-#define ASEPSIS_ISSUES_SUPPORT_PAGE @"http://asepsis.binaryage.com/diagnose"
+#define ASEPSIS_ISSUES_SUPPORT_PAGE @"http://asepsis.binaryage.com/#diagnose"
 
 // -----------------------------------------------------------------------------
 

@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# perform inplace re-installation
-/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl install
-
-exit 0

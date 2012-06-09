@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# backward compatibility with Asepsis 1.1
+/Library/Application\ Support/Asepsis/ctl/asepsisctl uninstall_dylib
+
+# backward compatibility with Asepsis 1.1 & 1.2
+/Library/Application\ Support/Asepsis/ctl/asepsisctl uninstall_kext
+
+# perform inplace re-installation
+/Library/Application\ Support/Asepsis/ctl/asepsisctl install
+
+exit 0

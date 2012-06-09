@@ -6,7 +6,7 @@
 	<string>com.binaryage.asepsis.daemon</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisd</string>
+		<string>/Library/Application Support/Asepsis/asepsisd</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

@@ -27,7 +27,6 @@
 		D6138A8613FA6A0F000019A2 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = test; path = asepsisTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6138A8A13FA6A0F000019A2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		D6C299EC13FE9C110067D7D9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../daemon/common.h; sourceTree = "<group>"; };
-		D6C299ED13FE9C110067D7D9 /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = echelon.h; path = ../kext/echelon.h; sourceTree = "<group>"; };
 		D6C299EF13FE9CB00067D7D9 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,7 +45,6 @@
 			isa = PBXGroup;
 			children = (
 				D6C299EC13FE9C110067D7D9 /* common.h */,
-				D6C299ED13FE9C110067D7D9 /* echelon.h */,
 				D6138A8A13FA6A0F000019A2 /* main.c */,
 				D6C299EF13FE9CB00067D7D9 /* logging.h */,
 				D6023C1D156F071D0038AEDC /* shared.h */,

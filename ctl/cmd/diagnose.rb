@@ -14,14 +14,19 @@ def cmd_diagnose(options)
         cry "Prefix directory '#{PREFIX_PATH}' does not exist!"
     end
     
-    if not File.exists? KEXT_PATH or not File.directory? KEXT_PATH then
-        cry "KEXT is not installed in #{KEXT_PATH} ?"
+    if not File.exists? RESOURCES_PATH or not File.directory? RESOURCES_PATH then
+        cry "Asepsis is not installed in #{RESOURCES_PATH} ?"
     end
     
-    stat = `stat "#{KEXT_PATH}"`
+    stat = `stat "#{RESOURCES_PATH}"`
     stat_parts = stat.split(" ")
-    unless stat_parts[2]=="drwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="wheel" then
-        cry "KEXT has unexpected attributes: #{stat.strip}"
+    unless stat_parts[2]=="drwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="admin" then
+        cry "Asepsis has unexpected attributes: #{stat.strip}"
+    end
+    
+    logging = `sysctl vm.shared_region_unnest_logging`.strip
+    if logging != "vm.shared_region_unnest_logging: 0" then
+        cry "Asepsis should have set sysctl vm.shared_region_unnest_logging to 0"
     end
     
     if not File.exists? ASEPSISD_PATH then
@@ -30,12 +35,12 @@ def cmd_diagnose(options)
 
     stat = `stat "#{ASEPSISD_PATH}"`
     stat_parts = stat.split(" ")
-    unless stat_parts[2]=="-rwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="wheel" then
+    unless stat_parts[2]=="-rwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="admin" then
         cry "asepsisd has unexpected attributes: #{stat.strip}"
     end
 
     if `ps -ax | grep asepsis[d]`=="" then
-        cry "asepsisd is not running! it should be launched by launchd during system launch or right after aspesis installation"
+        cry "asepsisd is not running! it should be launched by launchd during system launch or right after Asepsis installation"
     end
     
     if not File.exists? DS_LIB_RELOCATED_FOLDER then

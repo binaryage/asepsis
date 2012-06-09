@@ -13,7 +13,6 @@
 		D6DDEB321564B32300A601B9 /* mach_override.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB301564B32300A601B9 /* mach_override.h */; };
 		D6DDEB351564B39E00A601B9 /* interposing.c in Sources */ = {isa = PBXBuildFile; fileRef = D6DDEB341564B39E00A601B9 /* interposing.c */; };
 		D6DDEB371564B3B800A601B9 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB361564B3B800A601B9 /* common.h */; };
-		D6DDEB391564B3D300A601B9 /* echelon.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB381564B3D300A601B9 /* echelon.h */; };
 		D6DDEB3B1564B3FA00A601B9 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = D6DDEB3A1564B3FA00A601B9 /* logging.h */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +26,6 @@
 		D6DDEB301564B32300A601B9 /* mach_override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_override.h; sourceTree = "<group>"; };
 		D6DDEB341564B39E00A601B9 /* interposing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interposing.c; sourceTree = "<group>"; };
 		D6DDEB361564B3B800A601B9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../daemon/common.h; sourceTree = "<group>"; };
-		D6DDEB381564B3D300A601B9 /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = echelon.h; path = ../kext/echelon.h; sourceTree = "<group>"; };
 		D6DDEB3A1564B3FA00A601B9 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +45,6 @@
 			children = (
 				D67C33D21560EAF3007E9A0A /* Supporting Files */,
 				D6DDEB3A1564B3FA00A601B9 /* logging.h */,
-				D6DDEB381564B3D300A601B9 /* echelon.h */,
 				D6DDEB361564B3B800A601B9 /* common.h */,
 				D6DDEB341564B39E00A601B9 /* interposing.c */,
 				D6DDEB2F1564B32300A601B9 /* mach_override.c */,
@@ -85,7 +82,6 @@
 			files = (
 				D6DDEB321564B32300A601B9 /* mach_override.h in Headers */,
 				D6DDEB371564B3B800A601B9 /* common.h in Headers */,
-				D6DDEB391564B3D300A601B9 /* echelon.h in Headers */,
 				D6DDEB3B1564B3FA00A601B9 /* logging.h in Headers */,
 				D6023C1B156F070F0038AEDC /* shared.h in Headers */,
 			);

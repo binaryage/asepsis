@@ -1,16 +1,22 @@
+def colorize(code, string)
+    $colors_supported = (ENV['TERM'] and (`tput colors`.to_i > 8)) unless defined? $colors_supported
+    return string unless $colors_supported
+    "\033[#{code}m#{string}\033[0m"
+end
+
 def out(cmd)
-    puts "\033[33m> #{cmd}\033[0m"
+    puts colorize("33", "> #{cmd}")
 end
 
 def say(what)
-    puts "\033[34m#{what}\033[0m"
+    puts colorize("34", what)
 end
 
 def sys(cmd)
     out(cmd)
     $stdout.flush
     if not system(cmd) then
-        puts "\033[31mfailed with code #{$?}\033[0m"
+        puts colorize("31", "failed with code #{$?}")
         exit $?.exitstatus
     end
 end
@@ -26,21 +32,40 @@ def die(message, code=1)
     exit code
 end
 
-def suspend_asepsis()
-    puts "trying to lock #{SUSPEND_LOCK_PATH}"
-    file = File.new(SUSPEND_LOCK_PATH, File::CREAT|File::TRUNC|File::RDWR, 0644)
-    file.flock(File::LOCK_EX)
-    Signal.trap("INT") do
-        file.flock(File::LOCK_UN)
-        File.unlink(SUSPEND_LOCK_PATH)
-        puts "asepsis operation resumed"
-        exit 0
+def set_permanent_sysctl(name, value="1", path = "/etc/sysctl.conf")
+    system("touch \"#{path}\"") unless File.exists? path
+    lines = []
+    r = Regexp.new(Regexp.escape(name))
+    set = false
+    replacement = "#{name}=#{value} \# added by asepsis.binaryage.com\n"
+    File.open(path, "r") do |f|
+        f.each do |line|
+            if line =~ r then
+               line = replacement
+               set = true
+            end
+            lines << line
+        end
+    end
+    lines << replacement unless set
+    File.open(path, "w") do |f|
+        f << lines.join
     end
 end
 
-def resume_asepsis()
-    file = File.new(SUSPEND_LOCK_PATH, File::CREAT|File::TRUNC|File::RDWR, 0644)
-    file.flock(File::LOCK_UN)
-    File.unlink(SUSPEND_LOCK_PATH)
-    puts "removed lock #{SUSPEND_LOCK_PATH}"
+def remove_permanent_sysctl(name, path = "/etc/sysctl.conf")
+    return unless File.exists? path
+    lines = []
+    r = Regexp.new(Regexp.escape(name))
+    File.open(path, "r") do |f|
+        f.each do |line|
+            if line =~ r then
+                next
+            end
+            lines << line
+        end
+    end
+    File.open(path, "w") do |f|
+        f << lines.join
+    end
 end

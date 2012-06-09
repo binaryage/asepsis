@@ -1,0 +1,24 @@
+#!/bin/sh
+
+killall -USR1 asepsisd
+sleep 2
+
+# Asepsis 1.1 and 1.2 path
+if [ -f /System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl ]; then
+	# use explicit code to for Asepsis 1.1 compatibility
+	# TODO: in the future drop Asepsis 1.1 compatibility and use asepsisctl uninstall
+	launchctl unload "/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist" 
+	kextunload "/System/Library/Extensions/Asepsis.kext"
+
+	# uninstall previous version
+	# note this command may not be available prior Asepsis 1.2 (it will fail silently)
+	/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl uninstall
+fi
+
+# Asepsis 1.3+ path
+if [ -f /Library/Application\ Support/Asepsis/ctl/asepsisctl ]; then
+	# uninstall previous version
+	/Library/Application\ Support/Asepsis/ctl/asepsisctl uninstall
+fi
+
+exit 0

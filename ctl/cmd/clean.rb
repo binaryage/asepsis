@@ -1,6 +1,4 @@
 def cmd_clean(options)
-    suspend_asepsis()
-
     dry = options[:dry]
     verbose = options[:verbose]
     

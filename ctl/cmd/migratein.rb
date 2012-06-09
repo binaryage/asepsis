@@ -1,8 +1,6 @@
 require 'fileutils'
 
 def cmd_migratein(options)
-    suspend_asepsis()
-    
     root = options[:root]
     dry = options[:dry]
     verbose = options[:verbose]
@@ -25,8 +23,6 @@ def cmd_migratein(options)
     end
     
     print "\n" if counter>0
-    
-    resume_asepsis()
 
     if counter>0 then
         say "moved #{counter} .DS_Store file(s) into the prefix folder"

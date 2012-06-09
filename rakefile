@@ -6,14 +6,8 @@ RELEASE_DIR = File.join(ROOT_DIR, 'release')
 PAYLOADS_DIR = File.join(ROOT_DIR, 'payloads')
 INSTALLER_DIR = File.join(ROOT_DIR, 'installer')
 
-KEXT_BUILD = File.join(BIN_DIR, "Asepsis.kext")
-KEXT_PARENT_DIR = "/System/Library/Extensions"
-KEXT_INSTALL = File.join(KEXT_PARENT_DIR, "Asepsis.kext")
-KEXT_RESOURCES = File.join(KEXT_INSTALL, "Contents", "Resources")
-DAEMON_CONFIG_SOURCE = File.join(KEXT_RESOURCES, "com.binaryage.asepsis.daemon.plist")
-DAEMON_CONFIG = File.join("/Library/LaunchDaemons/com.binaryage.asepsis.daemon.plist")
-DYLIB = File.join(KEXT_RESOURCES, "libAsepsis.dylib")
-CTL = File.join(KEXT_RESOURCES, "asepsisctl")
+BUILD = File.join(BIN_DIR, "Asepsis")
+INSTALL_DIR = "/Library/Application Support"
 
 PUBLISH_PREFIX_URL = "http://downloads.binaryage.com"
 CHANGELOG_PREFIX_URL = "http://asepsis.binaryage.com"
@@ -183,21 +177,6 @@ end
 
 ############################################################################################
 
-desc "install kext"
-task :install_kext do
-    sys("sudo rm -rf \"#{KEXT_INSTALL}\"")
-    sys("sudo cp -r \"#{KEXT_BUILD}\" \"#{KEXT_PARENT_DIR}\"")
-    sys("sudo chown root \"#{KEXT_INSTALL}\"")
-    sys("sudo chgrp wheel \"#{KEXT_INSTALL}\"")
-    sys("sudo chmod u=rwx \"#{KEXT_INSTALL}\"")
-    sys("sudo chmod go=rx \"#{KEXT_INSTALL}\"")
-end
-
-desc "diagnose kext"
-task :diagnose_kext do
-    sys("sudo kextutil -t -v 6 \"#{KEXT_INSTALL}\"")
-end
-
 desc "build"
 task :build do
     sys('xcodebuild -workspace Asepsis.xcworkspace -scheme "build" -configuration Release')
@@ -212,8 +191,8 @@ end
 
 desc "install"
 task :install do
-    sys("sudo cp -r bin/Asepsis.kext /System/Library/Extensions")
-    sys("/System/Library/Extensions/Asepsis.kext/Contents/Resources/asepsisctl install")
+    sys("sudo cp -r \"#{BUILD}\" \"#{INSTALL_DIR}\"")
+    sys("\"#{INSTALL_DIR}/Asepsis/ctl/asepsisctl\" install")
 end
 
 desc "clean"
@@ -224,7 +203,7 @@ end
 
 desc "test asepsis"
 task :test do
-    sys("\"#{KEXT_BUILD}/Contents/Resources/asepsisTest\"")
+    sys("\"#{INSTALL_DIR}/Asepsis/asepsisTest\"")
 end
 
 desc "builds installer+unistaller, point it to products=<path>"
@@ -239,10 +218,6 @@ task :release do
     sys("rsync -a --exclude=\"#{TMP_DIR}\" \"#{ROOT_DIR}/\" \"#{TMP_DIR}\"")
     Dir.chdir(TMP_DIR) do
         # do some patching prior compilation
-        patch("kext/echelon.h", [
-            ["ECHELON_RELEASE_VERSION \"debug\"", "ECHELON_RELEASE_VERSION \"#{$version}\""]
-        ])
-
         patch("daemon/main.c", [
             ["asepsisd v##VERSION##", "asepsisd v#{$version}"]
         ])
@@ -253,7 +228,7 @@ task :release do
 
         sys("rake build")
 
-        patch('bin/Asepsis.kext/Contents/Resources/asepsisctl', [
+        patch('bin/Asepsis/ctl/asepsisctl', [
             ['##VERSION##', "#{$version}"], 
             ['##INSTALLER_TITLE##', "Asepsis #{$version}"]
         ])
@@ -281,12 +256,8 @@ task :release do
         sys("platypus -P \"#{uninstaller_profile}\" \"#{uninstaller}\"")
         die("build failed") unless $?==0
 
-        sys("cp -r \"#{uninstaller}\" \"bin/Asepsis.kext/Contents/Resources/\"")
+        sys("cp -r \"#{uninstaller}\" \"bin/Asepsis\"")
         die("build failed") unless $?==0
-
-        patch("bin/Asepsis.kext/Contents/Info.plist", [
-            ['##VERSION##', $version]
-        ])
 
         release = File.join(RELEASE_DIR, "Asepsis.mpkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
         sys("rm -rf \"#{release}\"") if File.exist? release

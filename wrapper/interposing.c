@@ -8,7 +8,6 @@
 #include <errno.h>
 #include <dlfcn.h>
 
-#include "echelon.h"
 #include "common.h"
 #include "logging.h"
 #include "mach_override.h" 
@@ -74,14 +73,10 @@ int asepsis_open(const char * path, int flags, mode_t mode) {
     if (!makePrefixPath(path, prefixPath)) {
         return REENTRY(path);
     }
-    SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
-    SERIALIZATION_LOCK_CHECK();
     DLOG("asepsis_open %s (flags=%016x mode=%016x) -> %s", path, flags, mode, prefixPath);
     ensureDirectoryForPath(prefixPath);
     int res = REENTRY(prefixPath);
-    SERIALIZATION_LOCK_RELEASE();
-    SUSPEND_LOCK_RELEASE();
     return res;
 }
 #undef REENTRY
@@ -104,14 +99,10 @@ int asepsis_openx_np(const char * path, int flags, filesec_t sec) {
     if (!makePrefixPath(path, prefixPath)) {
         return REENTRY(path);
     }
-    SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
-    SERIALIZATION_LOCK_CHECK();
     DLOG("openx_np %s (flags=%016x mode=%16p) -> %s", path, flags, sec, prefixPath);
     ensureDirectoryForPath(prefixPath);
     int res = REENTRY(prefixPath);
-    SERIALIZATION_LOCK_RELEASE();
-    SUSPEND_LOCK_RELEASE();
     return res;
 }
 #undef REENTRY
@@ -134,13 +125,9 @@ int asepsis_getattrlist(const char *path, void *alist, void *attributeBuffer, si
     if (!makePrefixPath(path, prefixPath)) {
         return REENTRY(path);
     }
-    SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
-    SERIALIZATION_LOCK_CHECK();
     DLOG("getattrlist %s -> %s", path, prefixPath);
     int res = REENTRY(prefixPath);
-    SERIALIZATION_LOCK_RELEASE();
-    SUSPEND_LOCK_RELEASE();
     return res;
 }
 #undef REENTRY
@@ -163,13 +150,9 @@ int asepsis_setattrlist(const char *path, void *alist, void *attributeBuffer, si
     if (!makePrefixPath(path, prefixPath)) {
         return REENTRY(path);
     }
-    SUSPEND_LOCK_CHECK();
     underscorePatch(prefixPath);
-    SERIALIZATION_LOCK_CHECK();
     DLOG("setattrlist %s -> %s", path, prefixPath);
     int res = REENTRY(prefixPath);
-    SERIALIZATION_LOCK_RELEASE();
-    SUSPEND_LOCK_RELEASE();
     return res;
 }
 #undef REENTRY

@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.binaryage.asepsis.updater</string>
-	<key>LimitLoadToSessionType</key>
-	<string>Aqua</string>
+	<string>com.binaryage.asepsis.kext-uninstall</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/System/Library/Extensions/Asepsis.kext/Contents/Resources/AsepsisUpdater.app/Contents/MacOS/AsepsisUpdater</string>
+		<string>/Library/Application Support/Asepsis/finish-kext-uninstall.sh</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
+	<key>UserName</key>
+	<string>root</string>
 </dict>
 </plist>

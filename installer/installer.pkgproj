@@ -51,7 +51,24 @@
 							<array>
 								<dict>
 									<key>CHILDREN</key>
-									<array/>
+									<array>
+										<dict>
+											<key>CHILDREN</key>
+											<array/>
+											<key>GID</key>
+											<integer>80</integer>
+											<key>PATH</key>
+											<string>bin/Asepsis</string>
+											<key>PATH_TYPE</key>
+											<integer>3</integer>
+											<key>PERMISSIONS</key>
+											<integer>493</integer>
+											<key>TYPE</key>
+											<integer>3</integer>
+											<key>UID</key>
+											<integer>0</integer>
+										</dict>
+									</array>
 									<key>GID</key>
 									<integer>80</integer>
 									<key>PATH</key>
@@ -327,24 +344,7 @@
 									<array>
 										<dict>
 											<key>CHILDREN</key>
-											<array>
-												<dict>
-													<key>CHILDREN</key>
-													<array/>
-													<key>GID</key>
-													<integer>0</integer>
-													<key>PATH</key>
-													<string>bin/Asepsis.kext</string>
-													<key>PATH_TYPE</key>
-													<integer>3</integer>
-													<key>PERMISSIONS</key>
-													<integer>493</integer>
-													<key>TYPE</key>
-													<integer>3</integer>
-													<key>UID</key>
-													<integer>0</integer>
-												</dict>
-											</array>
+											<array/>
 											<key>GID</key>
 											<integer>0</integer>
 											<key>PATH</key>
@@ -443,14 +443,14 @@
 				<key>POSTINSTALL_PATH</key>
 				<dict>
 					<key>PATH</key>
-					<string>installer/script_kext_post</string>
+					<string>installer/script_asepsis_post</string>
 					<key>PATH_TYPE</key>
 					<integer>3</integer>
 				</dict>
 				<key>PREINSTALL_PATH</key>
 				<dict>
 					<key>PATH</key>
-					<string>installer/script_kext_pre</string>
+					<string>installer/script_asepsis_pre</string>
 					<key>PATH_TYPE</key>
 					<integer>3</integer>
 				</dict>
@@ -464,11 +464,11 @@
 				<key>CONCLUSION_ACTION</key>
 				<integer>2</integer>
 				<key>IDENTIFIER</key>
-				<string>com.binaryage.pkg.asepsis.kext</string>
+				<string>com.binaryage.pkg.asepsis</string>
 				<key>LOCATION</key>
 				<integer>0</integer>
 				<key>NAME</key>
-				<string>Asepsis Kernel Extension</string>
+				<string>Asepsis</string>
 				<key>OVERWRITE_PERMISSIONS</key>
 				<true/>
 				<key>VERSION</key>

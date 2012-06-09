@@ -24,8 +24,6 @@ def remove_if_empty(dir, dry, verbose)
 end
 
 def cmd_prune(options)
-    suspend_asepsis()
-
     dry = options[:dry]
     verbose = options[:verbose]
     
@@ -42,8 +40,6 @@ def cmd_prune(options)
     
     print "\n" if counter>0
     
-    resume_asepsis()
-
     if counter>0 then
         say "removed #{counter} empty drectories in the prefix folder"
     else 

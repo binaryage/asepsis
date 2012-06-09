@@ -8,20 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		D6138A6B13FA6971000019A2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D6138A6A13FA6971000019A2 /* main.c */; };
-		D6F9DE5413FB4D8F0050D4D4 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F9DE5313FB4D8F0050D4D4 /* IOKit.framework */; };
 		D6F9DE5613FB4DA30050D4D4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F9DE5513FB4DA30050D4D4 /* CoreFoundation.framework */; };
-		D6F9DE5813FB4EEF0050D4D4 /* monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9DE5713FB4EEF0050D4D4 /* monitor.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D6023C1F156F074A0038AEDC /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shared.h; path = ../shared.h; sourceTree = "<group>"; };
 		D6138A6A13FA6971000019A2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		D61FF2AD157F05DE001735C2 /* fsevents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fsevents.h; sourceTree = "<group>"; };
 		D6C299D413FE313A0067D7D9 /* asepsisd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = asepsisd; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6F9DE5313FB4D8F0050D4D4 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		D6F9DE5513FB4DA30050D4D4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		D6F9DE5713FB4EEF0050D4D4 /* monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = monitor.c; sourceTree = "<group>"; };
 		D6F9DE5E13FB542A0050D4D4 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		D6F9DE6313FB564D0050D4D4 /* echelon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = echelon.h; path = ../kext/echelon.h; sourceTree = "<group>"; };
 		D6F9DE6C13FB641E0050D4D4 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -31,7 +27,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F9DE5613FB4DA30050D4D4 /* CoreFoundation.framework in Frameworks */,
-				D6F9DE5413FB4D8F0050D4D4 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,14 +36,12 @@
 		D6138A5B13FA6971000019A2 = {
 			isa = PBXGroup;
 			children = (
+				D61FF2AD157F05DE001735C2 /* fsevents.h */,
 				D6023C1F156F074A0038AEDC /* shared.h */,
-				D6F9DE6313FB564D0050D4D4 /* echelon.h */,
 				D6138A6A13FA6971000019A2 /* main.c */,
-				D6F9DE5713FB4EEF0050D4D4 /* monitor.c */,
 				D6F9DE5E13FB542A0050D4D4 /* common.h */,
 				D6F9DE6C13FB641E0050D4D4 /* logging.h */,
 				D6F9DE5513FB4DA30050D4D4 /* CoreFoundation.framework */,
-				D6F9DE5313FB4D8F0050D4D4 /* IOKit.framework */,
 				D6C299D413FE313A0067D7D9 /* asepsisd */,
 			);
 			sourceTree = "<group>";
@@ -103,7 +96,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6138A6B13FA6971000019A2 /* main.c in Sources */,
-				D6F9DE5813FB4EEF0050D4D4 /* monitor.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
