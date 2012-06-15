@@ -18,7 +18,7 @@ def cmd_clean(options)
     print "\n" if counter>0
 
     if counter>0 then
-        say "removed #{counter} drectories in the prefix folder"
+        say "removed all content in the prefix folder"
     else 
         say "no directories found in the prefix folder, nothing to do"
     end
