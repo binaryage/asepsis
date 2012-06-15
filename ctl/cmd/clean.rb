@@ -16,8 +16,6 @@ def cmd_clean(options)
     end
     
     print "\n" if counter>0
-    
-    resume_asepsis()
 
     if counter>0 then
         say "removed #{counter} drectories in the prefix folder"
