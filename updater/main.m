@@ -165,14 +165,37 @@ void reportFailedDiagnose() {
 @end
 
 @implementation AppDelegate
+
 - (void) applicationWillFinishLaunching: (NSNotification *)notification {
     DLOG(@"applicationWillFinishLaunching %@", notification);
     if (!diagnoseAsepsis()) {
         reportFailedDiagnose();
     }
+
     AUpdater* sparkle = [AUpdater sharedUpdater];
+    // with every new release to be published it is recommended to test if Sparkle really works
+    // publishing a version with broken Sparkle updater would be a real pain
+    //
+    // the idea:
+    // 1. prepare asepsis-test.xml and upload it to http://updates.binaryage.com
+    // 2. install new release on a test machine
+    // 3. touch ~/.use-test-appcast
+    // 4. check for updates and go through updater/installer
+    //
+    // asepsis-test.xml should contain current binary but with bumped version number, so it triggers and emulates updating to future version
+    //
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSString* useTestAppCastPath = [@"~/.use-test-appcast" stringByStandardizingPath];
+
+    BOOL useTest = [fileManager fileExistsAtPath:useTestAppCastPath];
+    if (useTest) {
+        NSLog(@"Using http://updates.binaryage.com/asepsis-test.xml as appcast because %@ is present.", useTestAppCastPath);
+        [sparkle setFeedURL:[NSURL URLWithString:@"http://updates.binaryage.com/asepsis-test.xml"]];
+    }
+
     [sparkle checkForUpdatesInBackground];
 }
+
 @end
 
 // =============================================================================

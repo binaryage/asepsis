@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>Asepsis Changelog (TEST)</title>
+        <link>http://updates.binaryage.com/asepsis-test.xml</link>
+        <description>Debugging appcast for testing fake future updates with current release.</description>
+        <language>en</language>
+        <item>
+            <!-- test sparkle updating via touch ~/.use-test-appcast -->
+            <title>Version 1337.1</title><!-- deliberately using large number -->
+            <sparkle:releaseNotesLink>http://asepsis.binaryage.com/changelog.html</sparkle:releaseNotesLink>
+            <pubDate>2012-06-13 16:35:34 -0700</pubDate>
+            <enclosure url="http://downloads.binaryage.com/Asepsis-1.3.dmg" sparkle:version="1337.1" length="2567667" type="application/octet-stream" sparkle:dsaSignature="MC0CFCkkeWU96noStjwmtZJOVqUw1hXfAhUAggpcwXRYJmMDZcYsqKRz8ZTjuI8="/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>
