@@ -1,7 +1,7 @@
 def cmd_install_wrapper(options)
     force = options[:force]
     sys("sudo rm -rf \"#{DS_LIB_RELOCATED_FOLDER}\"") if File.exists? DS_LIB_RELOCATED_FOLDER and force
-    die("wrapper framework seems to be installed (#{DS_LIB_RELOCATED_FOLDER} exists)") if File.exists? DS_LIB_RELOCATED_FOLDER
+    die("wrapper framework seems to be installed (#{DS_LIB_RELOCATED_FOLDER} exists), to reinstall please run: \"asepsisctl uninstall_wrapper\" first") if File.exists? DS_LIB_RELOCATED_FOLDER
 
     # replace DesktopServicesPriv inplace
     sys("sudo cp -r \"#{DS_LIB_FOLDER}\" \"#{DS_LIB_RELOCATED_FOLDER}\"")
