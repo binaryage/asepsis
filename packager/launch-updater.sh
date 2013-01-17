@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # this should be launched during system boot, machine is busy doing lots of tasks => don't hurry
-sleep 10
+sleep 30
 
 # wait for network
 /usr/sbin/ipconfig waitall
