@@ -1,5 +1,6 @@
 build/
 xcuserdata
+xcshareddata
 bin/
 release/
 keys/dsa_priv.pem

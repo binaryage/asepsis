@@ -1,7 +1,7 @@
 #import "main.h"
 #import <Sparkle/Sparkle.h>
-#import "../sparkle/SUUpdateAlert.h"
 #import "../sparkle/SUUIBasedUpdateDriver.h"
+#import "../sparkle/SUUpdateAlert.h"
 
 #ifdef DEBUG
 # define DLOG(...) NSLog(__VA_ARGS__)

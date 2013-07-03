@@ -268,7 +268,7 @@ mach_override_ptr(
 
 #if defined(__i386__) || defined(__x86_64__)
 	if (!err) {
-		uint32_t addressOffset = ((char*)escapeIsland - (char*)originalFunctionPtr - 5);
+		long addressOffset = ((char*)escapeIsland - (char*)originalFunctionPtr - 5);
 		addressOffset = OSSwapInt32(addressOffset);
 		
 		jumpRelativeInstruction |= 0xE900000000000000LL; 
@@ -719,7 +719,7 @@ fixupInstructions(
 	{
 		if (*(uint8_t*)instructionsToFix == 0xE9) // 32-bit jump relative
 		{
-			uint32_t offset = (uintptr_t)originalFunction - (uintptr_t)escapeIsland;
+			long offset = (uintptr_t)originalFunction - (uintptr_t)escapeIsland;
 			uint32_t *jumpOffsetPtr = (uint32_t*)((uintptr_t)instructionsToFix + 1);
 			*jumpOffsetPtr += offset;
 		}

@@ -31,7 +31,6 @@
 
 #pragma pack(1) // http://en.wikipedia.org/wiki/Data_structure_alignment
 
-static void asepsis_init(void);
 static char* format_binary(unsigned long x);
 
 int g_asepsis_disabled = 0;
@@ -436,12 +435,13 @@ int main(int argc, const char* argv[]) {
     
     DLOG("Listening to fsevents... (fd=%d)\n", clonefd);
     while (1) { // event-processing loop
-        
-        if ((ret = read(clonefd, buffer, FSEVENT_BUFSIZ)) > 0) VERBOSE("=> received %d bytes\n", ret);
+      
+        ssize_t bytes = read(clonefd, buffer, FSEVENT_BUFSIZ);
+        if (bytes > 0) VERBOSE("=> received %ld bytes\n", bytes);
         
         off = 0;
         
-        while (off < ret) { // process one or more events received
+        while (off < bytes) { // process one or more events received
             command_t cmd;
             cmd.operation = COMMAND_OP_UNKNOWN;
             cmd.path1[0] = 0;
