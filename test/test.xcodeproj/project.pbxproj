@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		D6023C1D156F071D0038AEDC /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shared.h; path = ../shared.h; sourceTree = "<group>"; };
-		D6138A8613FA6A0F000019A2 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = test; path = asepsisTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6138A8613FA6A0F000019A2 /* asepsisTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = asepsisTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6138A8A13FA6A0F000019A2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		D6C299EC13FE9C110067D7D9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../daemon/common.h; sourceTree = "<group>"; };
 		D6C299EF13FE9CB00067D7D9 /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		D6138A8713FA6A0F000019A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6138A8613FA6A0F000019A2 /* test */,
+				D6138A8613FA6A0F000019A2 /* asepsisTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,7 +77,7 @@
 			);
 			name = asepsisTest;
 			productName = test;
-			productReference = D6138A8613FA6A0F000019A2 /* test */;
+			productReference = D6138A8613FA6A0F000019A2 /* asepsisTest */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
