@@ -1,3 +1,9 @@
+if `which xctool` then
+  BUILD_TOOL = 'xctool'
+else
+  BUILD_TOOL = 'xcodebuild'
+end
+
 ROOT_DIR = File.expand_path('.')
 TMP_ROOT = File.join(ROOT_DIR, 'tmp')
 BIN_DIR = File.join(ROOT_DIR, 'bin')
@@ -86,12 +92,12 @@ def generate_payload_for_pkg(tmp, pkg)
     sys("rm -rf \"#{tmp2}\"") if File.exist? tmp2
     sys("mkdir -p \"#{tmp2}\"")
     sys("cp \"#{pkg}\" \"#{tmp2}\"")
-    
+
     name = File.basename pkg
-    
+
     Dir.chdir(tmp2) do
         sys("xar -xf \"#{name}\"")
-        
+
         if (File.exist? "Payload") then
             sys("mv Payload Payload.gz")
             sys("gunzip Payload.gz")
@@ -118,48 +124,48 @@ end
 
 def generate_payload(dmg, out)
     puts "Generating payload for: ".green + dmg.blue
-    
+
     volume = "/Volumes/Asepsis"
     tmp = File.join(TMP_DIR, "payloads", File.basename(dmg, ".dmg"))
     sys("rm -rf \"#{tmp}\"") if File.exist? tmp
     sys("mkdir -p \"#{tmp}\"")
-    
+
     puts dmg
     cmd = "hdiutil attach \"#{dmg}\" | grep Apple_partition_scheme"
     announce(cmd)
     res = `#{cmd}`
     puts res
     disk = res.split("\n")[0].split("\t")[0]
-    
+
     die("bad disk") unless disk =~ /\/dev/
-    
+
     sys("cp -r #{volume}/* \"#{tmp}\"")
-    
+
     tree1 = ""
     Dir.chdir(tmp) do
         tree1 = `tree --dirsfirst -apsugif`
     end
-    
+
     pkgs = []
     Dir.glob(File.join(tmp, "**/*.pkg")) do |pkg|
         pkgs << generate_payload_for_pkg(tmp, pkg)
     end
 
-    
+
     outdir = File.dirname out
     `mkdir -p #{outdir}` unless File.exist? outdir
     File.open(out, "w") do |f|
         f << "BASIC DMG LAYOUT\n"
         f << "================\n"
         f << tree1
-        
+
         pkgs.each do |pkg|
             f << pkg
         end
     end
-    
+
     puts "  -> ".green + out.blue
-    
+
     sys("hdiutil detach #{disk}")
 end
 
@@ -179,13 +185,13 @@ end
 
 desc "build"
 task :build do
-    sys('xcodebuild -workspace Asepsis.xcworkspace -scheme "build" -configuration Release')
+    sys(BUILD_TOOL+' -workspace Asepsis.xcworkspace -scheme "build" -configuration Release')
     die("build failed") unless $?==0
 end
 
 desc "build debug version (more verbose in Console.app)"
 task :build_debug do
-    sys('xcodebuild -workspace Asepsis.xcworkspace -scheme "build" -configuration Debug')
+    sys(BUILD_TOOL+' -workspace Asepsis.xcworkspace -scheme "build" -configuration Debug')
     die("build failed") unless $?==0
 end
 
@@ -197,7 +203,7 @@ end
 
 desc "clean"
 task :clean do
-    sys('xcodebuild clean -workspace Asepsis.xcworkspace -scheme "build"')
+    sys(BUILD_TOOL+' clean -workspace Asepsis.xcworkspace -scheme "build"')
     die("clean failed") unless $?==0
 end
 
@@ -211,7 +217,7 @@ task :release do
     puts "#{'Checking environment...'.magenta}"
     version()
     sys("mkdir -p #{RELEASE_DIR}") unless File.exists? RELEASE_DIR
-    
+
     # work on copy, because we do some dirty patching of sources
     sys("rm -rf \"#{TMP_DIR}\"")
     sys("mkdir -p \"#{TMP_DIR}\"")
@@ -221,7 +227,7 @@ task :release do
         patch("daemon/main.c", [
             ["asepsisd v##VERSION##", "asepsisd v#{$version}"]
         ])
-        
+
         patch("updater/AsepsisUpdater-Info.plist", [
             ['##VERSION##', $version]
         ])
@@ -229,14 +235,14 @@ task :release do
         sys("rake build")
 
         patch('bin/Asepsis/ctl/asepsisctl', [
-            ['##VERSION##', "#{$version}"], 
+            ['##VERSION##', "#{$version}"],
             ['##INSTALLER_TITLE##', "Asepsis #{$version}"]
         ])
-        
+
         installer_profile = File.join("bin", "installer-patched.pkgproj")
         sys("cp \"installer/installer.pkgproj\" \"#{installer_profile}\"")
         patch(installer_profile, [
-            ['##VERSION##', $version], 
+            ['##VERSION##', $version],
             ['##INSTALLER_TITLE##', "Asepsis #{$version}"],
             ["/Users/darwin/code/asepsis", "#{TMP_DIR}"],
             ["#{TMP_DIR}/release", "#{ROOT_DIR}/release"]
@@ -284,7 +290,7 @@ task :release do
         size = File.size(releasedmg)
         sig = `ruby "sparkle/sign_update.rb" "#{releasedmg}" keys/dsa_priv.pem`.strip
         die("build failed") unless $?==0
-  
+
         snippet = "\
         <item>
             <title>Version #{$version}</title>
@@ -293,7 +299,7 @@ task :release do
             <enclosure url=\"#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg\" sparkle:version=\"#{$version}\" length=\"#{size}\" type=\"application/octet-stream\" sparkle:dsaSignature=\"#{sig}\"/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
         </item>"
-  
+
         puts snippet
         puts
         puts red("Don't forget: ")+green("git tag -a v#{$version} -m \"Release #{$version}\"")
@@ -318,13 +324,13 @@ desc "diff two most recent payloads"
 task :paydiff do
     res = `ls -1 "#{PAYLOADS_DIR}"/*.txt`
     res = res.split("\n")
-    
+
     res = res.sort do |a, b|
       va = release_version_from_filename a
       vb = release_version_from_filename b
       vb<=>va
     end
-    
+
     a = res[1]
     b = res[0]
     `ksdiff "#{a}" "#{b}"`
