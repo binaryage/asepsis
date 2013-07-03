@@ -1,4 +1,4 @@
-if `which xctool` then
+if not `which xctool`.empty? then
   BUILD_TOOL = 'xctool'
 else
   BUILD_TOOL = 'xcodebuild'
