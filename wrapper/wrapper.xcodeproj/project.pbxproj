@@ -219,6 +219,7 @@
 		D67C33DE1560EAF3007E9A0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = /usr/bin/x;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -247,6 +248,7 @@
 		D67C33DF1560EAF3007E9A0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = /usr/bin/x;
 				DYLIB_COMPATIBILITY_VERSION = 1;
