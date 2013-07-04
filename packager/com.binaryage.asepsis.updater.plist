@@ -12,5 +12,11 @@
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
+	<key>StartInterval</key>
+	<integer>4747</integer>
+	<key>StandardErrorPath</key>
+	<string>/dev/null</string>
+	<key>StandardOutPath</key>
+	<string>/dev/null</string>
 </dict>
 </plist>
