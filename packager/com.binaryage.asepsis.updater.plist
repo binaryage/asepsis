@@ -13,7 +13,7 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StartInterval</key>
-	<integer>4747</integer>
+	<integer>14747</integer>
 	<key>StandardErrorPath</key>
 	<string>/dev/null</string>
 	<key>StandardOutPath</key>
