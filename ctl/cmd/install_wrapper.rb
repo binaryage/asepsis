@@ -1,5 +1,11 @@
 def cmd_install_wrapper(options)
     force = options[:force]
+
+    unless force
+      `sw_vers -productVersion|grep '10\\.\\(7\\|8\\)'`
+      die("this version of Asepsis is only supported under OS X 10.7 or 10.8") if $?!=0
+    end
+
     sys("sudo rm -rf \"#{DS_LIB_RELOCATED_FOLDER}\"") if File.exists? DS_LIB_RELOCATED_FOLDER and force
     die("wrapper framework seems to be installed (#{DS_LIB_RELOCATED_FOLDER} exists), to reinstall please run: \"asepsisctl uninstall_wrapper\" first") if File.exists? DS_LIB_RELOCATED_FOLDER
 
