@@ -13,52 +13,52 @@ def cmd_diagnose(options)
     if not File.exists? PREFIX_PATH then
         cry "Prefix directory '#{PREFIX_PATH}' does not exist!"
     end
-    
+
     if not File.exists? RESOURCES_PATH or not File.directory? RESOURCES_PATH then
         cry "Asepsis is not installed in #{RESOURCES_PATH} ?"
     end
-    
-    stat = `stat "#{RESOURCES_PATH}"`
+
+    stat = `/usr/bin/stat "#{RESOURCES_PATH}"`
     stat_parts = stat.split(" ")
     unless stat_parts[2]=="drwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="admin" then
         cry "Asepsis has unexpected attributes: #{stat.strip}"
     end
-    
-    logging = `sysctl vm.shared_region_unnest_logging`.strip
+
+    logging = `/usr/sbin/sysctl vm.shared_region_unnest_logging`.strip
     if logging != "vm.shared_region_unnest_logging: 0" then
         cry "Asepsis should have set sysctl vm.shared_region_unnest_logging to 0"
     end
-    
+
     if not File.exists? ASEPSISD_PATH then
         cry "asepsisd is not installed in #{ASEPSISD_PATH} ?"
     end
 
-    stat = `stat "#{ASEPSISD_PATH}"`
+    stat = `/usr/bin/stat "#{ASEPSISD_PATH}"`
     stat_parts = stat.split(" ")
     unless stat_parts[2]=="-rwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="admin" then
         cry "asepsisd has unexpected attributes: #{stat.strip}"
     end
 
-    if `ps -ax | grep asepsis[d]`=="" then
+    if `/bin/ps -ax | grep asepsis[d]`=="" then
         cry "asepsisd is not running! it should be launched by launchd during system launch or right after Asepsis installation"
     end
-    
+
     if not File.exists? DS_LIB_RELOCATED_FOLDER then
         cry "Relocated DesktopServicesPriv '#{DS_LIB_RELOCATED_FOLDER}' does not exist! The wrapper is non-functional!"
     end
-    
+
     ds_lib = File.join(DS_LIB_FOLDER, "DesktopServicesPriv")
-    stat = `stat "#{ds_lib}"`
+    stat = `/usr/bin/stat "#{ds_lib}"`
     stat_parts = stat.split(" ")
     unless stat_parts[2]=="-rwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="wheel" then
         cry "DesktopServicesPriv has unexpected attributes: #{stat.strip}"
     end
-    
+
     # this is simple and stupid test: our wrapper library is small, under 100kb
     if File.size(ds_lib) > 100*1024 then
         cry "DesktopServicesPriv (#{ds_lib}) is not properly installed.\n  => Have you installed system update recently? It might revert it back to the original version."
     end
-    
+
     say "Your Asepsis setup seems to be OK" if $is_ok
     exit 1 unless $is_ok
 end
