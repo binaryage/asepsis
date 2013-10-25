@@ -103,7 +103,7 @@
 		D6138A9413FA6A15000019A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6138A9813FA6A15000019A2 /* test */,
+				D6138A9813FA6A15000019A2 /* asepsisTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,10 +177,9 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		D6138A9813FA6A15000019A2 /* test */ = {
+		D6138A9813FA6A15000019A2 /* asepsisTest */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			name = test;
 			path = asepsisTest;
 			remoteRef = D6138A9713FA6A15000019A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -221,7 +220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nTARGET=\"$BIN/Asepsis\"\nDAEMON=\"$TARGET/asepsisd\"\nTEST=\"$TARGET/asepsisTest\"\nWRAPPER=\"$TARGET/DesktopServicesPrivWrapper\"\nUPDATER=\"$TARGET/AsepsisUpdater.app\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\nmkdir -p \"$TARGET\"\ncp \"$PROJECT_DIR\"/com.binaryage.*.plist \"$TARGET\"\ncp \"$PROJECT_DIR/finish-uninstall.sh\" \"$TARGET\"\ncp \"$PROJECT_DIR/finish-kext-uninstall.sh\" \"$TARGET\"\ncp \"$PROJECT_DIR/launch-updater.sh\" \"$TARGET\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper\" \"$WRAPPER\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/AsepsisUpdater.app\" \"$UPDATER\"\ncp /usr/bin/install_name_tool \"$TARGET\"\n\ninstall_name_tool -change \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv\" \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv\" \"$WRAPPER\"\n\ncp -Rf \"$PROJECT_DIR/../ctl\" \"$TARGET\"";
+			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\n\nTARGET=\"$BIN/Asepsis\"\nDAEMON=\"$TARGET/asepsisd\"\nTEST=\"$TARGET/asepsisTest\"\nWRAPPER=\"$TARGET/DesktopServicesPrivWrapper\"\nUPDATER=\"$TARGET/AsepsisUpdater.app\"\n\necho \"build products dir is $BUILT_PRODUCTS_DIR\"\necho \"assembling final products in $BIN\"\n\nmkdir -p \"$TARGET\"\ncp \"$PROJECT_DIR\"/com.binaryage.*.plist \"$TARGET\"\ncp \"$PROJECT_DIR/finish-uninstall.sh\" \"$TARGET\"\ncp \"$PROJECT_DIR/finish-kext-uninstall.sh\" \"$TARGET\"\ncp \"$PROJECT_DIR/launch-updater.sh\" \"$TARGET\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisd\" \"$DAEMON\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/asepsisTest\" \"$TEST\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper\" \"$WRAPPER\"\ncp -Rf \"$BUILT_PRODUCTS_DIR/AsepsisUpdater.app\" \"$UPDATER\"\ncp \"$PROJECT_DIR/install_name_tool\" \"$TARGET\"\n\ninstall_name_tool -change \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv\" \"/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv\" \"$WRAPPER\"\n\ncp -Rf \"$PROJECT_DIR/../ctl\" \"$TARGET\"";
 			showEnvVarsInLog = 0;
 		};
 		D657214613F09C230087EE6E /* Clean bin */ = {
