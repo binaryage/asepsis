@@ -28,6 +28,7 @@ DS_LIB_ASEPSIS_REV = File.join(DS_FRAMEWORK_PATH, "Versions", "asepsis-1.4")
 DS_LIB_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A")
 DS_LIB_RELOCATED_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_")
 DS_LIB_BACKUP_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_Backup")
+DS_LIB_PANIC_BACKUP_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_Backup_Panic")
 DS_WRAPPER_SOURCE_PATH = File.join(RESOURCES_PATH, "DesktopServicesPrivWrapper")
 
 ##############################################################################################################################
@@ -38,7 +39,7 @@ The control script for asepsis operations.
 
 Usage:
     asepsisctl [command] [options]
-   
+
 Commands:
     disable                          Disables asepsis.
     enable                           Enables asepsis.
@@ -72,7 +73,7 @@ Installation commands:
 Backward compatibility:
     uninstall_dylib                  Removes libAsepsis.dylib from /etc/launchd.conf.
     uninstall_kext                   Removes /System/Library/Asepsis.kext during next boot.
-   
+
 Where options are:
 EOS
     p.version = "asepsisctl #{ASEPSISCTL_VERSION}"
@@ -80,6 +81,8 @@ EOS
     p.option :dry, "Run migration in dry mode", :default => false
     p.option :verbose, "Be more verbose", :default => false
     p.option :force, "Force operation", :default => false
+    p.option :nosudo, "Don't apply sudo", :default => false
+    p.option :panic, "Panic mode", :default => false
 end.process!
 
 ##############################################################################################################################

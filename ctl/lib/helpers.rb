@@ -70,6 +70,11 @@ def remove_permanent_sysctl(name, path = "/etc/sysctl.conf")
     end
 end
 
+def lions?
+  `sw_vers -productVersion|grep '10\\.\\(7\\|8\\)'`
+  $?==0
+end
+
 def os_version_check()
   `sw_vers -productVersion|grep '10\\.\\(7\\|8\\|9\\)'`
   die("Asepsis #{ASEPSISCTL_VERSION} can be only installed under OS X versions 10.7, 10.8 and 10.9\nCheck out http://asepsis.binaryage.com for updated version.") if $?!=0

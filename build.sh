@@ -26,6 +26,8 @@ cp -Rf "$BUILT_PRODUCTS_DIR/AsepsisUpdater.app" "$UPDATER"
 cp "$PROJECT_DIR/install_name_tool" "$TARGET"
 cp "$PROJECT_DIR/codesign" "$TARGET"
 
+install_name_tool -change "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv" "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv" "$WRAPPER"
+
 rm "$UPDATER/Contents/Frameworks/Sparkle.framework/Headers"
 rm -rf "$UPDATER/Contents/Frameworks/Sparkle.framework/Versions/A/Headers"
 
