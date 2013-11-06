@@ -24,8 +24,10 @@ ASEPSISCTL_SYMLINK_PATH = "/usr/local/bin/asepsisctl"
 ASEPSISCTL_SYMLINK_SOURCE_PATH = File.join(RESOURCES_PATH, "ctl", "asepsisctl")
 DAEMON_LABEL = "com.binaryage.asepsis.daemon"
 DS_FRAMEWORK_PATH = "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework"
+DS_LIB_ASEPSIS_REV = File.join(DS_FRAMEWORK_PATH, "Versions", "asepsis-1.4")
 DS_LIB_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A")
 DS_LIB_RELOCATED_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_")
+DS_LIB_BACKUP_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_Backup")
 DS_WRAPPER_SOURCE_PATH = File.join(RESOURCES_PATH, "DesktopServicesPrivWrapper")
 
 ##############################################################################################################################

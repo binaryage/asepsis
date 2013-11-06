@@ -1,4 +1,7 @@
 def cmd_install(options)
+    # prevent installing on future OS versions
+    os_version_check()
+
     ctl = "\"#{ASEPSISCTL_SYMLINK_SOURCE_PATH}\""
     sys!("#{ctl} create_symlink")
     sys!("#{ctl} make_dscage")
