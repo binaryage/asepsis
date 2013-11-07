@@ -6,6 +6,13 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>Version 1.4</title>
+            <sparkle:releaseNotesLink>http://asepsis.binaryage.com/changelog.html</sparkle:releaseNotesLink>
+            <pubDate>2013-11-07 19:43:30 +0000</pubDate>
+            <enclosure url="http://downloads.binaryage.com/Asepsis-1.4.dmg" sparkle:version="1.4" length="2641781" type="application/octet-stream" sparkle:dsaSignature="MC0CFCEqVN/SCBzf2uoaG/Pdq2aMcRF/AhUAikb0sjjg7ErHkoXK9Oa5BHmPmHo="/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+        </item>
+        <item>
             <title>Version 1.3.2</title>
             <sparkle:releaseNotesLink>http://asepsis.binaryage.com/changelog.html</sparkle:releaseNotesLink>
             <pubDate>2013-10-25 14:05:09 +0100</pubDate>
