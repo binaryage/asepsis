@@ -30,7 +30,7 @@ bool diagnoseAsepsis() {
     [task setLaunchPath: @"/usr/local/bin/asepsisctl"];
     
     NSArray *arguments;
-    arguments = [NSArray arrayWithObjects: @"diagnose", nil];
+    arguments = @[@"diagnose"];
     [task setArguments: arguments];
     
     NSPipe *pipe;
@@ -49,10 +49,8 @@ bool diagnoseAsepsis() {
     NSString *string;
     string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     DLOG(@"asepsisctl diagnose returned:\n%@", string);
-    [string release];
 
     bool res = [task terminationStatus]==0;
-    [task release];
     return res;
 }
 
@@ -151,7 +149,7 @@ void reportFailedDiagnose() {
 	// Background update checks should only happen if we have a network connection.
 	//	Wouldn't want to annoy users on dial-up by establishing a connection every
 	//	hour or so:
-	SUUpdateDriver*	theUpdateDriver = [[[AUpdateDriver alloc] initWithUpdater:self] autorelease];
+	SUUpdateDriver*	theUpdateDriver = [[AUpdateDriver alloc] initWithUpdater:self];
 	
 	[NSThread detachNewThreadSelector: @selector(checkForUpdatesInBgReachabilityCheckWithDriver:) toTarget: self withObject: theUpdateDriver];
 }
