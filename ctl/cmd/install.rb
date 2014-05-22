@@ -1,6 +1,8 @@
 def cmd_install(options)
     # prevent installing on future OS versions
     os_version_check()
+    
+    $forced_exit_code = 0
 
     ctl = "\"#{ASEPSISCTL_SYMLINK_SOURCE_PATH}\""
     sys!("#{ctl} create_symlink")
@@ -12,7 +14,12 @@ def cmd_install(options)
     sys!("#{ctl} install_updater")
 
     # remove (possibly) scheduled uninstall (pathological case when someone uninstalls and installs without restart)
-    sys("sudo rm \"/Library/LaunchDaemons/com.binaryage.asepsis.uninstall.plist\"") if File.exists? "/Library/LaunchDaemons/com.binaryage.asepsis.uninstall.plist"
+    sys!("sudo rm \"/Library/LaunchDaemons/com.binaryage.asepsis.uninstall.plist\"") if File.exists? "/Library/LaunchDaemons/com.binaryage.asepsis.uninstall.plist"
     
-    say "Asepsis installation done, it is effective for newly launched processes, you should reboot your computer"
+    if $forced_exit_code==0 then
+      say "Asepsis installation done, it is effective for newly launched processes, you should reboot your computer."
+    else
+      say_red "Asepsis installation encountered some failures, please inspect the command output."
+      exit 1
+    end
 end

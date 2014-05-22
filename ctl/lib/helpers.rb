@@ -12,6 +12,10 @@ def say(what)
     puts colorize("34", what)
 end
 
+def say_red(what)
+    puts colorize("31", what)
+end
+
 def sys(cmd)
     out(cmd)
     $stdout.flush
@@ -24,11 +28,13 @@ end
 def sys!(cmd)
     out(cmd)
     $stdout.flush
-    system(cmd)
+    if not system(cmd) then
+      $forced_exit_code = 1
+    end
 end
 
 def die(message, code=1)
-    puts message
+    say_red message
     exit code
 end
 
@@ -73,6 +79,11 @@ end
 def lions?
   `sw_vers -productVersion|grep '10\\.\\(7\\|8\\)'`
   $?==0
+end
+
+def codesign_check()
+  res = `which codesignx`.strip
+  die("Asepsis requires working codesign command for this operation. Please install codesign to /usr/bin/codesign.\nInstall Xcode command-line tools: http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x") if res.size==0
 end
 
 def os_version_check()

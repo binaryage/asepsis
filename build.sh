@@ -24,7 +24,6 @@ cp -Rf "$BUILT_PRODUCTS_DIR/asepsisTest" "$TEST"
 cp -Rf "$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper" "$WRAPPER"
 cp -Rf "$BUILT_PRODUCTS_DIR/AsepsisUpdater.app" "$UPDATER"
 cp "$PROJECT_DIR/install_name_tool" "$TARGET"
-cp "$PROJECT_DIR/codesign" "$TARGET"
 
 install_name_tool -change "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv" "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv" "$WRAPPER"
 

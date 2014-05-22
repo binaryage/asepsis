@@ -8,5 +8,3 @@
 
 # perform inplace re-installation
 /Library/Application\ Support/Asepsis/ctl/asepsisctl install
-
-exit 0

@@ -741,6 +741,47 @@
 					<key>STATE</key>
 					<true/>
 				</dict>
+				<dict>
+					<key>BEHAVIOR</key>
+					<integer>3</integer>
+					<key>DICTIONARY</key>
+					<dict>
+						<key>IC_REQUIREMENT_SCRIPT_ARGUMENTS</key>
+						<array/>
+						<key>IC_REQUIREMENT_SCRIPT_COMPARATOR</key>
+						<integer>0</integer>
+						<key>IC_REQUIREMENT_SCRIPT_EMBED</key>
+						<true/>
+						<key>IC_REQUIREMENT_SCRIPT_PATH</key>
+						<dict>
+							<key>PATH</key>
+							<string>installer/check-codesign-present.sh</string>
+							<key>PATH_TYPE</key>
+							<integer>3</integer>
+						</dict>
+						<key>IC_REQUIREMENT_SCRIPT_VALUE</key>
+						<integer>0</integer>
+					</dict>
+					<key>IC_REQUIREMENT_CHECK_TYPE</key>
+					<integer>0</integer>
+					<key>IDENTIFIER</key>
+					<string>fr.whitebox.Packages.requirement.scripts</string>
+					<key>MESSAGE</key>
+					<array>
+						<dict>
+							<key>LANGUAGE</key>
+							<string>English</string>
+							<key>SECONDARY_VALUE</key>
+							<string></string>
+							<key>VALUE</key>
+							<string>Please install Xcode command-line tools first. Asepsis requires working "codesign" command. You should see a separate dialog or read this article http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x.</string>
+						</dict>
+					</array>
+					<key>NAME</key>
+					<string>Codesign requirement</string>
+					<key>STATE</key>
+					<true/>
+				</dict>
 			</array>
 			<key>POSTINSTALL_PATH</key>
 			<dict/>
@@ -921,6 +962,11 @@
 			<key>REFERENCE_FOLDER_PATH</key>
 			<string>/Users/darwin/code/asepsis</string>
 		</dict>
+	</dict>
+	<key>SHARED_GLOBAL_DATA</key>
+	<dict>
+		<key>IC_REQUIREMENT_JAVASCRIPT_SHARED_SOURCE_CODE</key>
+		<string></string>
 	</dict>
 	<key>TYPE</key>
 	<integer>0</integer>
