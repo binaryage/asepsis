@@ -6,6 +6,12 @@ end
 def cmd_diagnose(options)
     $is_ok = true
 
+    ds_lib = File.join(DS_LIB_FOLDER, "DesktopServicesPriv")
+    if not desktopservicespriv_wrapper?(ds_lib) and not File.exists? DS_LIB_RELOCATED_FOLDER then
+        puts "Asepsis wrapper is not installed. Install it by running> asepsisctl install_wrapper"
+        exit 1
+    end
+    
     if not File.exists? ASEPSISCTL_SYMLINK_PATH then
         cry "asepsisctl symlink is not installed: #{ASEPSISCTL_SYMLINK_PATH}"
     end
@@ -47,7 +53,6 @@ def cmd_diagnose(options)
         cry "Relocated DesktopServicesPriv '#{DS_LIB_RELOCATED_FOLDER}' does not exist! The wrapper is non-functional!"
     end
 
-    ds_lib = File.join(DS_LIB_FOLDER, "DesktopServicesPriv")
     stat = `/usr/bin/stat "#{ds_lib}"`
     stat_parts = stat.split(" ")
     unless stat_parts[2]=="-rwxr-xr-x" and stat_parts[4]=="root" and stat_parts[5]=="wheel" then
@@ -58,6 +63,6 @@ def cmd_diagnose(options)
         cry "DesktopServicesPriv (#{ds_lib}) is not properly installed.\n  => Have you installed a system update recently? It might revert it back to the original version."
     end
 
-    say "Your Asepsis setup seems to be OK" if $is_ok
+    say "Your Asepsis installation seems to be OK" if $is_ok
     exit 1 unless $is_ok
 end
