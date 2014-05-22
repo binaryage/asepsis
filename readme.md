@@ -13,12 +13,10 @@ You will need Xcode5 for building it from sources:
     rake install
     sudo reboot
 
-Note: for installing debug version which is more verbose in Console.app use `rake build_debug` instead of `rake build`. Also you may then run `rake debug_test` to check if `libAsepsis.dylib` works as expected.
+Note: for installing debug version which is more verbose in Console.app use `rake build_debug` instead of `rake build`. Also you may then run `rake debug_test` to check if asepsis works as expected.
 
 ### Uninstallation
 
     asepsisctl uninstall
 
----
-
-#### License: [MIT-Style](asepsis/raw/master/license.txt)
+#### License: [MIT-Style](license.txt)
