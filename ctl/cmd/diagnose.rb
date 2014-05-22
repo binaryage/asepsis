@@ -54,9 +54,8 @@ def cmd_diagnose(options)
         cry "DesktopServicesPriv has unexpected attributes: #{stat.strip}"
     end
 
-    # this is simple and stupid test: our wrapper library is small, under 100kb
-    if File.size(ds_lib) > 100*1024 then
-        cry "DesktopServicesPriv (#{ds_lib}) is not properly installed.\n  => Have you installed system update recently? It might revert it back to the original version."
+    if not desktopservicespriv_wrapper?(ds_lib) then
+        cry "DesktopServicesPriv (#{ds_lib}) is not properly installed.\n  => Have you installed a system update recently? It might revert it back to the original version."
     end
 
     say "Your Asepsis setup seems to be OK" if $is_ok

@@ -79,3 +79,8 @@ def os_version_check()
   `sw_vers -productVersion|grep '10\\.\\(7\\|8\\|9\\)'`
   die("Asepsis #{ASEPSISCTL_VERSION} can be only installed under OS X versions 10.7, 10.8 and 10.9\nCheck out http://asepsis.binaryage.com for updated version.") if $?!=0
 end
+
+def desktopservicespriv_wrapper?(file)
+  # this is simple and stupid test: our wrapper library is small, under 100kb
+  File.size(file) <= 100*1024
+end
