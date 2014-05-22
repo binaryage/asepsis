@@ -84,91 +84,6 @@ end
 
 ############################################################################################
 
-def generate_payload_for_pkg(tmp, pkg)
-    tree = ""
-    exes = ""
-
-    tmp2 = File.join(tmp, File.basename(pkg))
-    sys("rm -rf \"#{tmp2}\"") if File.exist? tmp2
-    sys("mkdir -p \"#{tmp2}\"")
-    sys("cp \"#{pkg}\" \"#{tmp2}\"")
-
-    name = File.basename pkg
-
-    Dir.chdir(tmp2) do
-        sys("xar -xf \"#{name}\"")
-
-        if (File.exist? "Payload") then
-            sys("mv Payload Payload.gz")
-            sys("gunzip Payload.gz")
-            sys("cpio -id < Payload")
-        end
-
-        `rm \"#{name}\"`
-        tree = `tree --dirsfirst -apsugif`
-        exes = ""
-        Dir.glob("**/MacOS/*") do |exe|
-            exes += `file "#{exe}"` + "\n"
-        end
-    end
-
-    res = ""
-    res << "\n"
-    res << "#{name}\n"
-    res << "=======================================================================\n"
-    res << tree
-    res << "\n"
-    res << exes
-    res
-end
-
-def generate_payload(dmg, out)
-    puts "Generating payload for: ".green + dmg.blue
-
-    volume = "/Volumes/Asepsis"
-    tmp = File.join(TMP_DIR, "payloads", File.basename(dmg, ".dmg"))
-    sys("rm -rf \"#{tmp}\"") if File.exist? tmp
-    sys("mkdir -p \"#{tmp}\"")
-
-    puts dmg
-    cmd = "hdiutil attach \"#{dmg}\" | grep Apple_partition_scheme"
-    announce(cmd)
-    res = `#{cmd}`
-    puts res
-    disk = res.split("\n")[0].split("\t")[0]
-
-    die("bad disk") unless disk =~ /\/dev/
-
-    sys("cp -r #{volume}/* \"#{tmp}\"")
-
-    tree1 = ""
-    Dir.chdir(tmp) do
-        tree1 = `tree --dirsfirst -apsugif`
-    end
-
-    pkgs = []
-    Dir.glob(File.join(tmp, "**/*.pkg")) do |pkg|
-        pkgs << generate_payload_for_pkg(tmp, pkg)
-    end
-
-
-    outdir = File.dirname out
-    `mkdir -p #{outdir}` unless File.exist? outdir
-    File.open(out, "w") do |f|
-        f << "BASIC DMG LAYOUT\n"
-        f << "================\n"
-        f << tree1
-
-        pkgs.each do |pkg|
-            f << pkg
-        end
-    end
-
-    puts "  -> ".green + out.blue
-
-    sys("hdiutil detach #{disk}")
-end
-
 def release_version_from_filename(n) # /Users/darwin/code/totalfinder/payloads/TotalFinder-0.7.1.txt
     p = File.basename(n, ".txt").split("-")[1]
     n = p.split(".")
@@ -305,35 +220,6 @@ task :release do
         puts red("Don't forget: ")+green("git tag -a v#{$version} -m \"Release #{$version}\"")
         puts blue("#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg")
     end
-end
-
-desc "build missing payloads"
-task :payload do
-    Dir.chdir(RELEASE_DIR) do
-        Dir.glob("*.dmg").each do |file|
-            name = File.basename(file, ".dmg")
-            dest = File.join(PAYLOADS_DIR, name+".txt")
-            unless File.exist? dest then
-                generate_payload(file, dest)
-            end
-        end
-    end
-end
-
-desc "diff two most recent payloads"
-task :paydiff do
-    res = `ls -1 "#{PAYLOADS_DIR}"/*.txt`
-    res = res.split("\n")
-
-    res = res.sort do |a, b|
-      va = release_version_from_filename a
-      vb = release_version_from_filename b
-      vb<=>va
-    end
-
-    a = res[1]
-    b = res[0]
-    `ksdiff "#{a}" "#{b}"`
 end
 
 desc "monitor fs usage for DS_Store operations"
