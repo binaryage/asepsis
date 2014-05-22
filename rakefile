@@ -180,7 +180,7 @@ task :release do
         sys("cp -r \"#{uninstaller}\" \"bin/Asepsis\"")
         die("build failed") unless $?==0
 
-        release = File.join(RELEASE_DIR, "Asepsis.mpkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
+        release = File.join(RELEASE_DIR, "Asepsis.pkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
         sys("rm -rf \"#{release}\"") if File.exist? release
         die("build failed") unless $?==0
 
