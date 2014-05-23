@@ -131,6 +131,8 @@ end
 
 desc "clean"
 task :clean do
+    sys("rm -rf \"#{BUILD}\"")
+    sys("rm -rf \"#{TMP_DIR}\"")
     sys(BUILD_TOOL+' clean -workspace Asepsis.xcworkspace -scheme "build"')
     die("clean failed") unless $?==0
 end
