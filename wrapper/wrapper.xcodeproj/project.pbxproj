@@ -114,7 +114,7 @@
 		D67C33BE1560EAF3007E9A0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = D67C33C11560EAF3007E9A0A /* Build configuration list for PBXProject "wrapper" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -219,7 +219,6 @@
 		D67C33DE1560EAF3007E9A0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = /usr/bin/x;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -248,7 +247,6 @@
 		D67C33DF1560EAF3007E9A0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = /usr/bin/x;
 				DYLIB_COMPATIBILITY_VERSION = 1;

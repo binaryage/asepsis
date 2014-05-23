@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "退出";
+"Cancel" = "取消";
+"Uninstall" = "卸载";
+"Details" = "详情";
+
+/* tooltips */
+"Show detailed transcript" = "显示详细信息";
+
+/* main texts */
+"You are about uninstall *APP*" = "您将要卸载 Asepsis";
+"This program will uninstall all *APP* components from this computer." = "这个程序将从此计算机卸载所有 Asepsis 组件。";
+"*APP* has been uninstalled" = "Asepsis 已经被卸载";
+"Have a nice day." = "祝君愉快。^_^";
+"*APP* uninstallation failed" = "Asepsis 卸载失败";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "卸载脚本遇到一些问题。请查看详情。请报告错误至 support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "卸载程序需要管理员权限以从您的系统中移除 Asepsis。";
+"Running uninstall script:\n" = "卸载脚本运行中:\n";
+"Uninstall script finished successfully.\n" = "卸载脚本成功结束运行。\n";
+"Uninstall script needs admin rights.\n" = "卸载脚本需要管理员权限。\n";
+"Uninstall script failed with error [%d].\n" = "卸载脚本运行失败，错误为 [%d]。\n";

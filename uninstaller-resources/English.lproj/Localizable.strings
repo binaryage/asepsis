@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Quit";
+"Cancel" = "Cancel";
+"Uninstall" = "Uninstall";
+"Details" = "Details";
+
+/* tooltips */
+"Show detailed transcript" = "Show detailed transcript";
+
+/* main texts */
+"You are about uninstall *APP*" = "You are about uninstall Asepsis";
+"This program will uninstall all *APP* components from this computer." = "This program will uninstall all Asepsis components from this computer.";
+"*APP* has been uninstalled" = "Asepsis has been uninstalled";
+"Have a nice day." = "Have a nice day.";
+"*APP* uninstallation failed" = "Asepsis uninstallation failed";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Uninstaller needs admin privileges to remove Asepsis from your system.";
+"Running uninstall script:\n" = "Running uninstall script:\n";
+"Uninstall script finished successfully.\n" = "Uninstall script finished successfully.\n";
+"Uninstall script needs admin rights.\n" = "Uninstall script needs admin rights.\n";
+"Uninstall script failed with error [%d].\n" = "Uninstall script failed with error [%d].\n";

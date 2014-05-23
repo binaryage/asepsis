@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Afsluiten";
+"Cancel" = "Herstellen";
+"Uninstall" = "Verwijderen";
+"Details" = "Details";
+
+/* tooltips */
+"Show detailed transcript" = "Laat gedetailleerd transcript zien";
+
+/* main texts */
+"You are about uninstall *APP*" = "U gaat nu Asepsis verwijderen";
+"This program will uninstall all *APP* components from this computer." = "Dit programma zal alle Asepsis componenten verwijderen van deze computer.";
+"*APP* has been uninstalled" = "Asepsis is verwijderd.";
+"Have a nice day." = "Tot ziens.";
+"*APP* uninstallation failed" = "Het verwijderen van Asepsis is mislukt";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "Het verwijder script had problemen. Bekijk alstublieft de details en rapporteer bugs aan support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Uninstaller heeft admin privileges nodig om Asepsis van uw systeem te verwijderen.";
+"Running uninstall script:\n" = "Verwijder script uitvoeren:\n";
+"Uninstall script finished successfully.\n" = "Het verwijder script is succesvol afgesloten.\n";
+"Uninstall script needs admin rights.\n" = "Het verwijder script heeft admin rechten nodig.\n";
+"Uninstall script failed with error [%d].\n" = "Het verwijder script is mislukt met error [%d].\n";

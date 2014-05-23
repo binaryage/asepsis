@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Sair";
+"Cancel" = "Cancelar";
+"Uninstall" = "Desinstalar";
+"Details" = "Detalhes";
+
+/* tooltips */
+"Show detailed transcript" = "Exibir histórico detalhado";
+
+/* main texts */
+"You are about uninstall *APP*" = "Você está prestes a desinstalar o Asepsis";
+"This program will uninstall all *APP* components from this computer." = "Esse programa irá desinstalar todos os componentes do Asepsis do seu computador.";
+"*APP* has been uninstalled" = "Asepsis foi desinstalado com sucesso!";
+"Have a nice day." = "Tenha um bom dia.";
+"*APP* uninstallation failed" = "A desinstalação do Asepsis falhou.";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "O desinstalador encontrou problemas. Por favor verifique os detalhes, e reporte os bugs para support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "O desinstalador necessita de privilégios de administrador para remover o Asepsis do seu sistema.";
+"Running uninstall script:\n" = "Executando desinstalador:\n";
+"Uninstall script finished successfully.\n" = "O desintalador finalizou corretamente.\n";
+"Uninstall script needs admin rights.\n" = "O desinstalador necessita de privilégios de administrador.\n";
+"Uninstall script failed with error [%d].\n" = "O desinstalador falhou com o erro [%d].\n";

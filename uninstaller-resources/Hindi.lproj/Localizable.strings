@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "बंद करें";
+"Cancel" = "रद्द करें";
+"Uninstall" = "हटायें";
+"Details" = "विस्तार";
+
+/* tooltips */
+"Show detailed transcript" = "विस्तृत प्रतिलेख दिखाएँ";
+
+/* main texts */
+"You are about uninstall *APP*" = "आप टोटलफ़ाइंडर को हाटाने वाले हैं";
+"This program will uninstall all *APP* components from this computer." = "यह कार्यक्रम इस कंप्यूटर से टोटलफ़ाइंडर के सभी घटकों को हटा देगा.";
+"*APP* has been uninstalled" = "टोटलफ़ाइंडर हटा दिया गया है";
+"Have a nice day." = "आपका दिन शुभ हो.";
+"*APP* uninstallation failed" = "टोटलफ़ाइंडर हटाने में विफल";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "हटाने में समस्याओं का सामना करना पड़ा. विवरण देखें. गलती की रिपोर्ट यहां करें support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "आपके सिस्टम से टोटलफ़ाइंडर हटाने के लिए व्यवस्थापक विशेषाधिकारों की आवश्यकता है.";
+"Running uninstall script:\n" = "हटाने की स्क्रिप्ट चल रही है:\n";
+"Uninstall script finished successfully.\n" = "हटाने की स्क्रिप्ट सफलतापूर्वक समाप्त.\n";
+"Uninstall script needs admin rights.\n" = "हटाने की स्क्रिप्ट को व्यवस्थापक विशेषाधिकारों की आवश्यकता है.\n";
+"Uninstall script failed with error [%d].\n" = "हटाने की स्क्रिप्ट त्रुटि के साथ विफल [%d].\n";

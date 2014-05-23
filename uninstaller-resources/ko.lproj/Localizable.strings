@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "종료";
+"Cancel" = "취소";
+"Uninstall" = "제거";
+"Details" = "상세";
+
+/* tooltips */
+"Show detailed transcript" = "상세 기록을 봅니다";
+
+/* main texts */
+"You are about uninstall *APP*" = "Asepsis를 제거하려고 합니다";
+"This program will uninstall all *APP* components from this computer." = "이 프로그램은 컴퓨터에서 모든 Asepsis 구성요소를 제거할 것입니다.";
+"*APP* has been uninstalled" = "Asepsis가 제거되었습니다";
+"Have a nice day." = "좋은 하루 되세요.";
+"*APP* uninstallation failed" = "Asepsis 제거를 실패했습니다";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "제거 스크립트를 실행하는 중 문제가 발생했습니다. 상세 내역을 확인하세요. support@binaryage.com 으로 버그에 대해 알려주세요.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "시스템에서 Asepsis를 제거하려면 관리자 권한이 필요합니다.";
+"Running uninstall script:\n" = "제거 스크립트 실행 중:\n";
+"Uninstall script finished successfully.\n" = "제거 스크립트가 성공적으로 완료되었습니다.\n";
+"Uninstall script needs admin rights.\n" = "관리자 권한이 필요합니다.\n";
+"Uninstall script failed with error [%d].\n" = "제거 스크립트 실행 중 오류가 발생하여 실패했습니다. [%d]\n";

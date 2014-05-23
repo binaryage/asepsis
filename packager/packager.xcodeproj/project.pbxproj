@@ -15,6 +15,7 @@
 				D657214513F09BE20087EE6E /* Assemble products into bin */,
 			);
 			dependencies = (
+				D6C7CCA4192F8047008C0328 /* PBXTargetDependency */,
 				D6AE7A52156E0A92007294C5 /* PBXTargetDependency */,
 				D6138A9A13FA6A2F000019A2 /* PBXTargetDependency */,
 				D6138A7A13FA69AE000019A2 /* PBXTargetDependency */,
@@ -75,6 +76,27 @@
 			remoteGlobalIDString = D6BDB635139E1B6F00501FAA;
 			remoteInfo = AsepsisUpdater;
 		};
+		D6C7CC9F192F8016008C0328 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D64CA6CB17EDF89C00522544;
+			remoteInfo = Uninstaller;
+		};
+		D6C7CCA1192F8016008C0328 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D605140617EFCB5B00BAC816;
+			remoteInfo = cocoasudo;
+		};
+		D6C7CCA3192F8047008C0328 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D64CA6CA17EDF89C00522544;
+			remoteInfo = Uninstaller;
+		};
 		D6EF772F13FB7E7500863D7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D6138A7313FA6976000019A2 /* daemon.xcodeproj */;
@@ -89,6 +111,7 @@
 		D6138A7313FA6976000019A2 /* daemon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = daemon.xcodeproj; path = ../daemon/daemon.xcodeproj; sourceTree = "<group>"; };
 		D6138A9313FA6A15000019A2 /* test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = test.xcodeproj; path = ../test/test.xcodeproj; sourceTree = "<group>"; };
 		D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = wrapper.xcodeproj; path = ../wrapper/wrapper.xcodeproj; sourceTree = "<group>"; };
+		D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Uninstaller.xcodeproj; path = ../uninstaller/Uninstaller.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -119,6 +142,7 @@
 		D6B7B9AE13F09A4B000D02E8 = {
 			isa = PBXGroup;
 			children = (
+				D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */,
 				D610B7081574672400D209C8 /* updater.xcodeproj */,
 				D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */,
 				D6138A9313FA6A15000019A2 /* test.xcodeproj */,
@@ -130,6 +154,15 @@
 			isa = PBXGroup;
 			children = (
 				D6C3F166157467E9004A2A9F /* AsepsisUpdater.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6C7CC9B192F8016008C0328 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6C7CCA0192F8016008C0328 /* TotalFinder Uninstaller.app */,
+				D6C7CCA2192F8016008C0328 /* cocoasudo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,6 +192,10 @@
 				{
 					ProductGroup = D6138A9413FA6A15000019A2 /* Products */;
 					ProjectRef = D6138A9313FA6A15000019A2 /* test.xcodeproj */;
+				},
+				{
+					ProductGroup = D6C7CC9B192F8016008C0328 /* Products */;
+					ProjectRef = D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */;
 				},
 				{
 					ProductGroup = D6C3F162157467E9004A2A9F /* Products */;
@@ -196,6 +233,20 @@
 			fileType = wrapper.application;
 			path = AsepsisUpdater.app;
 			remoteRef = D6C3F165157467E9004A2A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C7CCA0192F8016008C0328 /* TotalFinder Uninstaller.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "TotalFinder Uninstaller.app";
+			remoteRef = D6C7CC9F192F8016008C0328 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6C7CCA2192F8016008C0328 /* cocoasudo */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = cocoasudo;
+			remoteRef = D6C7CCA1192F8016008C0328 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D6EF773013FB7E7500863D7D /* asepsisd */ = {
@@ -260,6 +311,11 @@
 			isa = PBXTargetDependency;
 			name = AsepsisUpdater;
 			targetProxy = D6C3F167157467EF004A2A9F /* PBXContainerItemProxy */;
+		};
+		D6C7CCA4192F8047008C0328 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Uninstaller;
+			targetProxy = D6C7CCA3192F8047008C0328 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

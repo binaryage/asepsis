@@ -13,6 +13,8 @@ PAYLOADS_DIR = File.join(ROOT_DIR, 'payloads')
 INSTALLER_DIR = File.join(ROOT_DIR, 'installer')
 
 BUILD = File.join(BIN_DIR, "Asepsis")
+BUILD_UPDATER = File.join(BUILD, "AsepsisUpdater.app")
+BUILD_UPDATER_FRAMEWORKS = File.join(BUILD_UPDATER, "Contents", "Frameworks")
 INSTALL_DIR = "/Library/Application Support"
 
 PUBLISH_PREFIX_URL = "http://downloads.binaryage.com"
@@ -41,6 +43,15 @@ def blue(text); text.blue; end
 def die(msg, status=1)
   puts "Error[#{status||$?}]: #{msg}".red
   exit status||$?
+end
+
+def announce(cmd)
+    puts "> " + cmd.yellow
+end
+
+def sys(cmd)
+    announce(cmd)
+    system(cmd)
 end
 
 def version()
@@ -73,13 +84,15 @@ def patch(path, replacers)
   end
 end
 
-def announce(cmd)
-    puts "> " + cmd.yellow
+def codesign(path)
+  sys("codesign --force --sign \"Developer ID Application: BinaryAge Limited\" \"#{path}\"")
 end
 
-def sys(cmd)
-    announce(cmd)
-    system(cmd)
+def productsign(path)
+  tmp_path = path+"-tmp"
+  sys("mv \"#{path}\" \"#{tmp_path}\"")
+  sys("productsign --sign \"Developer ID Installer: BinaryAge Limited\" \"#{tmp_path}\" \"#{path}\"")
+  sys("rm \"#{tmp_path}\"")
 end
 
 ############################################################################################
@@ -138,12 +151,16 @@ task :release do
     sys("mkdir -p \"#{TMP_DIR}\"")
     sys("rsync -a --exclude=\"#{TMP_DIR}\" \"#{ROOT_DIR}/\" \"#{TMP_DIR}\"")
     Dir.chdir(TMP_DIR) do
+
         # do some patching prior compilation
         patch("daemon/main.c", [
             ["asepsisd v##VERSION##", "asepsisd v#{$version}"]
         ])
 
         patch("updater/AsepsisUpdater-Info.plist", [
+            ['##VERSION##', $version]
+        ])
+        patch("uninstaller-resources/Uninstaller-Info.plist", [
             ['##VERSION##', $version]
         ])
 
@@ -163,22 +180,12 @@ task :release do
             ["#{TMP_DIR}/release", "#{ROOT_DIR}/release"]
         ])
 
-        uninstaller_profile = File.join("bin", "uninstaller-patched.platypus")
-        sys("cp \"installer/uninstaller.platypus\" \"#{uninstaller_profile}\"")
-        patch(uninstaller_profile, [
-            ["/Users/darwin/code/asepsis", "#{TMP_DIR}"]
-        ])
+        uninstaller = File.join(BUILD, "Asepsis Uninstaller.app")
+        codesign(uninstaller)
 
-        uninstaller = File.join("bin", "Asepsis Uninstaller.app")
-
-        sys("rm -rf \"#{uninstaller}\"") if File.exist? uninstaller
-        die("build failed") unless $?==0
-
-        sys("platypus -P \"#{uninstaller_profile}\" \"#{uninstaller}\"")
-        die("build failed") unless $?==0
-
-        sys("cp -r \"#{uninstaller}\" \"bin/Asepsis\"")
-        die("build failed") unless $?==0
+        codesign(File.join(BUILD_UPDATER_FRAMEWORKS, "Sparkle.framework/Versions/A/Resources/finish_installation.app"))
+        codesign(File.join(BUILD_UPDATER_FRAMEWORKS, "Sparkle.framework/Versions/A"))
+        codesign(File.join(BUILD_UPDATER))
 
         release = File.join(RELEASE_DIR, "Asepsis.pkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
         sys("rm -rf \"#{release}\"") if File.exist? release
@@ -187,8 +194,11 @@ task :release do
         sys("packagesbuild -v -F \"#{TMP_DIR}\" \"#{installer_profile}\"")
         die("build failed") unless $?==0
 
+        # codesign the pkg
+        productsign(release)
+
         installer_icon = File.join("installer", "installer.icns")
-        sys("installer/wincent-icon-util -icon \"#{installer_icon}\" -folder \"#{release}\"")
+        sys("./installer/bin/setfileicon \"#{installer_icon}\" \"#{release}\"")
         die("build failed") unless $?==0
 
         releasedmg = File.join(RELEASE_DIR, "Asepsis-#{$version}.dmg")

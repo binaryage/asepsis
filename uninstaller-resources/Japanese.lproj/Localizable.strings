@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "終了";
+"Cancel" = "キャンセル";
+"Uninstall" = "アンインストール";
+"Details" = "詳細";
+
+/* tooltips */
+"Show detailed transcript" = "トランスクリプトの詳細を表示";
+
+/* main texts */
+"You are about uninstall *APP*" = "Asepsis をアンインストールしようとしています";
+"This program will uninstall all *APP* components from this computer." = "このプログラムは、このコンピュータから Asepsis のコンポーネントをすべてアンインストールします。";
+"*APP* has been uninstalled" = "Asepsis はアンインストールされました";
+"Have a nice day." = "ごきげんよう。";
+"*APP* uninstallation failed" = "Asepsis のアンインストールに失敗しました";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "アンインストールスクリプトで問題が発生しました。詳細情報を確認して下さい。support@binaryage.com までバグをご連絡下さい。";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "システムから Asepsis を削除するために、アンインストーラは管理者権限を必要とします。";
+"Running uninstall script:\n" = "アンインストールスクリプトを実行中:\n";
+"Uninstall script finished successfully.\n" = "アンインストールスクリプトは正常に終了しました。\n";
+"Uninstall script needs admin rights.\n" = "アンインストールスクリプトには管理者権限が必要です。\n";
+"Uninstall script failed with error [%d].\n" = "アンインストールスクリプトが失敗しました。エラー [%d]。\n";

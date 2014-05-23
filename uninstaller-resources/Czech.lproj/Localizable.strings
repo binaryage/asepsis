@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Ukončit";
+"Cancel" = "Storno";
+"Uninstall" = "Odninstalovat";
+"Details" = "Detaily";
+
+/* tooltips */
+"Show detailed transcript" = "Zobrazí detailni výpis";
+
+/* main texts */
+"You are about uninstall *APP*" = "Chystáte se odinstalovat Asepsis";
+"This program will uninstall all *APP* components from this computer." = "Tento program odinstaluje Asepsis a všechny jeho součásti z tohoto počítače.";
+"*APP* has been uninstalled" = "Asepsis byl odninstalován";
+"Have a nice day." = "Mějte příjemný den.";
+"*APP* uninstallation failed" = "Odinstalace Asepsis se nezdařila";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "Odinstalační skript narazil na problémy. Prosím přečtěte si detaily. Chyby můžete nahlásit na support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Odinstalátor vyžaduje administrátorské oprávnění pro odstranění Asepsis z Vašeho systému.";
+"Running uninstall script:\n" = "Spouštím odinstalační skript:\n";
+"Uninstall script finished successfully.\n" = "Odinstalační skript dokončen bez chyb.\n";
+"Uninstall script needs admin rights.\n" = "Odinstalační skript vyžaduje administrátorské oprávnění.\n";
+"Uninstall script failed with error [%d].\n" = "Odinstalační skript selhal s chybovým kódem [%d].\n";

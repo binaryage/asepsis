@@ -9,6 +9,7 @@ DAEMON="$TARGET/asepsisd"
 TEST="$TARGET/asepsisTest"
 WRAPPER="$TARGET/DesktopServicesPrivWrapper"
 UPDATER="$TARGET/AsepsisUpdater.app"
+UNINSTALLER="$TARGET/Asepsis Uninstaller.app"
 
 echo "build products dir is $BUILT_PRODUCTS_DIR"
 echo "assembling final products in $BIN"
@@ -24,6 +25,9 @@ cp -Rf "$BUILT_PRODUCTS_DIR/asepsisTest" "$TEST"
 cp -Rf "$BUILT_PRODUCTS_DIR/DesktopServicesPrivWrapper.framework/Versions/A/DesktopServicesPrivWrapper" "$WRAPPER"
 cp -Rf "$BUILT_PRODUCTS_DIR/AsepsisUpdater.app" "$UPDATER"
 cp "$PROJECT_DIR/install_name_tool" "$TARGET"
+
+cp -Rf "$BUILT_PRODUCTS_DIR/TotalFinder Uninstaller.app/" "$UNINSTALLER"
+mv "$UNINSTALLER/Contents/MacOS/TotalFinder Uninstaller" "$UNINSTALLER/Contents/MacOS/Asepsis Uninstaller"
 
 install_name_tool -change "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv" "/System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A_/DesktopServicesPriv" "$WRAPPER"
 

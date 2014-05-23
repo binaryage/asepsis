@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "বের হও";
+"Cancel" = "বাতিল";
+"Uninstall" = "মুছো";
+"Details" = "বিস্তারিত";
+
+/* tooltips */
+"Show detailed transcript" = "বিস্তারিত ট্রান্সক্রিপ্ট দেখাবে";
+
+/* main texts */
+"You are about uninstall *APP*" = "তুমি টোটালফাইন্ডার মুছতে যাচ্ছো";
+"This program will uninstall all *APP* components from this computer." = "প্রোগ্রামটি এই কম্পিউটার থেকে টোটালফাইন্ডার মুছতে যাচ্ছে।";
+"*APP* has been uninstalled" = "টোটালফাইন্ডার মুছে ফেলা হয়েছে";
+"Have a nice day." = "ভালো থেকো";
+"*APP* uninstallation failed" = "টোটালফাইন্ডার মুছা সম্ভব হয়নি";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "মুছতে যে ঝামেলা হয়েছে তার বিস্তারিত দেখতে পারো। অনুগ্রহ করে সমস্যা সম্পর্কে support@binaryage.com ঠিকানায় জানাও।";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "টোটালফাইন্ডার মুছতে তোমার অ্যাডমিনের ক্ষমতা লাগবে।";
+"Running uninstall script:\n" = "মোছার স্ক্রিপ্ট চলছে:\n";
+"Uninstall script finished successfully.\n" = "মোছার স্ক্রিপ্ট সফলভাবে সম্পন্ন হয়েছে।\n";
+"Uninstall script needs admin rights.\n" = "মোছার স্ক্রিপ্ট চলতে অ্যাডমিনের ক্ষমতা লাগবে।\n";
+"Uninstall script failed with error [%d].\n" = "[%d] ঝামেলা নিয়ে মোছার স্ক্রিপ্ট থেমে গিয়েছে\n";

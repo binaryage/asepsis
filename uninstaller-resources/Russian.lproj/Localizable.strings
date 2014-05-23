@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Выход";
+"Cancel" = "Отмена";
+"Uninstall" = "Удаление";
+"Details" = "Детально";
+
+/* tooltips */
+"Show detailed transcript" = "Показать подробную стенограмму";
+
+/* main texts */
+"You are about uninstall *APP*" = "Вы собираетесь удалить Asepsis";
+"This program will uninstall all *APP* components from this computer." = "Эта программа удалит все компоненты Asepsis с этого компьютера.";
+"*APP* has been uninstalled" = "Asepsis был удалён";
+"Have a nice day." = "Приятного дня.";
+"*APP* uninstallation failed" = "Удаление Asepsis не удалось";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "Сценарий удаления столкнулся с проблемой. Пожалуйста просмотрите детали. Пожалуйста сообщите об ошибках по адресу support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Деинсталятору требуются права администратора для удаления Asepsis с вашего компьютера.";
+"Running uninstall script:\n" = "Выполняется сценарий удаления:\n";
+"Uninstall script finished successfully.\n" = "Сценарий удаления завершен успешно.\n";
+"Uninstall script needs admin rights.\n" = "Сценарию удаления требуются права администратора.\n";
+"Uninstall script failed with error [%d].\n" = "Сценарий удаления завершился с ошибкой [%d].\n";

@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Thoát";
+"Cancel" = "Bỏ qua";
+"Uninstall" = "Gỡ bỏ cài đặt";
+"Details" = "Chi tiết";
+
+/* tooltips */
+"Show detailed transcript" = "Hiển thị chi tiết bản dịch";
+
+/* main texts */
+"You are about uninstall *APP*" = "Bạn đang định gỡ bỏ cài đặt Asepsis";
+"This program will uninstall all *APP* components from this computer." = "Chương trình này sẽ gỡ bỏ toàn bộ thành phần Asepsis ra khỏi máy tính này.";
+"*APP* has been uninstalled" = "Asepsis đã được gỡ bỏ thành công";
+"Have a nice day." = "Chúc một ngày may mắn.";
+"*APP* uninstallation failed" = "Asepsis gỡ bỏ không thành công";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "Việc gỡ bỏ gặp lỗi. Hãy đọc chi tiết lỗi bên dưới. Vui lòng gửi lỗi đến support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Trình gỡ bỏ cần được cấp quyền cho Asepsis từ hệ thống của bạn.";
+"Running uninstall script:\n" = "Đang chạy mã gỡ bỏ:\n";
+"Uninstall script finished successfully.\n" = "Mã gỡ bỏ đã chạy thành công.\n";
+"Uninstall script needs admin rights.\n" = "Mã gỡ bỏ cần cấp quyền quản trị.\n";
+"Uninstall script failed with error [%d].\n" = "Mã gỡ bỏ gặp phải lỗi [%d].\n";
