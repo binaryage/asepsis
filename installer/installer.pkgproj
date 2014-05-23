@@ -965,11 +965,6 @@ More info http://j.mp/cmdtools.</string>
 			<string>/Users/darwin/code/asepsis</string>
 		</dict>
 	</dict>
-	<key>SHARED_GLOBAL_DATA</key>
-	<dict>
-		<key>IC_REQUIREMENT_JAVASCRIPT_SHARED_SOURCE_CODE</key>
-		<string></string>
-	</dict>
 	<key>TYPE</key>
 	<integer>0</integer>
 	<key>VERSION</key>
