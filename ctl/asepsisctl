@@ -30,6 +30,7 @@ DS_LIB_RELOCATED_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_")
 DS_LIB_BACKUP_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_Backup")
 DS_LIB_PANIC_BACKUP_FOLDER = File.join(DS_FRAMEWORK_PATH, "Versions", "A_Backup_Panic")
 DS_WRAPPER_SOURCE_PATH = File.join(RESOURCES_PATH, "DesktopServicesPrivWrapper")
+CODESIGN_PATH = "/usr/bin/codesign"
 
 ##############################################################################################################################
 

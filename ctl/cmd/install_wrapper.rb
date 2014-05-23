@@ -42,9 +42,9 @@ def cmd_install_wrapper(options)
     sys("sudo cp -a \"#{DS_LIB_FOLDER}\" \"#{DS_LIB_RELOCATED_FOLDER}\"")
     sys("sudo \"#{RESOURCES_PATH}/install_name_tool\" -id \"#{DS_LIB_RELOCATED_FOLDER}/DesktopServicesPriv\" \"#{DS_LIB_RELOCATED_FOLDER}/DesktopServicesPriv\"")
     # apply code signatures only under Mavericks and higher
-    sys("sudo /usr/bin/codesign --timestamp=none --force --sign - \"#{DS_LIB_RELOCATED_FOLDER}/DesktopServicesPriv\"") unless lions?
+    sys("sudo \"#{CODESIGN_PATH}\" --timestamp=none --force --sign - \"#{DS_LIB_RELOCATED_FOLDER}/DesktopServicesPriv\"") unless lions?
     sys("sudo cp \"#{DS_WRAPPER_SOURCE_PATH}\" \"#{DS_LIB_FOLDER}/DesktopServicesPriv\"")
     # since 10.9.3 it is important to codesing in-place after copying the file, see https://github.com/binaryage/asepsis/issues/13
-    sys("sudo /usr/bin/codesign --timestamp=none --force --sign - \"#{DS_LIB_FOLDER}\"") unless lions?
+    sys("sudo \"#{CODESIGN_PATH}\" --timestamp=none --force --sign - \"#{DS_LIB_FOLDER}\"") unless lions?
     sys("sudo rm -rf \"#{DS_LIB_FOLDER}/_CodeSignature\"")
 end

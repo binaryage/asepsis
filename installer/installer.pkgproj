@@ -774,7 +774,9 @@
 							<key>SECONDARY_VALUE</key>
 							<string></string>
 							<key>VALUE</key>
-							<string>Please install Xcode command-line tools first. Asepsis requires working "codesign" command. You should see a separate dialog or read this article http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x.</string>
+							<string>Please install Xcode command-line tools. Asepsis requires working "codesign" command.
+ 
+More info http://j.mp/cmdtools.</string>
 						</dict>
 					</array>
 					<key>NAME</key>

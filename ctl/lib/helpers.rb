@@ -82,8 +82,9 @@ def lions?
 end
 
 def codesign_check()
-  res = `which codesign`.strip
-  die("Asepsis requires working codesign command for this operation. Please install codesign to /usr/bin/codesign.\nInstall Xcode command-line tools: http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x") if res.size==0
+  if not File.exists?(CODESIGN_PATH) then
+    die("Asepsis requires working codesign command for this operation. Please install codesign to /usr/bin/codesign.\nInstall Xcode command-line tools: http://j.mp/cmdtools")
+  end
 end
 
 def os_version_check()
