@@ -5,16 +5,14 @@ else
 end
 
 ROOT_DIR = File.expand_path('.')
-TMP_ROOT = File.join(ROOT_DIR, 'tmp')
 BIN_DIR = File.join(ROOT_DIR, 'bin')
-TMP_DIR = File.join(TMP_ROOT, "asepsis-installer")
 RELEASE_DIR = File.join(ROOT_DIR, 'release')
 PAYLOADS_DIR = File.join(ROOT_DIR, 'payloads')
 INSTALLER_DIR = File.join(ROOT_DIR, 'installer')
 
-BUILD = File.join(BIN_DIR, "Asepsis")
-BUILD_UPDATER = File.join(BUILD, "AsepsisUpdater.app")
-BUILD_UPDATER_FRAMEWORKS = File.join(BUILD_UPDATER, "Contents", "Frameworks")
+TMP_ROOT = File.join(ROOT_DIR, 'tmp')
+TMP_DIR = File.join(TMP_ROOT, "asepsis-installer")
+
 INSTALL_DIR = "/Library/Application Support"
 
 PUBLISH_PREFIX_URL = "http://downloads.binaryage.com"
@@ -125,13 +123,13 @@ end
 
 desc "install"
 task :install do
-    sys("sudo cp -r \"#{BUILD}\" \"#{INSTALL_DIR}\"")
+    sys("sudo cp -r \"#{BIN_DIR}\" \"#{INSTALL_DIR}\"")
     sys("\"#{INSTALL_DIR}/Asepsis/ctl/asepsisctl\" install")
 end
 
 desc "clean"
 task :clean do
-    sys("rm -rf \"#{BUILD}\"")
+    sys("rm -rf \"#{BIN_DIR}\"")
     sys("rm -rf \"#{TMP_DIR}\"")
     sys(BUILD_TOOL+' clean -workspace Asepsis.xcworkspace -scheme "build"')
     die("clean failed") unless $?==0
@@ -179,15 +177,15 @@ task :release do
             ['##VERSION##', $version],
             ['##INSTALLER_TITLE##', "Asepsis #{$version}"],
             ["/Users/darwin/code/asepsis", "#{TMP_DIR}"],
-            ["#{TMP_DIR}/release", "#{ROOT_DIR}/release"]
+            ["#{TMP_DIR}/release", RELEASE_DIR]
         ])
 
-        uninstaller = File.join(BUILD, "Asepsis Uninstaller.app")
+        uninstaller = File.join("bin", "Asepsis", "Asepsis Uninstaller.app")
         codesign(uninstaller)
 
-        codesign(File.join(BUILD_UPDATER_FRAMEWORKS, "Sparkle.framework/Versions/A/Resources/finish_installation.app"))
-        codesign(File.join(BUILD_UPDATER_FRAMEWORKS, "Sparkle.framework/Versions/A"))
-        codesign(File.join(BUILD_UPDATER))
+        codesign(File.join("bin", "Asepsis", "AsepsisUpdater.app", "Contents", "Frameworks", "Sparkle.framework/Versions/A/Resources/finish_installation.app"))
+        codesign(File.join("bin", "Asepsis", "AsepsisUpdater.app", "Contents", "Frameworks", "Sparkle.framework/Versions/A"))
+        codesign(File.join("bin", "Asepsis", "AsepsisUpdater.app"))
 
         release = File.join(RELEASE_DIR, "Asepsis.pkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
         sys("rm -rf \"#{release}\"") if File.exist? release
