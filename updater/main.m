@@ -198,8 +198,10 @@ void reportFailedDiagnose() {
 
 // =============================================================================
 int main(int argc, const char* argv[]) {
+    static id delegate;
+    delegate = [AppDelegate new];
     signal(SIGINT, handle_SIGINT);
     [NSApplication sharedApplication];
-    [NSApp setDelegate: [AppDelegate new]];
+    [NSApp setDelegate: delegate];
     return NSApplicationMain(argc, argv);
 }
