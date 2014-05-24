@@ -63,7 +63,7 @@ void reportFailedDiagnose() {
     }
     NSAlert* alert = [NSAlert new];
     [alert setMessageText: @"Asepsis could be broken"];
-    [alert setInformativeText: @"The \"asepsisctl diagnose\" command reported some issues with your Asepsis installation."];
+    [alert setInformativeText: @"Have you installed a system update recently?\nThe \"asepsisctl diagnose\" command reported some issues with your Asepsis installation."];
     [alert setShowsSuppressionButton:YES];
     [alert addButtonWithTitle:@"Read more on the web..."];
     [alert addButtonWithTitle:@"OK"];
