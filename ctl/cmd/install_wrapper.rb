@@ -35,6 +35,7 @@ def cmd_install_wrapper(options)
     end
 
     # make normal backup
+    sys("sudo rm -rf \"#{DS_LIB_BACKUP_FOLDER}\"")
     sys("sudo cp -a \"#{DS_LIB_FOLDER}\" \"#{DS_LIB_BACKUP_FOLDER}\"")
     sys("sudo touch \"#{DS_LIB_ASEPSIS_REV}\"")
 
