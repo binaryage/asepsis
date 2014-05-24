@@ -16,7 +16,7 @@ def cmd_uninstall(options)
     if $forced_exit_code==0 then
       say "Asepsis uninstallation done, reboot your computer."
     else
-      say_red "Asepsis uninstallation done, but with some failures, please inspect the command output."
+      say_red "Asepsis uninstallation done, but with some failures, please inspect the command output.\nTo complete uninstallation reboot your computer."
       exit 1
     end
 end
