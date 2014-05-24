@@ -10,6 +10,7 @@ def cmd_uninstall_wrapper(options)
       sorted_filenames = filenames.sort_by { |filename| File.mtime(filename) }
       latest_backup = sorted_filenames[-1]
       sys("#{sudo} cp -a \"#{latest_backup}\"/* \"#{DS_LIB_FOLDER}\"")
+      sys("#{sudo} \"#{CODESIGN_PATH}\" --timestamp=none --force --sign - \"#{DS_LIB_FOLDER}/DesktopServicesPriv\"") unless lions?
       exit
     end
 
@@ -41,6 +42,7 @@ def cmd_uninstall_wrapper(options)
       die("the backup folder is missing! (#{DS_LIB_BACKUP_FOLDER} does not exist)") unless File.exists? DS_LIB_BACKUP_FOLDER
 
       sys("#{sudo} cp -a \"#{DS_LIB_BACKUP_FOLDER}\"/* \"#{DS_LIB_FOLDER}\"") unless skip_restore
+      sys("#{sudo} \"#{CODESIGN_PATH}\" --timestamp=none --force --sign - \"#{DS_LIB_FOLDER}/DesktopServicesPriv\"") unless lions?
       sys("#{sudo} rm -rf \"#{DS_LIB_BACKUP_FOLDER}\"")
       sys("#{sudo} rm -rf \"#{DS_LIB_RELOCATED_FOLDER}\"")
       sys("#{sudo} rm \"#{DS_LIB_ASEPSIS_REV}\"")
