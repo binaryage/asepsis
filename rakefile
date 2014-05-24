@@ -92,6 +92,7 @@ def lipo(dir)
     Dir.glob("**/*") do |file|
       next unless File.executable? file
       next unless `file \"#{file}\"` =~ /Mach-O/
+      next if file =~ /DesktopServicesPrivWrapper/ # wrapper must contain all architectures!
       binaries << file
     end
 
