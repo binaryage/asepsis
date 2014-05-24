@@ -13,7 +13,7 @@ INSTALLER_DIR = File.join(ROOT_DIR, 'installer')
 TMP_ROOT = File.join(ROOT_DIR, 'tmp')
 TMP_DIR = File.join(TMP_ROOT, "asepsis-installer")
 
-INSTALL_DIR = "/Library/Application Support"
+INSTALL_DIR = "/Library/Application Support/Asepsis"
 
 PUBLISH_PREFIX_URL = "http://downloads.binaryage.com"
 CHANGELOG_PREFIX_URL = "http://asepsis.binaryage.com"
@@ -150,8 +150,9 @@ end
 
 desc "install"
 task :install do
-    sys("sudo cp -r \"#{BIN_DIR}\" \"#{INSTALL_DIR}\"")
-    sys("\"#{INSTALL_DIR}/Asepsis/ctl/asepsisctl\" install")
+    sys("sudo rm -rf \"#{INSTALL_DIR}\"")
+    sys("sudo cp -r \"#{BIN_DIR}/Asepsis/\" \"#{INSTALL_DIR}\"")
+    sys("\"#{INSTALL_DIR}/ctl/asepsisctl\" install")
 end
 
 desc "clean"
