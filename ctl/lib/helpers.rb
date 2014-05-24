@@ -82,6 +82,7 @@ def lions?
 end
 
 def codesign_check()
+  return if lions? # under lions codesign is not needed
   if not File.exists?(CODESIGN_PATH) then
     die("Asepsis requires working codesign command for this operation. Please install codesign to /usr/bin/codesign.\nInstall Xcode command-line tools: http://j.mp/cmdtools")
   end
