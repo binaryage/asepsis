@@ -28,14 +28,6 @@ rescue LoadError
     raise 'You must "gem install colored" to use terminal colors'
 end
 
-def file_color(text); text.yellow; end
-def dir_color(text); text.blue; end
-def cmd_color(text); text.magenta; end
-
-def red(text); text.red; end
-def green(text); text.green; end
-def blue(text); text.blue; end
-
 ############################################################################################
 
 def die(msg, status=1)
@@ -67,7 +59,7 @@ def dirty_repo_warning()
 end
 
 def patch(path, replacers)
-  puts "#{cmd_color('Patching')} #{file_color(path)}"
+  puts "#{'Patching'.magenta} #{path.yellow}"
   lines = []
   File.open(path, "r") do |f|
     f.each do |line|
@@ -92,6 +84,40 @@ def productsign(path)
   sys("productsign --sign \"Developer ID Installer: BinaryAge Limited\" \"#{tmp_path}\" \"#{path}\"")
   sys("rm \"#{tmp_path}\"")
 end
+
+def lipo(dir)
+  puts "Doing liposuction in #{dir.blue} ..."
+  Dir.chdir(dir) do
+    binaries = []
+    Dir.glob("**/*") do |file|
+      next unless File.executable? file
+      next unless `file \"#{file}\"` =~ /Mach-O/
+      binaries << file
+    end
+
+    binaries.each do |binary|
+      sys("lipo -thin x86_64 -output \"#{binary}\" \"#{binary}\"") unless `lipo -info \"#{binary}\"` =~ /^Non-fat/
+    end
+  end
+end
+
+def strip_symbols(dir)
+  puts "Stripping symbols in #{dir.blue} ..."
+  
+  Dir.chdir(dir) do
+    binaries = []
+    Dir.glob("**/*") do |file|
+      next unless File.executable? file
+      next unless `file \"#{file}\"` =~ /Mach-O/
+      binaries << file
+    end
+
+    binaries.each do |binary|
+      sys("strip -Sx \"#{binary}\"")
+    end
+  end
+end
+
 
 ############################################################################################
 
@@ -179,6 +205,9 @@ task :release do
             ["/Users/darwin/code/asepsis", "#{TMP_DIR}"],
             ["#{TMP_DIR}/release", RELEASE_DIR]
         ])
+        
+        lipo("bin/Asepsis")
+        strip_symbols("bin/Asepsis")
 
         uninstaller = File.join("bin", "Asepsis", "Asepsis Uninstaller.app")
         codesign(uninstaller)
@@ -227,8 +256,8 @@ task :release do
 
         puts snippet
         puts
-        puts red("Don't forget: ")+green("git tag -a v#{$version} -m \"Release #{$version}\"")
-        puts blue("#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg")
+        puts "Don't forget: ".red+"git tag -a v#{$version} -m \"Release #{$version}\"".green
+        puts "#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg".blue
     end
 end
 
