@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# this is just a hidden tweak for bypassing this test if needed
+if [ -f ~/.skip-asepsis-codesign-check ]; then
+  exit 0
+fi
+
 # codesign is not needed under Lion and Mountain Lion
 TMP=`sw_vers -productVersion|grep '10\.\(7\|8\)'`
 if [ $? -eq 0 ]; then

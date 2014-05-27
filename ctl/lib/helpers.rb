@@ -82,6 +82,8 @@ def lions?
 end
 
 def die_if_no_codesign()
+  return if File.exists?(File.expand_path("~/.skip-asepsis-codesign-check"))
+  
   # under 10.9 /usr/bin/codesign is a stub, it raises Xcode command-line tools installation dialog if used first time
   #
   # codesign can be installed by installing Xcode or as part of Xcode command-line tools (without full Xcode)
