@@ -81,9 +81,16 @@ def lions?
   $?==0
 end
 
-def codesign_check()
-  return if lions? # under lions codesign is not needed
-  if not File.exists?(CODESIGN_PATH) then
+def die_if_no_codesign()
+  # under 10.9 /usr/bin/codesign is a stub, it raises Xcode command-line tools installation dialog if used first time
+  #
+  # codesign can be installed by installing Xcode or as part of Xcode command-line tools (without full Xcode)
+  # see http://stackoverflow.com/a/15371967/84283
+  #
+  # we want to detect codesign presence here and stop the command if codesign is not available
+  # in case of failure we want to open installation dialog for Xcode command-line tools
+  #
+  if CODESIGN_PATH != `xcrun --find codesign`.strip then # if xcrun is a stub, it will raise xcode command-line tools dialog as well
     die("Asepsis requires working codesign command for this operation. Please install codesign to /usr/bin/codesign.\nInstall Xcode command-line tools: http://j.mp/cmdtools")
   end
 end

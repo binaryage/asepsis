@@ -1,7 +1,7 @@
 def cmd_install_wrapper(options)
     force = options[:force]
 
-    codesign_check()
+    die_if_no_codesign() unless lions? # under lions codesign is not needed
 
     # prevent installing on future OS versions
     os_version_check() unless force
