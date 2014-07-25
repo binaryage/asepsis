@@ -107,11 +107,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D610B7081574672400D209C8 /* updater.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = updater.xcodeproj; path = ../updater/updater.xcodeproj; sourceTree = "<group>"; };
-		D6138A7313FA6976000019A2 /* daemon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = daemon.xcodeproj; path = ../daemon/daemon.xcodeproj; sourceTree = "<group>"; };
-		D6138A9313FA6A15000019A2 /* test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = test.xcodeproj; path = ../test/test.xcodeproj; sourceTree = "<group>"; };
-		D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = wrapper.xcodeproj; path = ../wrapper/wrapper.xcodeproj; sourceTree = "<group>"; };
-		D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Uninstaller.xcodeproj; path = ../uninstaller/Uninstaller.xcodeproj; sourceTree = "<group>"; };
+		D610B7081574672400D209C8 /* updater.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = updater.xcodeproj; path = updater/updater.xcodeproj; sourceTree = "<group>"; };
+		D6138A7313FA6976000019A2 /* daemon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = daemon.xcodeproj; path = daemon/daemon.xcodeproj; sourceTree = "<group>"; };
+		D6138A9313FA6A15000019A2 /* test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = test.xcodeproj; path = test/test.xcodeproj; sourceTree = "<group>"; };
+		D67C33E01560EAF3007E9A0A /* wrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = wrapper.xcodeproj; path = wrapper/wrapper.xcodeproj; sourceTree = "<group>"; };
+		D6C7CC9A192F8016008C0328 /* Uninstaller.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Uninstaller.xcodeproj; path = uninstaller/Uninstaller.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -175,7 +175,7 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 			};
-			buildConfigurationList = D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "packager" */;
+			buildConfigurationList = D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "Asepsis" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -271,7 +271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR/../build.sh\"\n";
+			shellScript = "\"$PROJECT_DIR/build.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D657214613F09C230087EE6E /* Clean bin */ = {
@@ -286,7 +286,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BIN=\"$PROJECT_DIR/../bin\"\nrm -rf \"$BIN\"\nmkdir -p \"$BIN\"";
+			shellScript = "BIN=\"$PROJECT_DIR/bin\"\nrm -rf \"$BIN\"\nmkdir -p \"$BIN\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -398,7 +398,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "packager" */ = {
+		D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "Asepsis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6B7B9B613F09A4B000D02E8 /* Debug */,
