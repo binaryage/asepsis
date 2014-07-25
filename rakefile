@@ -1,8 +1,5 @@
-if not `which xctool`.empty? then
-  BUILD_TOOL = 'xctool'
-else
-  BUILD_TOOL = 'xcodebuild'
-end
+BUILD_TOOL = ENV["tool"] || 'xcodebuild' # 'xctool'
+BUILD_TOOL_POSTFIX = ENV["toolpostfix"] || unless `which xcpretty`.empty? then '| xcpretty -c; exit ${PIPESTATUS[0]}' end
 
 ROOT_DIR = File.expand_path('.')
 BIN_DIR = File.join(ROOT_DIR, 'bin')
@@ -14,6 +11,8 @@ TMP_ROOT = File.join(ROOT_DIR, 'tmp')
 TMP_DIR = File.join(TMP_ROOT, "asepsis-installer")
 
 INSTALL_DIR = "/Library/Application Support/Asepsis"
+
+PRIVATE_KEY = File.join(ROOT_DIR, '..', 'keys', 'asepsis', 'dsa_priv.pem')
 
 PUBLISH_PREFIX_URL = "http://downloads.binaryage.com"
 CHANGELOG_PREFIX_URL = "http://asepsis.binaryage.com"
@@ -89,13 +88,15 @@ def lipo(dir)
   puts "Doing liposuction in #{dir.blue} ..."
   Dir.chdir(dir) do
     binaries = []
-    Dir.glob("**/*") do |file|
-      next unless File.executable? file
-      next unless `file \"#{file}\"` =~ /Mach-O/
-      next if file =~ /DesktopServicesPrivWrapper/ # wrapper must contain all architectures!
-      binaries << file
+    Dir.glob("**/Frameworks/*.framework") do |framework|
+      base = File.basename framework, ".framework"
+      full = File.join(framework, base)
+      binaries << full
     end
-
+    Dir.glob("**/MacOS/*") do |exe|
+      binaries << exe
+    end
+    binaries.reject! {|file| File.symlink? file }
     binaries.each do |binary|
       sys("lipo -thin x86_64 -output \"#{binary}\" \"#{binary}\"") unless `lipo -info \"#{binary}\"` =~ /^Non-fat/
     end
@@ -105,6 +106,8 @@ end
 def strip_symbols(dir)
   puts "Stripping symbols in #{dir.blue} ..."
   
+  symbols = []
+  
   Dir.chdir(dir) do
     binaries = []
     Dir.glob("**/*") do |file|
@@ -112,13 +115,19 @@ def strip_symbols(dir)
       next unless `file \"#{file}\"` =~ /Mach-O/
       binaries << file
     end
-
+    binaries.reject! {|file| File.symlink? file }
     binaries.each do |binary|
+      obfuscated_symbols = `nm -a "#{binary}" | grep " [+-]\\[\\\\$"`
+      obfuscated_symbols.split("\n").each do |sym|
+        sym =~ /^(.*) ([+-]\[\$.*)$/
+        symbols << $2
+      end
       sys("strip -Sx \"#{binary}\"")
     end
   end
+  
+  symbols = symbols.sort.uniq
 end
-
 
 ############################################################################################
 
@@ -138,13 +147,13 @@ end
 
 desc "build"
 task :build do
-    sys(BUILD_TOOL+' -workspace Asepsis.xcworkspace -scheme "build" -configuration Release')
+    sys("#{BUILD_TOOL} -project Asepsis.xcodeproj -scheme Asepsis -configuration Release #{BUILD_TOOL_POSTFIX}")
     die("build failed") unless $?==0
 end
 
 desc "build debug version (more verbose in Console.app)"
 task :build_debug do
-    sys(BUILD_TOOL+' -workspace Asepsis.xcworkspace -scheme "build" -configuration Debug')
+    sys("#{BUILD_TOOL} -project Asepsis.xcodeproj -scheme Asepsis -configuration Debug #{BUILD_TOOL_POSTFIX}")
     die("build failed") unless $?==0
 end
 
@@ -217,6 +226,11 @@ task :release do
         codesign(File.join("bin", "Asepsis", "AsepsisUpdater.app", "Contents", "Frameworks", "Sparkle.framework/Versions/A/Resources/finish_installation.app"))
         codesign(File.join("bin", "Asepsis", "AsepsisUpdater.app", "Contents", "Frameworks", "Sparkle.framework/Versions/A"))
         codesign(File.join("bin", "Asepsis", "AsepsisUpdater.app"))
+        codesign(File.join("bin", "Asepsis", "DesktopServicesPrivWrapper"))
+        codesign(File.join("bin", "Asepsis", "install_name_tool"))
+        codesign(File.join("bin", "Asepsis", "asepsisTest"))
+        codesign(File.join("bin", "Asepsis", "asepsisd"))
+        codesign(File.join("bin", "Asepsis", "Asepsis Uninstaller.app"))
 
         release = File.join(RELEASE_DIR, "Asepsis.pkg") # THIS MUST BE THE SAME NAME AS OF THE APP! REQUIRED BY SPARKLE
         sys("rm -rf \"#{release}\"") if File.exist? release
@@ -237,14 +251,12 @@ task :release do
         die("build failed") unless $?==0
 
         readme_source = File.join("installer", "readme.pdf")
-        readme = File.join("bin", "Readme.pdf")
-        sys("cp \"#{readme_source}\" \"#{readme}\"")
 
-        sys("hdiutil create \"#{releasedmg}\" -volname \"Asepsis\" -format UDBZ -fs HFS+ -srcfolder \"#{release}\" -srcfolder \"#{uninstaller}\" -srcfolder \"#{readme}\"")
+        sys("hdiutil create \"#{releasedmg}\" -volname \"Asepsis\" -format UDBZ -fs HFS+ -srcfolder \"#{release}\" -srcfolder \"#{uninstaller}\" -srcfolder \"#{readme_source}\"")
         die("build failed") unless $?==0
 
         size = File.size(releasedmg)
-        sig = `ruby "sparkle/sign_update.rb" "#{releasedmg}" keys/dsa_priv.pem`.strip
+        sig = `ruby "sparkle/sign_update.rb" "#{releasedmg}" "#{PRIVATE_KEY}"`.strip
         die("build failed") unless $?==0
 
         snippet = "\

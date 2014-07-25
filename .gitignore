@@ -1,6 +1,5 @@
-build/
 xcuserdata
 xcshareddata
-bin/
-tmp/
+/bin
+/tmp
 keys/dsa_priv.pem
