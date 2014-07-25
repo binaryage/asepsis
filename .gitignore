@@ -2,6 +2,5 @@ build/
 xcuserdata
 xcshareddata
 bin/
-release/
-keys/dsa_priv.pem
 tmp/
+keys/dsa_priv.pem

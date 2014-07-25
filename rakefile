@@ -6,7 +6,7 @@ end
 
 ROOT_DIR = File.expand_path('.')
 BIN_DIR = File.join(ROOT_DIR, 'bin')
-RELEASE_DIR = File.join(ROOT_DIR, 'release')
+RELEASE_DIR = File.join(ROOT_DIR, 'releases')
 PAYLOADS_DIR = File.join(ROOT_DIR, 'payloads')
 INSTALLER_DIR = File.join(ROOT_DIR, 'installer')
 
