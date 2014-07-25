@@ -98,8 +98,8 @@ def die_if_no_codesign()
 end
 
 def os_version_check()
-  `sw_vers -productVersion|grep '10\\.\\(7\\|8\\|9\\)'`
-  die("Asepsis #{ASEPSISCTL_VERSION} can be only installed under OS X versions 10.7, 10.8 and 10.9\nCheck out http://asepsis.binaryage.com for updated version.") if $?!=0
+  `sw_vers -productVersion|grep '10\\.\\(8\\|9\\|10\\)'`
+  die("Asepsis #{ASEPSISCTL_VERSION} can be only installed under OS X versions 10.8, 10.9 and 10.10\nCheck out http://asepsis.binaryage.com for updated version.") if $?!=0
 end
 
 def desktopservicespriv_wrapper?(file)
