@@ -15,7 +15,8 @@ def cmd_migratein(options)
         
         dest_dir = File.dirname(dest)
         FileUtils.mkdir_p(dest_dir) unless dry
-        FileUtils.mv(source, dest, {:verbose => verbose, :force => true}) unless dry
+        FileUtils.cp(source, dest, {:verbose => verbose, :preserve => true}) unless dry
+        FileUtils.rm(source) unless dry
         puts "#{source} -> #{dest}" if dry
         counter = counter + 1
         print "." unless (verbose or dry)
