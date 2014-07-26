@@ -88,28 +88,28 @@ void reportFailedDiagnose() {
 
 - (void)didFindValidUpdate {
     DLOG(@"didFindValidUpdate");
-	updateAlert = [[SUUpdateAlert alloc] initWithAppcastItem:updateItem host:host];
-	[updateAlert setDelegate:self];
-	
-	id<SUVersionDisplay>	versDisp = nil;
-	if ([[updater delegate] respondsToSelector:@selector(versionDisplayerForUpdater:)])
-		versDisp = [[updater delegate] versionDisplayerForUpdater: updater];
-	[updateAlert setVersionDisplayer: versDisp];
-	
-	if ([[updater delegate] respondsToSelector:@selector(updater:didFindValidUpdate:)])
-		[[updater delegate] updater:updater didFindValidUpdate:updateItem];
+    updateAlert = [[SUUpdateAlert alloc] initWithAppcastItem:updateItem host:host];
+    [updateAlert setDelegate:self];
     
-	// If the app is a menubar app or the like, we need to focus it first and alter the
-	// update prompt to behave like a normal window. Otherwise if the window were hidden
-	// there may be no way for the application to be activated to make it visible again.
+    id<SUVersionDisplay>    versDisp = nil;
+    if ([[updater delegate] respondsToSelector:@selector(versionDisplayerForUpdater:)])
+        versDisp = [[updater delegate] versionDisplayerForUpdater: updater];
+    [updateAlert setVersionDisplayer: versDisp];
+    
+    if ([[updater delegate] respondsToSelector:@selector(updater:didFindValidUpdate:)])
+        [[updater delegate] updater:updater didFindValidUpdate:updateItem];
+    
+    // If the app is a menubar app or the like, we need to focus it first and alter the
+    // update prompt to behave like a normal window. Otherwise if the window were hidden
+    // there may be no way for the application to be activated to make it visible again.
     [[updateAlert window] setHidesOnDeactivate:NO];
     [NSApp activateIgnoringOtherApps:YES];
-	[[updateAlert window] makeKeyAndOrderFront:self];
+    [[updateAlert window] makeKeyAndOrderFront:self];
 }
 
 - (void)didNotFindUpdate {
     DLOG(@"didNotFindUpdate");
-	[self abortUpdate]; // Don't tell the user that no update was found; this was a scheduled update.
+    [self abortUpdate]; // Don't tell the user that no update was found; this was a scheduled update.
 }
 
 - (void)abortUpdateWithError:(NSError *)error {
@@ -146,12 +146,12 @@ void reportFailedDiagnose() {
 }
 
 - (void)checkForUpdatesInBackground {
-	// Background update checks should only happen if we have a network connection.
-	//	Wouldn't want to annoy users on dial-up by establishing a connection every
-	//	hour or so:
-	SUUpdateDriver*	theUpdateDriver = [[AUpdateDriver alloc] initWithUpdater:self];
-	
-	[NSThread detachNewThreadSelector: @selector(checkForUpdatesInBgReachabilityCheckWithDriver:) toTarget: self withObject: theUpdateDriver];
+    // Background update checks should only happen if we have a network connection.
+    //    Wouldn't want to annoy users on dial-up by establishing a connection every
+    //    hour or so:
+    SUUpdateDriver*    theUpdateDriver = [[AUpdateDriver alloc] initWithUpdater:self];
+    
+    [NSThread detachNewThreadSelector: @selector(checkForUpdatesInBgReachabilityCheckWithDriver:) toTarget: self withObject: theUpdateDriver];
 }
 
 @end
