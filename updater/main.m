@@ -114,7 +114,19 @@ void reportFailedDiagnose() {
 
 - (void)abortUpdateWithError:(NSError *)error {
     DLOG(@"abortUpdateWithError %@", error);
-    [super abortUpdateWithError:error];
+    NSString* suppressUpdateErrorsFlag = [@"~/.asepsis-suppress-update-errors" stringByStandardizingPath];
+    BOOL suppressUpdateError = [[NSFileManager defaultManager] fileExistsAtPath:suppressUpdateErrorsFlag];
+    if (!suppressUpdateError) {
+        NSUserNotification* notification = [[NSUserNotification alloc] init];
+        notification.title = [NSString stringWithFormat:@"Asepsis update check failed"];
+        notification.informativeText = [error localizedDescription];
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    } else {
+        DLOG(@"  => update error notification suppressed");
+    }
+    if (download)
+        [download cancel];
+    [self abortUpdate];
 }
 
 - (void)abortUpdate {
