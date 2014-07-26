@@ -9,7 +9,7 @@ def cmd_install(options)
     sys!("#{ctl} make_dscage")
     sys!("#{ctl} install_daemon")
     sys!("#{ctl} launch_daemon")
-    sys!("#{ctl} disable_warnings")
+    sys!("#{ctl} disable_warnings") if prior_yosemite?
     sys!("#{ctl} install_wrapper")
     sys!("#{ctl} install_updater")
 

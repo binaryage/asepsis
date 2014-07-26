@@ -7,7 +7,7 @@ def cmd_uninstall(options)
     sys!("#{ctl} kill_daemon")
     sys!("#{ctl} uninstall_daemon")
     sys!("#{ctl} remove_symlink")
-    sys!("#{ctl} enable_warnings")
+    sys!("#{ctl} enable_warnings") if prior_yosemite?
     sys!("#{ctl} uninstall_updater")
 
     # install launchd "runonce" task to finish the uninstallation after reboot

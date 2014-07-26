@@ -30,9 +30,11 @@ def cmd_diagnose(options)
         cry "Asepsis has unexpected attributes: #{stat.strip}"
     end
 
-    logging = `/usr/sbin/sysctl vm.shared_region_unnest_logging`.strip
-    if logging != "vm.shared_region_unnest_logging: 0" then
+    if prior_yosemite? then
+      logging = `/usr/sbin/sysctl vm.shared_region_unnest_logging`.strip
+      if logging != "vm.shared_region_unnest_logging: 0" then
         cry "Asepsis should have set sysctl vm.shared_region_unnest_logging to 0"
+      end
     end
 
     if not File.exists? ASEPSISD_PATH then
