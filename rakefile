@@ -265,12 +265,12 @@ task :release do
             <sparkle:releaseNotesLink>#{CHANGELOG_PREFIX_URL}/changelog.html</sparkle:releaseNotesLink>
             <pubDate>#{Time.new}</pubDate>
             <enclosure url=\"#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg\" sparkle:version=\"#{$version}\" length=\"#{size}\" type=\"application/octet-stream\" sparkle:dsaSignature=\"#{sig}\"/>
-            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+            <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
         </item>"
 
         puts snippet
         puts
-        puts "Don't forget: ".red+"git tag -a v#{$version} -m \"Release #{$version}\"".green
+        puts "Don't forget: ".red+"git tag -a as-v#{$version} -m \"Release #{$version}\"".green
         puts "#{PUBLISH_PREFIX_URL}/Asepsis-#{$version}.dmg".blue
     end
 end
