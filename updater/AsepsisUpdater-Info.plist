@@ -36,6 +36,8 @@
 	<false/>
 	<key>SUFeedURL</key>
 	<string>http://updates.binaryage.com/asepsis.xml</string>
+	<key>SUScheduledCheckInterval</key>
+	<string>120</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
