@@ -733,11 +733,11 @@
 							<key>SECONDARY_VALUE</key>
 							<string></string>
 							<key>VALUE</key>
-							<string>This version of Asepsis is only supported under OS X 10.7 or 10.8.</string>
+							<string>This version of Asepsis is only supported under OS X 10.8, 10.9 or 10.10.</string>
 						</dict>
 					</array>
 					<key>NAME</key>
-					<string>Mavericks test</string>
+					<string>OS test</string>
 					<key>STATE</key>
 					<true/>
 				</dict>
