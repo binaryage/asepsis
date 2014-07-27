@@ -3,17 +3,25 @@
 #import "../sparkle/SUUIBasedUpdateDriver.h"
 #import "../sparkle/SUUpdateAlert.h"
 
-#ifdef DEBUG
-# define DLOG(...) NSLog(__VA_ARGS__)
-#else
-# define DLOG(...)
-#endif
+#define DLOG(...) if (gDebugLogging) NSLog(__VA_ARGS__)
 
 #define ASEPSIS_ISSUES_SUPPORT_PAGE @"http://asepsis.binaryage.com/#diagnose"
+
+bool gDebugLogging = false;
+
+void initDebugLoggingFlag() {
+#ifdef DEBUG
+    gDebugLogging = true;
+#else
+    NSString* suppressUpdateErrorsFlag = [@"~/.asepsis-debug-logging" stringByStandardizingPath];
+    gDebugLogging = [[NSFileManager defaultManager] fileExistsAtPath:suppressUpdateErrorsFlag];
+#endif
+}
 
 // -----------------------------------------------------------------------------
 
 void handle_SIGINT(int signum) {
+    DLOG(@"SIGINT %d", signum);
     [NSApp terminate:nil];
 }
 
@@ -158,6 +166,7 @@ void reportFailedDiagnose() {
 }
 
 - (void)checkForUpdatesInBackground {
+    DLOG(@"checkForUpdatesInBackground");
     // Background update checks should only happen if we have a network connection.
     //    Wouldn't want to annoy users on dial-up by establishing a connection every
     //    hour or so:
@@ -211,6 +220,7 @@ void reportFailedDiagnose() {
 // =============================================================================
 int main(int argc, const char* argv[]) {
     static id delegate;
+    initDebugLoggingFlag();
     delegate = [AppDelegate new];
     signal(SIGINT, handle_SIGINT);
     [NSApplication sharedApplication];
