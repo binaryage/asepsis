@@ -147,13 +147,13 @@ end
 
 desc "build"
 task :build do
-    sys("#{BUILD_TOOL} -project Asepsis.xcodeproj -scheme Asepsis -configuration Release #{BUILD_TOOL_POSTFIX}")
+    sys("#{BUILD_TOOL} -project Asepsis.xcodeproj -scheme build -configuration Release #{BUILD_TOOL_POSTFIX}")
     die("build failed") unless $?==0
 end
 
 desc "build debug version (more verbose in Console.app)"
 task :build_debug do
-    sys("#{BUILD_TOOL} -project Asepsis.xcodeproj -scheme Asepsis -configuration Debug #{BUILD_TOOL_POSTFIX}")
+    sys("#{BUILD_TOOL} -project Asepsis.xcodeproj -scheme build -configuration Debug #{BUILD_TOOL_POSTFIX}")
     die("build failed") unless $?==0
 end
 
@@ -168,7 +168,7 @@ desc "clean"
 task :clean do
     sys("rm -rf \"#{BIN_DIR}\"")
     sys("rm -rf \"#{TMP_DIR}\"")
-    sys(BUILD_TOOL+' clean -workspace Asepsis.xcworkspace -scheme "build"')
+    sys(BUILD_TOOL+' clean -project Asepsis.xcodeproj -scheme build')
     die("clean failed") unless $?==0
 end
 
