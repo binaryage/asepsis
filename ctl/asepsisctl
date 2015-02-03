@@ -49,8 +49,8 @@ Commands:
 Helper commands:
     neton                            Enables DS_Store files on network volumes.
     netoff                           Disables ... (http://support.apple.com/kb/ht1629).
-    migratein <path>                 Migrates .DS_Store files in <path> into #{PREFIX_PATH}. (Cleanup)
-    migrateout <path>                Migrates .DS_Store files back to <path> from #{PREFIX_PATH}. (Restore)
+    migratein [root]                 Migrates .DS_Store files located within [root] into -> #{PREFIX_PATH}. (Cleanup)
+    migrateout [root]                Migrates .DS_Store files originally within [root] back from <- #{PREFIX_PATH}. (Restore)
     prune                            Removes empty directories from #{PREFIX_PATH}.
     clean                            Deletes all content from #{PREFIX_PATH}.
 
