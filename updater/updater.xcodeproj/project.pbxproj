@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BDB63A139E1B6F00501FAA /* Cocoa.framework */; };
 		D6BDB665139E1C7C00501FAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BDB65F139E1C7C00501FAA /* main.m */; };
 		D6C3F18415746D69004A2A9F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3F17915746D4B004A2A9F /* Sparkle.framework */; };
-		D6C3F18615746E29004A2A9F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6C3F17915746D4B004A2A9F /* Sparkle.framework */; };
+		D6C3F18615746E29004A2A9F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6C3F17915746D4B004A2A9F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D6C3F18815747142004A2A9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = D6C3F18715747142004A2A9F /* dsa_pub.pem */; };
 		D6C3F18A1574854F004A2A9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C3F1891574854F004A2A9F /* MainMenu.xib */; };
 		D6C3F18C15748CFE004A2A9F /* Asepsis.icns in Resources */ = {isa = PBXBuildFile; fileRef = D6C3F18B15748CFE004A2A9F /* Asepsis.icns */; };
@@ -77,12 +76,7 @@
 /* Begin PBXFileReference section */
 		D65923A7139E2A1400E4A9D3 /* AsepsisUpdater-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AsepsisUpdater-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D65923A8139E2A1400E4A9D3 /* AsepsisUpdater-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AsepsisUpdater-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		D6719F7C13A2556E002FE41C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		D685C57613A36BE000A23F94 /* AsepsisUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsepsisUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6BDB63A139E1B6F00501FAA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		D6BDB63D139E1B6F00501FAA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D6BDB63E139E1B6F00501FAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D6BDB63F139E1B6F00501FAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6BDB65E139E1C7C00501FAA /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		D6BDB65F139E1C7C00501FAA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = ../sparkle/Sparkle.xcodeproj; sourceTree = "<group>"; };
@@ -97,7 +91,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C3F18415746D69004A2A9F /* Sparkle.framework in Frameworks */,
-				D6BDB63B139E1B6F00501FAA /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,32 +101,11 @@
 			isa = PBXGroup;
 			children = (
 				D6C3F16A15746D4A004A2A9F /* Sparkle.xcodeproj */,
-				D6719F7C13A2556E002FE41C /* CoreServices.framework */,
 				D6BDB66E139E1E4200501FAA /* Resources */,
 				D6BDB65D139E1C6900501FAA /* Source */,
 				D6BDB640139E1B6F00501FAA /* Support */,
-				D6BDB639139E1B6F00501FAA /* Frameworks */,
 				D685C57613A36BE000A23F94 /* AsepsisUpdater.app */,
 			);
-			sourceTree = "<group>";
-		};
-		D6BDB639139E1B6F00501FAA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D6BDB63A139E1B6F00501FAA /* Cocoa.framework */,
-				D6BDB63C139E1B6F00501FAA /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D6BDB63C139E1B6F00501FAA /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D6BDB63D139E1B6F00501FAA /* AppKit.framework */,
-				D6BDB63E139E1B6F00501FAA /* CoreData.framework */,
-				D6BDB63F139E1B6F00501FAA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		D6BDB640139E1B6F00501FAA /* Support */ = {
@@ -205,7 +177,7 @@
 		D6BDB62D139E1B6F00501FAA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = D6BDB630139E1B6F00501FAA /* Build configuration list for PBXProject "updater" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -322,6 +294,7 @@
 		D6BDB652139E1B6F00501FAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -351,6 +324,7 @@
 		D6BDB653139E1B6F00501FAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
