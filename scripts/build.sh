@@ -1,5 +1,7 @@
 #!/bin/sh
 
+if [ ${#PROJECT_DIR} -le 10 ]; then echo "error: set \$PROJECT_DIR env variable" ; exit 1; fi
+  
 BIN="$PROJECT_DIR/bin"
 mkdir -p "$BIN"
 BIN=`cd "$BIN";pwd` # normalize path
@@ -13,7 +15,7 @@ UNINSTALLER="$TARGET/Asepsis Uninstaller.app"
 PACKAGER="$PROJECT_DIR/packager"
 
 echo "build products dir is $BUILT_PRODUCTS_DIR"
-echo "assembling final products in $BIN"
+echo "assembling final products into $BIN"
 
 mkdir -p "$TARGET"
 
