@@ -173,7 +173,7 @@
 		D6B7B9B013F09A4B000D02E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0630;
 			};
 			buildConfigurationList = D6B7B9B313F09A4B000D02E8 /* Build configuration list for PBXProject "Asepsis" */;
 			compatibilityVersion = "Xcode 3.2";

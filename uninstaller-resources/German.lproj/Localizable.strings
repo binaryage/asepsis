@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "";
+"Cancel" = "Abbrechen";
+"Uninstall" = "Deinstallieren";
+"Details" = "Details";
+
+/* tooltips */
+"Show detailed transcript" = "Detailierte Informationen anzeigen";
+
+/* main texts */
+"You are about uninstall *APP*" = "Sie sind gerade dabei Asepsis zu deinstallieren";
+"This program will uninstall all *APP* components from this computer." = "Dieser Uninstaller wird alle Asepsis Bestandteile von Ihrem Mac deinstallieren.";
+"*APP* has been uninstalled" = "Asepsis wurde deinstalliert";
+"Have a nice day." = "Schönen Tag.";
+"*APP* uninstallation failed" = "Asepsis Deinstallation fehlgeschlagen";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "Das Deinstallationsprogramm führte zu einem Problem. Für weitere Informationen sehen Sie sich die Details an. Bitte schicken Sie einen Bug-Report an support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Zum Deinstallieren von Asepsis werden Admin Rechte benötigt.";
+"Running uninstall script:\n" = "Das Deinstallationsskript wird durchgeführt:\n";
+"Uninstall script finished successfully.\n" = "Das Deinstallationsskript ist erfolgreich abgeschlossen..\n";
+"Uninstall script needs admin rights.\n" = "Das Deinstallationsskript benötigt Admin Rechte.\n";
+"Uninstall script failed with error [%d].\n" = "Das Deinstallationsskript wurde inkorrekt aufgrund dieses Fehler beendet [%d].\n";

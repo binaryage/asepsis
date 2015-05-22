@@ -1,0 +1,23 @@
+/* buttons */
+"Quit" = "Keluar";
+"Cancel" = "Batal";
+"Uninstall" = "Padam";
+"Details" = "Perincian";
+
+/* tooltips */
+"Show detailed transcript" = "Tunjukkan transkrip terperinci";
+
+/* main texts */
+"You are about uninstall *APP*" = "Anda akan memadam Asepsis";
+"This program will uninstall all *APP* components from this computer." = "Program ini akan memadam semua komponen Asepsis dari komputer ini.";
+"*APP* has been uninstalled" = "Asepsis telah dipadam";
+"Have a nice day." = "Semoga hari anda baik-baik sahaja.";
+"*APP* uninstallation failed" = "Pemadaman Asepsis gagal";
+"The uninstall script encountered problems. Please see the details. Please report bugs to support@binaryage.com." = "Skrip pemadaman menghadapi masalah. Sila lihat perincian. Laporkan sebarang ralat kepada support@binaryage.com.";
+
+/* possible script messages in details section */
+"Uninstaller needs admin privileges to remove *APP* from your system." = "Penyahpasang memerlukan kebenaran pentadbir untuk memadam Asepsis dari sistem anda.";
+"Running uninstall script:\n" = "Menjalankan skrip pemadaman:\n";
+"Uninstall script finished successfully.\n" = "Skrip pemadaman selesai dengan jayanya.\n";
+"Uninstall script needs admin rights.\n" = "Skrip pemadaman memerlukan kebenaran pentadbir.\n";
+"Uninstall script failed with error [%d].\n" = "Skrip pemadaman gagal dengan ralat [%d].\n";
