@@ -132,3 +132,11 @@ def os_version_marker()
     ""
   end
 end
+
+def is_library_fat_with_both_slices?(path)
+  report = `file -b \"#{path}\"`
+  return false unless report =~ /Mach-O universal binary with 2 architectures/
+  return false unless report =~ /Mach-O 64-bit dynamically linked shared library x86_64/
+  return false unless report =~ /Mach-O dynamically linked shared library i386/
+  return true
+end

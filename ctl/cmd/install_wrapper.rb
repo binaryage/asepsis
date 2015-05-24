@@ -12,6 +12,16 @@ def cmd_install_wrapper(options)
         die("wrapper framework seems to be installed (#{ds_lib} was created by Asepsis), to reinstall please run: \"asepsisctl uninstall_wrapper\" first")
     end
 
+    # check that original library has both slices (https://github.com/binaryage/asepsis/issues/25)
+    unless is_library_fat_with_both_slices? ds_lib then
+        die("the original library is expected to be a fat binary. (#{ds_lib} should contain both slices x86_64 and i386)")
+    end
+
+    # check that wrapper library has both slices (https://github.com/binaryage/asepsis/issues/25)
+    unless is_library_fat_with_both_slices? DS_WRAPPER_SOURCE_PATH then
+        die("the wrapper library is expected to be a fat binary. (#{DS_WRAPPER_SOURCE_PATH} should contain both slices x86_64 and i386)")
+    end
+    
     # forced installation should remove potentially existing backup
     if force and File.exists? DS_LIB_RELOCATED_FOLDER
       sys("sudo rm -rf \"#{DS_LIB_RELOCATED_FOLDER}\"")
