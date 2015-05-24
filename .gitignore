@@ -1,3 +1,4 @@
 /bin
 /tmp
 keys/dsa_priv.pem
+*.xccheckout
