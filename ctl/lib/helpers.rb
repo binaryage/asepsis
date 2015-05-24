@@ -111,3 +111,18 @@ def desktopservicespriv_wrapper?(file)
   # this is simple and stupid test: our wrapper library is small, under 100kb
   File.size(file) <= 100*1024
 end
+
+def safe_string_to_filename(s)
+  s.gsub(/[^a-zA-Z0-9]/, "_").gsub(/_+/, "_")
+end
+
+def os_version_marker()
+  begin
+    vers = `sw_vers`.split("\n")
+    os_version = vers[1].match(/:\s*(.*)/)[1]
+    build_version = vers[2].match(/:\s*(.*)/)[1]
+    safe_string_to_filename("#{os_version}_#{build_version}")
+  rescue
+    ""
+  end
+end

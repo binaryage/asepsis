@@ -29,7 +29,8 @@ def cmd_install_wrapper(options)
     
     # make timestamped panic backup
     timestamp = Time.now.strftime("%Y%m%d%H%M%S")
-    panic_backup_folder_with_timestamp = "#{DS_LIB_PANIC_BACKUP_FOLDER}_#{timestamp}"
+    os_marker = os_version_marker()
+    panic_backup_folder_with_timestamp = "#{DS_LIB_PANIC_BACKUP_FOLDER}_#{os_marker}_#{timestamp}"
     unless File.exists? panic_backup_folder_with_timestamp then
         sys("sudo cp -a \"#{DS_LIB_FOLDER}\" \"#{panic_backup_folder_with_timestamp}\"")
     end
