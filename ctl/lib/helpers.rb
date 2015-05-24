@@ -46,11 +46,14 @@ def set_permanent_sysctl(name, value="1", path = "/etc/sysctl.conf")
     replacement = "#{name}=#{value} \# added by asepsis.binaryage.com\n"
     File.open(path, "r") do |f|
         f.each do |line|
+          begin
             if line =~ r then
                line = replacement
                set = true
             end
-            lines << line
+          rescue # workaround https://github.com/binaryage/asepsis/issues/19
+          end
+          lines << line
         end
     end
     lines << replacement unless set
@@ -65,8 +68,11 @@ def remove_permanent_sysctl(name, path = "/etc/sysctl.conf")
     r = Regexp.new(Regexp.escape(name))
     File.open(path, "r") do |f|
         f.each do |line|
-            if line =~ r then
-                next
+            begin
+                if line =~ r then
+                   next
+                end
+            rescue # workaround https://github.com/binaryage/asepsis/issues/19
             end
             lines << line
         end
