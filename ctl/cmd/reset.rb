@@ -1,6 +1,4 @@
-def cmd_clean(options)
-    say "deprecated: 'clean' command was renamed to 'reset'"
-
+def cmd_reset(options)
     dry = options[:dry]
     verbose = options[:verbose]
     
@@ -24,4 +22,4 @@ def cmd_clean(options)
     else 
         say "no directories found in the prefix folder, nothing to do"
     end
-  end
+end

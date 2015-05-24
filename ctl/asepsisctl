@@ -52,7 +52,7 @@ Helper commands:
     migratein [root]                 Migrates .DS_Store files located within [root] into -> #{PREFIX_PATH}. (Cleanup)
     migrateout [root]                Migrates .DS_Store files originally within [root] back from <- #{PREFIX_PATH}. (Restore)
     prune                            Removes empty directories from #{PREFIX_PATH}.
-    clean                            Deletes all content from #{PREFIX_PATH}.
+    reset                            Deletes all content from #{PREFIX_PATH}.
 
 Installation commands:
     install                          Performs reinstallation (using "#{RESOURCES_PATH}").
@@ -97,6 +97,7 @@ require BASE_DIR + '/cmd/migratein'
 require BASE_DIR + '/cmd/migrateout'
 require BASE_DIR + '/cmd/prune'
 require BASE_DIR + '/cmd/clean'
+require BASE_DIR + '/cmd/reset'
 require BASE_DIR + '/cmd/install'
 require BASE_DIR + '/cmd/uninstall'
 require BASE_DIR + '/cmd/install_wrapper'
