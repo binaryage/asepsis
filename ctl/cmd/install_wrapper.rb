@@ -48,5 +48,4 @@ def cmd_install_wrapper(options)
     sys("sudo cp \"#{DS_WRAPPER_SOURCE_PATH}\" \"#{DS_LIB_FOLDER}/DesktopServicesPriv\"")
     # since 10.9.3 it is important to codesing in-place after copying the file, see https://github.com/binaryage/asepsis/issues/13
     sys("sudo \"#{CODESIGN_PATH}\" --file-list - --timestamp=none --force --sign - \"#{DS_LIB_FOLDER}\"") unless lions?
-    sys("sudo rm -rf \"#{DS_LIB_FOLDER}/_CodeSignature\"")
 end
