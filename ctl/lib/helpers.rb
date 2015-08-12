@@ -104,6 +104,8 @@ def die_if_no_codesign()
 end
 
 def os_version_check()
+  return true if File.exists?(File.expand_path("~/.no-asepsis-os-restriction"))
+  
   `sw_vers -productVersion|grep '10\\.\\(8\\|9\\|10\\)'`
   die("Asepsis #{ASEPSISCTL_VERSION} can be only installed under OS X versions 10.8, 10.9 and 10.10\nCheck out http://asepsis.binaryage.com for updated version.") if $?!=0
 end
