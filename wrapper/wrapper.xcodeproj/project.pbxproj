@@ -114,7 +114,7 @@
 		D67C33BE1560EAF3007E9A0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = D67C33C11560EAF3007E9A0A /* Build configuration list for PBXProject "wrapper" */;
 			compatibilityVersion = "Xcode 3.2";
