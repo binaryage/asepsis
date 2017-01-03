@@ -5,7 +5,7 @@
 
 #define DLOG(...) if (gDebugLogging) NSLog(__VA_ARGS__)
 
-#define ASEPSIS_ISSUES_SUPPORT_PAGE @"http://asepsis.binaryage.com/#diagnose"
+#define ASEPSIS_ISSUES_SUPPORT_PAGE @"https://asepsis.binaryage.com/#diagnose"
 
 bool gDebugLogging = false;
 
