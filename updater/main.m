@@ -196,7 +196,7 @@ void reportFailedDiagnose() {
     // publishing a version with broken Sparkle updater would be a real pain
     //
     // the idea:
-    // 1. prepare asepsis-test.xml and upload it to http://updates.binaryage.com
+    // 1. prepare asepsis-test.xml and upload it to https://updates.binaryage.com
     // 2. install new release on a test machine
     // 3. touch ~/.use-test-appcast
     // 4. check for updates and go through updater/installer
@@ -208,8 +208,8 @@ void reportFailedDiagnose() {
 
     BOOL useTest = [fileManager fileExistsAtPath:useTestAppCastPath];
     if (useTest) {
-        NSLog(@"Using http://updates.binaryage.com/asepsis-test.xml as appcast because %@ is present.", useTestAppCastPath);
-        [sparkle setFeedURL:[NSURL URLWithString:@"http://updates.binaryage.com/asepsis-test.xml"]];
+        NSLog(@"Using https://updates.binaryage.com/asepsis-test.xml as appcast because %@ is present.", useTestAppCastPath);
+        [sparkle setFeedURL:[NSURL URLWithString:@"https://updates.binaryage.com/asepsis-test.xml"]];
     }
 
     [sparkle checkForUpdatesInBackground];

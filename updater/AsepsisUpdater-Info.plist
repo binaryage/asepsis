@@ -35,7 +35,7 @@
 	<key>SUEnableAutomaticChecks</key>
 	<false/>
 	<key>SUFeedURL</key>
-	<string>http://updates.binaryage.com/asepsis.xml</string>
+	<string>https://updates.binaryage.com/asepsis.xml</string>
 	<key>SUScheduledCheckInterval</key>
 	<string>120</string>
 	<key>SUPublicDSAKeyFile</key>
