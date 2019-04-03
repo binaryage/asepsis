@@ -1,6 +1,15 @@
 ## Asepsis == solution for .DS_Store pollution.
 
-### WARNING: No longer supported under OS X 10.11 (El Capitan)
+### WARNING: No longer supported under macOS 10.11 (El Capitan) and higher
+
+If you are interested in updated version maintained by others, please check out these repos:
+
+* [https://github.com/JK3Y/asepsis](https://github.com/JK3Y/asepsis)
+* [https://github.com/fnesveda/asepsis](https://github.com/fnesveda/asepsis)
+
+---
+---
+---
 
 #### For end-user info please visit [http://asepsis.binaryage.com](http://asepsis.binaryage.com)
 
