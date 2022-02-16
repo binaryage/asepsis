@@ -2,8 +2,16 @@
 
 ### WARNING: No longer supported under macOS 10.11 (El Capitan) and higher
 
+---
+
 If you are interested in updated version maintained by others, please check out these repos:
 
+## Odourless 
+https://github.com/xiaozhuai/odourless
+
+Which prevents `.DS_Store` pollution on Sierra, High Sierra, Mojave, Catalina and Big Sur (On both Intel _*and*_ M1 processors!)
+
+and is also, in turn, based on / inspired by  prior work by:
 * [https://github.com/JK3Y/asepsis](https://github.com/JK3Y/asepsis)
 * [https://github.com/fnesveda/asepsis](https://github.com/fnesveda/asepsis)
 
